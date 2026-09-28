@@ -12,22 +12,22 @@
 				{
 					"slug": "primary",
 					"name": "Primary",
-					"color": "#B04A2F"
+					"color": "#243F66"
 				},
 				{
 					"slug": "primary-dark",
 					"name": "Primary dark",
-					"color": "#8A3822"
+					"color": "#182C49"
 				},
 				{
 					"slug": "cream",
 					"name": "Base",
-					"color": "#FAF7F2"
+					"color": "#F5EFE6"
 				},
 				{
 					"slug": "paper",
 					"name": "Paper",
-					"color": "#F2ECE2"
+					"color": "#EAE0D2"
 				},
 				{
 					"slug": "white",
@@ -37,12 +37,12 @@
 				{
 					"slug": "ink",
 					"name": "Text",
-					"color": "#2A2320"
+					"color": "#23262B"
 				},
 				{
 					"slug": "muted",
 					"name": "Muted",
-					"color": "#6F625B"
+					"color": "#6B6158"
 				}
 			]
 		},

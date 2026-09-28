@@ -13,7 +13,7 @@
 <!-- wp:column {"verticalAlignment":"center","width":"55%"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:55%">
 <!-- wp:menudash/open /-->
-<!-- wp:menudash-theme/place /-->
+<!-- wp:menudash/contact {"parts":["address"],"oneLine":true,"textColor":"primary","style":{"typography":{"fontSize":"0.8125rem","fontWeight":"700","textTransform":"uppercase","letterSpacing":"0.18em"}},"className":"mdt-place"} /-->
 <!-- wp:heading {"level":1,"style":{"typography":{"lineHeight":"0.9"}}} -->
 <h1 class="wp-block-heading" style="line-height:0.9"><?php echo esc_html__( 'Home cooking, made fresh every day', 'menudash-theme' ); ?></h1>
 <!-- /wp:heading -->

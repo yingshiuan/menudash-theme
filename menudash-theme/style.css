@@ -2,7 +2,7 @@
 Theme Name: MenuDash Theme
 Theme URI: https://github.com/yingshiuan/menudash-theme
 Description: A restaurant website theme made for the MenuDash plugin: the menu, today's specials, opening hours, holidays, gift cards and your restaurant's details come from MenuDash, and the theme shows them in a warm, simple design. Home page sections, header and footer are edited in Appearance → Editor; colours and fonts under Styles. English and German included.
-Version: 1.1.0
+Version: 1.2.0
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
@@ -137,7 +137,7 @@ header + .mdt-specials { margin-block-start: 0; }
    own styles only for buttons placed directly, so the outline style is repeated here. */
 .wp-block-button.is-style-outline > .wp-block-button__link { background: transparent; border: 2px solid currentColor; }
 /* The theme's MenuDash blocks in the editor: a dashed outline says "comes from MenuDash". */
-.mdt-live-block { outline: 1px dashed rgba(163, 30, 44, .35); outline-offset: 4px; }
+.mdt-live-block { outline: 1px dashed rgba(36, 63, 102, .4); outline-offset: 4px; }
 .mdt-delivery .mdt-delivery-hours { margin: .4rem 0 1.2rem; }
 .mdt-delivery .menudash-open { margin-top: .2rem; }
 

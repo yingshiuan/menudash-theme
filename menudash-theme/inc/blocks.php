@@ -6,12 +6,12 @@
  * into it; in the editor they show a live preview (assets/js/blocks-editor.js). Texts
  * around them are normal blocks. Without MenuDash they print nothing.
  *
- *   menudash-theme/place        street · city, the welcome's small line
+ *   menudash-theme/place        only for pages saved with 1.0/1.1: now MenuDash's Contact block
  *   menudash-theme/open         only for pages saved with 1.0: now MenuDash's own "Open now" block
  *   menudash-theme/buttons      only for pages saved with 1.0: the patterns now use WordPress buttons
  *                               with MenuDash links (mdt_bound_button)
- *   menudash-theme/contact      variant="visit": address and phone; variant="footer": address, country, phone, e-mail
- *   menudash-theme/directions   "Getting here", all lines or only the first (first=true)
+ *   menudash-theme/contact      only for pages saved with 1.0/1.1: now MenuDash's Contact block
+ *   menudash-theme/directions   only for pages saved with 1.0/1.1: now MenuDash's Contact block
  *   menudash-theme/social       variant="icons": Facebook and Instagram icons; variant="follow": the Instagram button
  *   menudash-theme/delivery     the whole delivery column; nothing without an order link
  *   menudash-theme/map          the Google Maps map, loaded on request
@@ -111,7 +111,7 @@ function mdt_eyebrow( $text ) {
 
 /** Old pages' menudash-theme/open, drawn by MenuDash's Open now block, which the theme uses now. */
 function mdt_block_open( $atts ) {
-	return do_blocks( '<!-- wp:menudash/open ' . wp_json_encode( array( 'for' => $atts['for'] ) ) . ' /-->' );
+	return do_blocks( '<!-- wp:menudash/open ' . serialize_block_attributes( array( 'for' => 'order' === $atts['for'] ? 'order' : 'open' ) ) . ' /-->' );
 }
 
 function mdt_block_place() {
@@ -146,7 +146,7 @@ function mdt_bound_button( $key, $text, $outline = false, $label = '' ) {
 	} else {
 		$a = '<a class="wp-block-button__link wp-element-button" href="#">';
 	}
-	return '<!-- wp:button ' . wp_json_encode( $attrs, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . ' -->' . "\n"
+	return '<!-- wp:button ' . serialize_block_attributes( $attrs ) . ' -->' . "\n"
 		. '<div class="wp-block-button' . ( $outline ? ' is-style-outline' : '' ) . '">' . $a . esc_html( $text ) . '</a></div>' . "\n<!-- /wp:button -->\n";
 }
 

@@ -9,4 +9,4 @@
 <!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading"><?php echo esc_html__( 'Getting here', 'menudash-theme' ); ?></h3>
 <!-- /wp:heading -->
-<!-- wp:menudash-theme/directions /-->
+<!-- wp:menudash/contact {"parts":["directions"]} /-->

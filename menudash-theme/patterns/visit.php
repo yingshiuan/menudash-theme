@@ -18,8 +18,15 @@
 <!-- wp:heading -->
 <h2 class="wp-block-heading"><?php echo esc_html__( 'Visit us', 'menudash-theme' ); ?></h2>
 <!-- /wp:heading -->
-<!-- wp:menudash-theme/contact {"variant":"visit"} /-->
-<!-- wp:menudash-theme/directions {"first":true} /-->
+<!-- wp:menudash/contact {"parts":["address"],"fontSize":"large"} /-->
+<?php
+/* translators: %s: the restaurant's phone number, as a link */
+$by_phone = trim( str_replace( '%s', '', __( 'Reservations by phone: %s', 'menudash-theme' ) ) );
+/* translators: %s: e-mail link */
+$by_mail = trim( str_replace( '%s', '', __( 'E-mail: %s', 'menudash-theme' ) ) );
+echo '<!-- wp:menudash/contact ' . serialize_block_attributes( array( 'parts' => array( 'phone', 'email' ), 'phoneLabel' => $by_phone, 'emailLabel' => $by_mail ) ) . " /-->\n";
+?>
+<!-- wp:menudash/contact {"parts":["directions"],"directions":"first"} /-->
 <!-- wp:buttons -->
 <div class="wp-block-buttons">
 <?php echo mdt_bound_button( 'route', __( 'Get directions', 'menudash-theme' ) ); ?>

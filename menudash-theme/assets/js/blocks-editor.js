@@ -13,7 +13,7 @@
       description: data.hint,
       category: "menudash-theme",
       icon: "store",
-      supports: { html: false, inserter: short !== "open" && short !== "buttons" }, // Now MenuDash's Open now block and WordPress buttons.
+      supports: { html: false, inserter: ["open", "buttons", "place", "contact", "directions"].indexOf(short) < 0 }, // Now MenuDash blocks and WordPress buttons.
       edit: function (props) {
         return el("div", blockEditor.useBlockProps({ className: "mdt-live-block" }),
           el(ServerSideRender, { block: name, attributes: props.attributes }));
