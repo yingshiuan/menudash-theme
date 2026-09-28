@@ -11,9 +11,9 @@
       apiVersion: 3,
       title: data.names[short],
       description: data.hint,
-      category: "theme",
+      category: "menudash-theme",
       icon: "store",
-      supports: { html: false },
+      supports: { html: false, inserter: short !== "open" && short !== "buttons" }, // Now MenuDash's Open now block and WordPress buttons.
       edit: function (props) {
         return el("div", blockEditor.useBlockProps({ className: "mdt-live-block" }),
           el(ServerSideRender, { block: name, attributes: props.attributes }));

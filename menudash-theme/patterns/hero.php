@@ -3,7 +3,7 @@
  * Title: Home: welcome
  * Slug: menudash-theme/hero
  * Categories: menudash-theme
- * Description: The restaurant's name line, a big headline, the "open now" badge and the buttons (menu, reserve, order online), with a bowl drawing beside it.
+ * Description: The restaurant's name line, a big headline, the "open now" badge and the buttons (menu, reserve, order online; each can be deleted or changed, reserve and order take their links from MenuDash → Restaurant), with a bowl drawing beside it.
  */
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
@@ -12,7 +12,7 @@
 <div class="wp-block-columns alignwide are-vertically-aligned-center">
 <!-- wp:column {"verticalAlignment":"center","width":"55%"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:55%">
-<!-- wp:menudash-theme/open /-->
+<!-- wp:menudash/open /-->
 <!-- wp:menudash-theme/place /-->
 <!-- wp:heading {"level":1,"style":{"typography":{"lineHeight":"0.9"}}} -->
 <h1 class="wp-block-heading" style="line-height:0.9"><?php echo esc_html__( 'Home cooking, made fresh every day', 'menudash-theme' ); ?></h1>
@@ -20,7 +20,18 @@
 <!-- wp:paragraph {"fontSize":"large"} -->
 <p class="has-large-font-size"><?php echo esc_html__( 'Tell your guests in one or two lines what makes your kitchen special.', 'menudash-theme' ); ?></p>
 <!-- /wp:paragraph -->
-<!-- wp:menudash-theme/buttons {"which":"hero"} /-->
+<!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} -->
+<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--40)">
+<!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( mdt_menu_url() ); ?>"><?php echo esc_html__( 'Menu', 'menudash-theme' ); ?></a></div>
+<!-- /wp:button -->
+<?php
+/* translators: %s: the restaurant's phone number */
+echo mdt_bound_button( 'reserve', trim( str_replace( '· %s', '', __( 'Reserve · %s', 'menudash-theme' ) ) ), true, __( 'Reserve · %s', 'menudash-theme' ) );
+echo mdt_bound_button( 'order', __( 'Order online', 'menudash-theme' ), true );
+?>
+</div>
+<!-- /wp:buttons -->
 </div>
 <!-- /wp:column -->
 <!-- wp:column {"verticalAlignment":"center","width":"45%"} -->

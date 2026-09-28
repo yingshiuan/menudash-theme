@@ -2,7 +2,7 @@
 Theme Name: MenuDash Theme
 Theme URI: https://github.com/yingshiuan/menudash-theme
 Description: A restaurant website theme made for the MenuDash plugin: the menu, today's specials, opening hours, holidays, gift cards and your restaurant's details come from MenuDash, and the theme shows them in a warm, simple design. Home page sections, header and footer are edited in Appearance → Editor; colours and fonts under Styles. English and German included.
-Version: 1.0.0
+Version: 1.1.0
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
@@ -131,6 +131,8 @@ header + .mdt-specials { margin-block-start: 0; }
 }
 /* No order link (MenuDash → Restaurant): the delivery column is empty and goes. */
 .mdt-two-ways > .wp-block-column:not(:has(*)) { display: none; }
+/* With the delivery column left out (inc/blocks.php) or deleted, the visit column takes the whole width. */
+.mdt-two-ways > .wp-block-column:only-child { flex-basis: 100% !important; flex-grow: 1; }
 /* Outline buttons inside the theme's blocks: in the editor, WordPress loads the Button block's
    own styles only for buttons placed directly, so the outline style is repeated here. */
 .wp-block-button.is-style-outline > .wp-block-button__link { background: transparent; border: 2px solid currentColor; }
@@ -192,7 +194,7 @@ header + .mdt-specials { margin-block-start: 0; }
 .mdt-band .wp-block-social-links { gap: .9rem; }
 .mdt-band .wp-social-link svg { width: 26px; height: 26px; }
 
-/* ---- Open now: MenuDash's [menudash_open] (hero, delivery), in the theme's colours ---- */
+/* ---- Open now: MenuDash's Open now block (hero, delivery), in the theme's colours ---- */
 .menudash-open { margin: 0 0 .6rem; background: var(--wp--preset--color--paper); color: var(--wp--preset--color--muted); }
 .menudash-open.is-open::before { animation: mdt-pulse 2s ease-in-out infinite; }
 @keyframes mdt-pulse { 50% { box-shadow: 0 0 0 5px rgba(30, 122, 60, .18); } }

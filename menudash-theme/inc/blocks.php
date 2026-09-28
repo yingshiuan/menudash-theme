@@ -7,8 +7,9 @@
  * around them are normal blocks. Without MenuDash they print nothing.
  *
  *   menudash-theme/place        street · city, the welcome's small line
- *   menudash-theme/open         MenuDash's "open now" badge; for="order" for ordering times
- *   menudash-theme/buttons      which="hero": menu · reserve · order online; which="route": directions
+ *   menudash-theme/open         only for pages saved with 1.0: now MenuDash's own "Open now" block
+ *   menudash-theme/buttons      only for pages saved with 1.0: the patterns now use WordPress buttons
+ *                               with MenuDash links (mdt_bound_button)
  *   menudash-theme/contact      variant="visit": address and phone; variant="footer": address, country, phone, e-mail
  *   menudash-theme/directions   "Getting here", all lines or only the first (first=true)
  *   menudash-theme/social       variant="icons": Facebook and Instagram icons; variant="follow": the Instagram button
@@ -53,7 +54,7 @@ add_action(
 				"menudash-theme/$name",
 				array(
 					'title'           => $title,
-					'category'        => 'theme',
+					'category'        => 'menudash-theme',
 					'attributes'      => ( isset( $atts[ $name ] ) ? $atts[ $name ] : array() ) + array( 'className' => array( 'type' => 'string', 'default' => '' ) ),
 					'supports'        => array( 'html' => false ),
 					'render_callback' => function ( $a ) use ( $name ) {
@@ -62,6 +63,26 @@ add_action(
 				)
 			);
 		}
+	}
+);
+
+// The home page's two ways (visit / delivery): a column left empty, e.g. without an order
+// link, is left out, so the other one can take the whole width.
+add_filter(
+	'render_block_core/columns',
+	function ( $content, $block ) {
+		$class = isset( $block['attrs']['className'] ) ? $block['attrs']['className'] : '';
+		return false === strpos( $class, 'mdt-two-ways' ) ? $content : preg_replace( '#<div class="wp-block-column(?: [^"]*)?"[^>]*>\s*</div>#', '', $content );
+	},
+	10,
+	2
+);
+
+// The theme's blocks under their own heading in the inserter, not in WordPress's "Theme" list.
+add_filter(
+	'block_categories_all',
+	function ( $categories ) {
+		return array_merge( $categories, array( array( 'slug' => 'menudash-theme', 'title' => __( 'MenuDash Theme', 'menudash-theme' ), 'icon' => null ) ) );
 	}
 );
 
@@ -88,16 +109,9 @@ function mdt_eyebrow( $text ) {
 	return '<!-- wp:paragraph {"style":{"typography":{"fontSize":"0.8125rem","fontWeight":"700","textTransform":"uppercase","letterSpacing":"0.18em"}},"textColor":"primary"} --><p class="has-primary-color has-text-color" style="font-size:0.8125rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase">' . esc_html( $text ) . '</p><!-- /wp:paragraph -->';
 }
 
-/**
- * The open badge. In the editor's preview (a REST request) a sample, since the real text is
- * worked out in the visitor's browser.
- */
+/** Old pages' menudash-theme/open, drawn by MenuDash's Open now block, which the theme uses now. */
 function mdt_block_open( $atts ) {
-	$order = 'order' === $atts['for'];
-	if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
-		return '<p class="menudash-open is-open">' . esc_html( $order ? __( 'Order now · until … (example)', 'menudash-theme' ) : __( 'Open now · until … (example)', 'menudash-theme' ) ) . '</p>';
-	}
-	return do_shortcode( '[menudash_open lang="' . mdt_lang() . '"' . ( $order ? ' for="order"' : '' ) . ']' );
+	return do_blocks( '<!-- wp:menudash/open ' . wp_json_encode( array( 'for' => $atts['for'] ) ) . ' /-->' );
 }
 
 function mdt_block_place() {
@@ -112,6 +126,28 @@ function mdt_button( $url, $text, $outline = false, $external = false ) {
 		return '<!-- wp:button {"className":"is-style-outline","style":{"border":{"width":"2px"}},"borderColor":"primary","textColor":"primary"} --><div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-primary-color has-text-color has-border-color has-primary-border-color wp-element-button" href="' . esc_url( $url ) . '" style="border-width:2px"' . $ext . '>' . esc_html( $text ) . '</a></div><!-- /wp:button -->';
 	}
 	return '<!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url( $url ) . '"' . $ext . '>' . esc_html( $text ) . '</a></div><!-- /wp:button -->';
+}
+
+/**
+ * A WordPress Button whose link comes from MenuDash → Restaurant (block bindings, MenuDash 1.9):
+ * $key reserve, order, call, route …; $label a text with the detail in it ("Reserve · %s"),
+ * otherwise $text stays editable. The button isn't shown while the detail is empty.
+ */
+function mdt_bound_button( $key, $text, $outline = false, $label = '' ) {
+	$bind = array( 'source' => 'menudash/detail', 'args' => array( 'key' => $key ) );
+	$map  = array( 'url' => $bind, 'linkTarget' => $bind, 'rel' => $bind );
+	if ( '' !== $label ) {
+		$map['text'] = array( 'source' => 'menudash/detail', 'args' => array( 'key' => $key, 'label' => $label ) );
+	}
+	$attrs = array( 'metadata' => array( 'name' => $text . ' (MenuDash)', 'bindings' => $map ) );
+	if ( $outline ) {
+		$attrs = array( 'className' => 'is-style-outline', 'style' => array( 'border' => array( 'width' => '2px' ) ), 'borderColor' => 'primary', 'textColor' => 'primary' ) + $attrs;
+		$a     = '<a class="wp-block-button__link has-primary-color has-text-color has-border-color has-primary-border-color wp-element-button" href="#" style="border-width:2px">';
+	} else {
+		$a = '<a class="wp-block-button__link wp-element-button" href="#">';
+	}
+	return '<!-- wp:button ' . wp_json_encode( $attrs, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . ' -->' . "\n"
+		. '<div class="wp-block-button' . ( $outline ? ' is-style-outline' : '' ) . '">' . $a . esc_html( $text ) . '</a></div>' . "\n<!-- /wp:button -->\n";
 }
 
 /** The page with the menu ([menudash]), or /menu/. */
@@ -202,7 +238,7 @@ function mdt_block_delivery() {
 	/* translators: %s: the delivery service, e.g. "Uber Eats" */
 	$line    = '' !== $service ? sprintf( __( 'No problem: order online with %s.', 'menudash-theme' ), $service ) : __( 'No problem: order online.', 'menudash-theme' );
 	$text    = '<!-- wp:paragraph {"fontSize":"large"} --><p class="has-large-font-size">' . esc_html( $line ) . '</p><!-- /wp:paragraph -->';
-	$times   = mdt_block_open( array( 'for' => 'order' ) ) . '<!-- wp:shortcode -->[menudash_hours for="delivery" lang="' . mdt_lang() . '" class="mdt-table mdt-delivery-hours"]<!-- /wp:shortcode -->';
+	$times   = '<!-- wp:menudash/open {"for":"order"} /--><!-- wp:menudash/hours {"for":"delivery","className":"mdt-table mdt-delivery-hours"} /-->';
 	/* translators: %s: the delivery service, e.g. "Uber Eats" */
 	$label   = '' !== $service ? sprintf( __( 'Order with %s', 'menudash-theme' ), $service ) : __( 'Order online', 'menudash-theme' );
 	$button  = '<!-- wp:buttons --><div class="wp-block-buttons">' . mdt_button( $order, $label, false, true ) . '</div><!-- /wp:buttons -->';

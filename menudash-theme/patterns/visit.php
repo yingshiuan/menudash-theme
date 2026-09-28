@@ -20,7 +20,11 @@
 <!-- /wp:heading -->
 <!-- wp:menudash-theme/contact {"variant":"visit"} /-->
 <!-- wp:menudash-theme/directions {"first":true} /-->
-<!-- wp:menudash-theme/buttons {"which":"route"} /-->
+<!-- wp:buttons -->
+<div class="wp-block-buttons">
+<?php echo mdt_bound_button( 'route', __( 'Get directions', 'menudash-theme' ) ); ?>
+</div>
+<!-- /wp:buttons -->
 </div>
 <!-- /wp:column -->
 <!-- wp:column {"width":"50%"} -->
