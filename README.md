@@ -22,10 +22,10 @@ On phones a bar at the bottom offers **Call · Directions · Menu**. The menu pa
 
 ## Install
 
-1. Install and activate **MenuDash** 1.10.0 or later first (see its [releases](https://github.com/yingshiuan/menudash/releases)).
+1. Install and activate **MenuDash** 2.0 or later first (see its [releases](https://github.com/yingshiuan/menudash/releases)). The theme works with MenuDash alone. The sections with the restaurant's address, opening hours, "open now" badge, holiday notice and contact buttons need the **MenuDash Restaurant** add-on, the specials section **MenuDash Specials**, and the gift card page **MenuDash Gift Cards** (see [MenuDash → Add-ons](https://github.com/yingshiuan/menudash#add-ons)). Without an add-on its parts simply stay empty.
 2. Download `menudash-theme.zip` from this repository's [releases](https://github.com/yingshiuan/menudash-theme/releases), then *Appearance → Themes → Add New Theme → Upload Theme*, and activate it.
 3. On activation the theme makes a **Home** page from its sections and sets it as the front page (a site with a front page already keeps it; the sections are then in the block inserter under *Restaurant (MenuDash)*).
-4. Fill in **MenuDash → Restaurant** (address, phone, delivery …) and **MenuDash → Hours & holidays**, and upload your menu.
+4. Upload your menu, and with MenuDash Restaurant fill in **MenuDash → Restaurant** (address, phone, delivery …) and **MenuDash → Hours & holidays**.
 5. Add your logo under *Appearance → Editor* (the header shows the site title until then), and build the top menu under *Appearance → Editor → Navigation*.
 
 Requires WordPress 6.5+ and PHP 7.4+.
