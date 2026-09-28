@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <title>Bowl</title>
+  <!-- A simple bowl with chopsticks and steam, drawn for MenuDash Theme (GPL-2.0-or-later). -->
+  <g fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="200" cy="200" r="186" stroke-width="8" opacity=".35"/>
+    <path d="M86 214h228c0 62-51 104-114 104S86 276 86 214z"/>
+    <path d="M160 318h80"/>
+    <path d="M232 186l86-78M254 196l84-60" stroke-width="10"/>
+    <path d="M150 170c-14-18 14-28 0-48M196 164c-14-18 14-28 0-48" stroke-width="10" opacity=".7"/>
+  </g>
+</svg>

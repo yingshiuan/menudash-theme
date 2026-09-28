@@ -1,0 +1,288 @@
+/*
+Theme Name: MenuDash Theme
+Theme URI: https://github.com/yingshiuan/menudash-theme
+Description: A restaurant website theme made for the MenuDash plugin: the menu, today's specials, opening hours, holidays, gift cards and your restaurant's details come from MenuDash, and the theme shows them in a warm, simple design. Home page sections, header and footer are edited in Appearance → Editor; colours and fonts under Styles. English and German included.
+Version: 1.0.0
+Requires at least: 6.5
+Tested up to: 6.8
+Requires PHP: 7.4
+Author: insdash
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: menudash-theme
+Tags: food-and-drink, block-patterns, full-site-editing, one-column, wide-blocks, translation-ready
+*/
+
+/* Most styling lives in theme.json. This file holds what theme.json cannot say. */
+
+html { scroll-behavior: smooth; }
+body { -webkit-font-smoothing: antialiased; }
+
+/* ---- Header: the red band ------------------------------------------------ */
+.mdt-band { position: relative; overflow: hidden; }
+/* A faint ring in the band's right corner. */
+.mdt-seal::after {
+	content: ""; position: absolute; right: -80px; top: 50%; width: 260px; height: 260px;
+	transform: translateY(-50%); border: 22px solid currentColor; border-radius: 50%;
+	opacity: .08; pointer-events: none;
+}
+.mdt-band > * { position: relative; z-index: 1; }
+.mdt-band .wp-block-site-logo img { display: block; height: auto; }
+.mdt-band .wp-block-site-title a { color: inherit; text-decoration: none; }
+.mdt-tagline { letter-spacing: .18em; }
+.mdt-band .wp-block-navigation a:hover,
+.mdt-band .wp-block-navigation .current-menu-item > a { text-decoration: underline; text-underline-offset: .3em; text-decoration-thickness: 2px; }
+.mdt-band .wp-block-navigation__responsive-container.is-menu-open { background: var(--wp--preset--color--primary); color: var(--wp--preset--color--cream); }
+
+/* ---- Phone menu icon: three lines (WordPress draws two) ---- */
+.mdt-band .wp-block-navigation__responsive-container-open svg { display: none; }
+.mdt-band .wp-block-navigation__responsive-container-open::before {
+	content: ""; display: block; width: 24px; height: 18px;
+	background: linear-gradient(currentColor 0 0) top / 100% 2px no-repeat,
+		linear-gradient(currentColor 0 0) center / 100% 2px no-repeat,
+		linear-gradient(currentColor 0 0) bottom / 100% 2px no-repeat;
+	margin: 3px 0;
+}
+
+/* ---- Phone menu: opens under the header, ✕ exactly where ☰ was (theme.js measures) ---- */
+.mdt-band .wp-block-navigation__responsive-container.is-menu-open {
+	top: var(--mdt-head, 0); animation: none; padding-top: clamp(1rem, 4vw, 2rem);
+	border-top: 1px solid rgba(250, 248, 241, .3);
+}
+.mdt-band .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-close {
+	position: fixed; top: var(--mdt-x-top, 16px); left: var(--mdt-x-left, auto); right: auto;
+}
+.has-modal-open .mdt-band .wp-block-navigation__responsive-container-open { visibility: hidden; }
+.mdt-band .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__container { gap: 1.1rem; font-size: 1.25rem; }
+
+/* ---- Round dish photos ------------------------------------------------- */
+.mdt-dish img { aspect-ratio: 1; object-fit: contain; }
+/* A square photo (not a cut-out) is cropped to a plate-sized circle. */
+.mdt-dish-round img { border-radius: 50%; object-fit: cover; transform: scale(.94); }
+.mdt-hero-dish img { filter: drop-shadow(0 18px 30px rgba(43, 29, 26, .18)); }
+/* The bowl drawing beside the home page's welcome. */
+.mdt-hero-seal { margin: 0 auto; max-width: 420px; }
+.mdt-hero-seal img { display: block; width: 100%; height: auto; }
+@media (max-width: 781px) { .mdt-hero-seal { max-width: 240px; } }
+
+/* The recommended dishes: photo, number, name, second name. */
+.mdt-picks figure { margin: 0 0 .6rem; transition: transform .25s ease; }
+.mdt-picks a:hover figure, .mdt-picks a:focus-visible figure { transform: translateY(-4px) rotate(-2deg); }
+.mdt-picks a { color: inherit; text-decoration: none; }
+.mdt-picks .mdt-no { color: var(--wp--preset--color--primary); font-weight: 700; letter-spacing: .12em; font-size: .75rem; }
+.mdt-zh { word-break: keep-all; color: var(--wp--preset--color--primary); font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif; font-weight: 500; }
+
+/* ---- MenuDash (menu, specials, holiday notice) in the site's fonts -------- */
+/* MenuDash's own headings use the site's heading font (bundled in assets/fonts, nothing
+   loaded from Google). */
+.menudash {
+	--mdash-display: var(--wp--preset--font-family--display);
+	--mdash-sans: var(--wp--preset--font-family--sans);
+}
+.menudash.menudash .mdash-h,
+.menudash.menudash .mdash-sp-title { font-weight: 800; letter-spacing: 0; }
+.menudash.menudash .mdash-h { font-size: 30px; }
+
+/* ---- Today's specials (MenuDash [menudash_specials]) --------------------- */
+/* The same look as the menu page. With no specials uploaded the shortcode prints nothing,
+   and the empty group takes no room. */
+/* A white band between the cream welcome and the beige recommendations, only when there
+   are specials (:has), so no empty stripe shows without them. The list lines up with the
+   headline above: no max-width or side padding of its own inside the band. */
+.mdt-specials:has(.menudash-specials) {
+	background: var(--wp--preset--color--white);
+	padding-top: var(--wp--preset--spacing--60);
+	padding-bottom: var(--wp--preset--spacing--60);
+}
+.mdt-specials .menudash.menudash-specials { max-width: var(--wp--style--global--wide-size); margin-inline: auto; padding: 0; background: transparent; }
+
+/* The menu itself lines up with the page title and the other sections: the theme gives
+   the width, so MenuDash's own side padding goes. */
+.wp-block-post-content > .menudash:not([data-lite]) { max-width: var(--wp--style--global--wide-size); padding-left: 0; padding-right: 0; }
+
+/* "To the menu" under the specials scrolls here: the menu's title lands near the top
+   of the window rather than below the page's top padding. */
+#the-menu { scroll-margin-top: calc(-1 * var(--wp--preset--spacing--50) + 20px); }
+
+/* The full-width bands touch: no cream gap between white, beige and cream, nor between the
+   header and the specials band on the menu page. */
+.wp-block-post-content > .alignfull,
+header + .mdt-specials { margin-block-start: 0; }
+
+/* ---- Über uns: one tall kitchen photo, centred in its column ---- */
+.mdt-about-photos { display: grid; }
+.mdt-about-photos > figure { margin: 0 !important; }
+.mdt-about-photos img { display: block; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 18px 40px rgba(43, 29, 26, .16); }
+.mdt-about-photos .mdt-about-tall { width: 75%; justify-self: center; }
+
+/* Home page, Visit us / Delivery: the map under both columns, wider than tall;
+   "Order online" in the hero jumps to #delivery below the sticky header. */
+.mdt-map.mdt-map-wide { aspect-ratio: 21 / 9; margin-top: var(--wp--preset--spacing--50); }
+@media (max-width: 781px) { .mdt-map.mdt-map-wide { aspect-ratio: 4 / 3; } }
+#delivery { scroll-margin-top: 120px; }
+/* Both columns as tall as each other, the buttons pushed to the bottom: "Route planen" and
+   the order button on one line (stacked on phones, where they simply follow). */
+@media (min-width: 782px) {
+	.mdt-two-ways > .wp-block-column { display: flex; flex-direction: column; }
+	.mdt-two-ways > .wp-block-column > .wp-block-buttons { margin-top: auto; padding-top: var(--wp--preset--spacing--30); }
+	.mdt-two-ways .menudash-open { align-self: flex-start; }
+	.mdt-two-ways .mdt-delivery { display: flex; flex-direction: column; flex: 1; }
+	.mdt-two-ways .mdt-delivery > .wp-block-buttons { margin-top: auto; padding-top: var(--wp--preset--spacing--30); }
+}
+/* No order link (MenuDash → Restaurant): the delivery column is empty and goes. */
+.mdt-two-ways > .wp-block-column:not(:has(*)) { display: none; }
+/* Outline buttons inside the theme's blocks: in the editor, WordPress loads the Button block's
+   own styles only for buttons placed directly, so the outline style is repeated here. */
+.wp-block-button.is-style-outline > .wp-block-button__link { background: transparent; border: 2px solid currentColor; }
+/* The theme's MenuDash blocks in the editor: a dashed outline says "comes from MenuDash". */
+.mdt-live-block { outline: 1px dashed rgba(163, 30, 44, .35); outline-offset: 4px; }
+.mdt-delivery .mdt-delivery-hours { margin: .4rem 0 1.2rem; }
+.mdt-delivery .menudash-open { margin-top: .2rem; }
+
+/* Home page, "Das sagen andere": one big centred quote on the red band. */
+.mdt-press-quote { margin: var(--wp--preset--spacing--40) auto; padding: 0; border: 0; text-align: center; }
+.mdt-press-quote p { margin: 0; font-size: clamp(1.1rem, .85rem + 1.4vw, 1.9rem); font-weight: 600; line-height: 1.4; }
+@media (max-width: 781px) { .mdt-press { padding-top: var(--wp--preset--spacing--50) !important; padding-bottom: var(--wp--preset--spacing--50) !important; } }
+.mdt-press-quote cite { display: block; margin-top: 1.1em; font-size: .9375rem; font-style: normal; opacity: .9; }
+.mdt-press-quote cite a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Home page, gift card: the card as on the order page. */
+.mdt-gc-card { max-width: 280px; }
+.mdt-gc-card img { display: block; width: 100%; height: auto; border-radius: 10px; box-shadow: 0 18px 40px rgba(43, 29, 26, .16); }
+
+/* "Folgt uns auf Instagram" in Über uns: a red pill with the Instagram icon. */
+.mdt-follow .wp-social-link { border-radius: 999px; }
+.mdt-follow .wp-social-link a { padding: .55em 1.1em .55em .8em !important; gap: .5em; font-size: 1rem; font-weight: 700; }
+.mdt-follow .wp-social-link svg { width: 22px; height: 22px; }
+.mdt-follow .wp-social-link span.wp-block-social-link-label { font-size: 1rem !important; font-weight: 700; line-height: 1.2; }
+.mdt-follow .wp-social-link:hover { background-color: var(--wp--preset--color--primary-dark) !important; transform: none; }
+
+/* ---- Tables: opening hours, meat origin. Left column the label, right the value ---- */
+.mdt-hours table, .mdt-table table { width: 100%; border: 0; border-collapse: collapse; }
+.mdt-hours td, .mdt-table td { padding: .45em 0; border: 0; border-bottom: 1px solid rgba(250, 248, 241, .3); vertical-align: top; }
+.mdt-hours tr:last-child td, .mdt-table tr:last-child td { border-bottom: 0; }
+.mdt-hours td:last-child, .mdt-table td:last-child { padding-left: 1em; text-align: right; font-variant-numeric: tabular-nums; }
+.mdt-table td:first-child { font-weight: 700; }
+.is-style-mdt-on-cream .mdt-hours td, .mdt-delivery .mdt-table td, .is-style-mdt-on-cream .mdt-table td { border-bottom-color: rgba(43, 29, 26, .15); }
+
+/* ---- Map (Visit us, location page) ------------------------------------ */
+.mdt-map {
+	aspect-ratio: 4 / 3; border-radius: 24px; overflow: hidden; background: var(--wp--preset--color--paper);
+	box-shadow: 0 0 0 2px var(--wp--preset--color--primary), 0 18px 40px rgba(43, 29, 26, .12);
+}
+.mdt-map iframe { display: block; width: 100%; height: 100%; border: 0; }
+/* Until "Show map" is clicked (functions.php): a pin, the button and a note. */
+.mdt-map-slot { position: relative; width: 100%; height: 100%; min-height: 300px; }
+.mdt-map .mdt-map-slot { min-height: 0; }
+.mdt-map-slot iframe { display: block; width: 100%; height: 100%; min-height: inherit; border: 0; }
+.mdt-map-off {
+	position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+	padding: 24px; text-align: center; background: var(--wp--preset--color--paper); color: var(--wp--preset--color--ink);
+}
+.mdt-map-off svg { width: 44px; height: 44px; fill: var(--wp--preset--color--primary); }
+.mdt-map-off p { margin: 0; max-width: 34ch; font-size: .875rem; line-height: 1.45; color: var(--wp--preset--color--muted); }
+.mdt-map-off a { color: var(--wp--preset--color--primary); font-weight: 700; }
+.mdt-map-load {
+	padding: .7em 1.5em; border: 0; border-radius: 999px; background: var(--wp--preset--color--primary); color: var(--wp--preset--color--cream);
+	font: inherit; font-weight: 700; cursor: pointer;
+}
+.mdt-map-load:hover { filter: brightness(.92); }
+.mdt-map-load:focus-visible { outline: 2px solid var(--wp--preset--color--ink); outline-offset: 3px; }
+.mdt-map-slot.is-on .mdt-map-off { display: none; }
+.mdt-band .wp-block-social-links { gap: .9rem; }
+.mdt-band .wp-social-link svg { width: 26px; height: 26px; }
+
+/* ---- Open now: MenuDash's [menudash_open] (hero, delivery), in the theme's colours ---- */
+.menudash-open { margin: 0 0 .6rem; background: var(--wp--preset--color--paper); color: var(--wp--preset--color--muted); }
+.menudash-open.is-open::before { animation: mdt-pulse 2s ease-in-out infinite; }
+@keyframes mdt-pulse { 50% { box-shadow: 0 0 0 5px rgba(30, 122, 60, .18); } }
+
+/* ---- Tabs for the recommended dishes (theme.js turns the two headings into tabs) ---- */
+.mdt-tabs {
+	display: flex; width: fit-content; margin: var(--wp--preset--spacing--40) auto 0; padding: 4px;
+	border: 1.5px solid var(--wp--preset--color--primary); border-radius: 999px; background: var(--wp--preset--color--white);
+}
+.mdt-tabs button {
+	padding: .6em 1.3em; border: 0; border-radius: 999px; background: none; cursor: pointer;
+	color: var(--wp--preset--color--primary); font: inherit; font-weight: 700; font-size: .95rem;
+}
+.mdt-tabs button[aria-selected="true"] { background: var(--wp--preset--color--primary); color: var(--wp--preset--color--cream); }
+.mdt-tabs button:focus-visible { outline: 2px solid var(--wp--preset--color--ink); outline-offset: 2px; }
+
+/* All dishes in one strip that slides sideways, meat first, then vegan: six to a screen on a
+   computer, two and a bit on a phone. The tabs slide it; touch, trackpad or shift+wheel too. */
+.mdt-swipe {
+	container-type: inline-size; box-sizing: border-box;
+	width: 100%; max-width: var(--wp--style--global--wide-size) !important; margin-inline: auto !important;
+	display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+	margin-top: var(--wp--preset--spacing--40); padding-bottom: 8px; scrollbar-width: none;
+}
+.mdt-swipe::-webkit-scrollbar { display: none; }
+/* WordPress makes the grid an inline-size container, whose width ignores its content:
+   undone here, or the rows collapse to nothing. */
+.mdt-swipe .mdt-picks.mdt-picks { display: flex !important; gap: 24px; margin: 0 !important; flex: none; container-type: normal; }
+.mdt-swipe .mdt-picks > .wp-block-group { flex: 0 0 calc((100cqw - 5 * 24px) / 6); width: calc((100cqw - 5 * 24px) / 6); min-width: 0; justify-content: flex-start !important; scroll-snap-align: start; }
+.mdt-swipe .mdt-picks > .wp-block-group > * { width: 100%; }
+.mdt-swipe .mdt-dish img { width: 100%; height: auto; }
+@media (max-width: 781px) {
+	.mdt-tabs button { padding: .55em 1em; font-size: .875rem; }
+	.mdt-swipe, .mdt-swipe .mdt-picks.mdt-picks { gap: 14px; }
+	.mdt-swipe { width: auto; max-width: none !important; margin-inline: calc(-1 * clamp(16px, 4vw, 40px)) !important; padding-inline: clamp(16px, 4vw, 40px); scroll-padding-inline: clamp(16px, 4vw, 40px); }
+	.mdt-swipe .mdt-picks > .wp-block-group { flex-basis: 44cqw; width: 44cqw; }
+}
+
+/* ---- Gift card page: MenuDash's gift card form ([menudash_giftcard]) at the wide size, like the menu. */
+.wp-block-post-content > .menudash-giftcard { max-width: var(--wp--style--global--wide-size); padding-left: 0; padding-right: 0; background: transparent; }
+
+/* ---- Phone action bar: Call · Directions · Menu ------------------------ */
+.mdt-actionbar { display: none; }
+@media (max-width: 781px) {
+	.mdt-actionbar {
+		position: fixed; inset: auto 0 0; z-index: 50; display: grid; grid-template-columns: repeat(3, 1fr);
+		padding: 6px 8px calc(6px + env(safe-area-inset-bottom)); background: var(--wp--preset--color--primary);
+		box-shadow: 0 -6px 20px rgba(43, 29, 26, .18);
+	}
+	.mdt-actionbar a {
+		display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0;
+		color: var(--wp--preset--color--cream); font-size: .75rem; font-weight: 700; text-decoration: none;
+	}
+	.mdt-actionbar svg { width: 22px; height: 22px; fill: currentColor; }
+	.mdt-actionbar a:active { opacity: .7; }
+	/* Room at the end of the page, so the bar never covers the footer. */
+	body { padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
+}
+
+/* Keep the page title of long German words from running off a phone. */
+h1, h2 { overflow-wrap: break-word; text-wrap: balance; }
+
+@media (prefers-reduced-motion: reduce) {
+	html { scroll-behavior: auto; }
+	.menudash-open.is-open::before { animation: none; }
+	.mdt-picks figure { transition: none; }
+}
+
+.mdt-delivery .mdt-table td:first-child { font-weight: 400; }
+
+/* ---- The bowl drawing beside the welcome, in the site's primary colour ---- */
+.mdt-hero-bowl { aspect-ratio: 1; width: 100%; max-width: 380px; margin: 0 auto; background: var(--wp--preset--color--primary); -webkit-mask: url(assets/img/bowl.svg) center / contain no-repeat; mask: url(assets/img/bowl.svg) center / contain no-repeat; }
+@media (max-width: 781px) { .mdt-hero-bowl { max-width: 220px; } }
+
+/* ---- Recommended dishes from MenuDash: a grid of round photos with number and name ---- */
+.mdt-picks-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--wp--preset--spacing--40); max-width: var(--wp--style--global--wide-size); margin: var(--wp--preset--spacing--40) auto 0; }
+.mdt-pick { width: 170px; display: flex; flex-direction: column; align-items: center; gap: .2rem; text-align: center; line-height: 1.25; }
+.mdt-pick strong { font-weight: 700; }
+.mdt-pick figure { width: 100%; max-width: 170px; margin: 0 0 .6rem; }
+.mdt-pick img { display: block; width: 100%; height: auto; }
+.mdt-dish-none { aspect-ratio: 1; border-radius: 50%; background: var(--wp--preset--color--white); box-shadow: inset 0 0 0 2px rgba(43, 29, 26, .08); display: grid; place-items: center; }
+.mdt-dish-none span { width: 55%; aspect-ratio: 1; background: var(--wp--preset--color--primary); opacity: .35; -webkit-mask: url(assets/img/bowl.svg) center / contain no-repeat; mask: url(assets/img/bowl.svg) center / contain no-repeat; }
+@media (max-width: 600px) { .mdt-pick { width: calc(50% - var(--wp--preset--spacing--40)); } }
+.mdt-pick .mdt-zh { font-size: .9375rem; }
+
+/* ---- Gift card teaser (only while MenuDash takes orders) ---- */
+.mdt-gc-home { padding: var(--wp--preset--spacing--60) clamp(16px, 4vw, 40px); }
+.mdt-gc-card { max-width: 280px; }
+.mdt-gc-card img { display: block; width: 100%; height: auto; border-radius: 10px; box-shadow: 0 18px 40px rgba(43, 29, 26, .16); }
+/* The delivery column's parts, spaced like the column beside it. */
+.mdt-delivery { display: flex; flex-direction: column; gap: var(--wp--style--block-gap, 1.25rem); }
+.mdt-delivery > * { margin-block: 0; }
+

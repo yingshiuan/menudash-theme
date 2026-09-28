@@ -1,0 +1,327 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MenuDash Theme 1.0.0\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: menudash-theme\n"
+
+msgid "Restaurant (MenuDash)"
+msgstr "Restaurant (MenuDash)"
+
+msgid "Switzerland"
+msgstr "Schweiz"
+
+msgid "Germany"
+msgstr "Deutschland"
+
+msgid "Austria"
+msgstr "Österreich"
+
+msgid "Liechtenstein"
+msgstr "Liechtenstein"
+
+msgid "France"
+msgstr "Frankreich"
+
+msgid "Italy"
+msgstr "Italien"
+
+msgid "United Kingdom"
+msgstr "Vereinigtes Königreich"
+
+msgid "United States"
+msgstr "Vereinigte Staaten"
+
+msgid "Home"
+msgstr "Startseite"
+
+msgid "Call"
+msgstr "Anrufen"
+
+msgid "Directions"
+msgstr "Route"
+
+msgid "Menu"
+msgstr "Speisekarte"
+
+msgid "Quick links"
+msgstr "Schnellzugriff"
+
+msgid "Show map"
+msgstr "Karte anzeigen"
+
+msgid "The map comes from Google Maps; showing it sends your IP address to Google."
+msgstr "Die Karte kommt von Google Maps; beim Anzeigen erhält Google Ihre IP-Adresse."
+
+msgid "Open in Google Maps"
+msgstr "In Google Maps öffnen"
+
+msgid "Place (street · town)"
+msgstr "Ort (Straße · Stadt)"
+
+msgid "Open now"
+msgstr "Jetzt geöffnet"
+
+msgid "Buttons (menu, reserve, order)"
+msgstr "Knöpfe (Speisekarte, Reservieren, Bestellen)"
+
+msgid "Address and contact"
+msgstr "Adresse und Kontakt"
+
+msgid "Getting here"
+msgstr "Anreise"
+
+msgid "Instagram / Facebook"
+msgstr "Instagram / Facebook"
+
+msgid "Delivery"
+msgstr "Liefern lassen"
+
+msgid "Map"
+msgstr "Karte"
+
+msgid "© and privacy"
+msgstr "© und Datenschutz"
+
+msgid "Recommended dishes"
+msgstr "Empfohlene Gerichte"
+
+msgid "Gift card teaser"
+msgstr "Gutschein-Hinweis"
+
+msgid "From MenuDash; change it there."
+msgstr "Aus MenuDash; dort ändern."
+
+msgid "Order now · until … (example)"
+msgstr "Jetzt bestellbar · bis … (Beispiel)"
+
+msgid "Open now · until … (example)"
+msgstr "Jetzt geöffnet · bis … (Beispiel)"
+
+msgid "Get directions"
+msgstr "Route planen"
+
+msgid "Reserve · %s"
+msgstr "Reservieren · %s"
+
+msgid "Order online"
+msgstr "Online bestellen"
+
+msgid "Reservations by phone: %s"
+msgstr "Reservationen gerne per Telefon: %s"
+
+msgid "E-mail: %s"
+msgstr "E-Mail: %s"
+
+msgid "Follow us on Instagram @%s"
+msgstr "Folgt uns auf Instagram @%s"
+
+msgid "Eating at home?"
+msgstr "Lieber zu Hause essen?"
+
+msgid "No problem: order online with %s."
+msgstr "Kein Problem: Bestellen Sie online bei %s."
+
+msgid "No problem: order online."
+msgstr "Kein Problem: Bestellen Sie online."
+
+msgid "Order with %s"
+msgstr "Bei %s bestellen"
+
+msgid "Map: %s"
+msgstr "Karte: %s"
+
+msgid "Privacy"
+msgstr "Datenschutz"
+
+msgid "No. %s"
+msgstr "Nr. %s"
+
+msgid "Gift card"
+msgstr "Gutschein"
+
+msgid "Give a meal"
+msgstr "Genuss verschenken"
+
+msgid "A gift card for a meal with us: ordered online in a minute."
+msgstr "Ein Gutschein für ein Essen bei uns: in einer Minute online bestellt."
+
+msgid "Order a gift card"
+msgstr "Gutschein bestellen"
+
+msgid "Page not found"
+msgstr "Seite nicht gefunden"
+
+msgid "This page does not exist (any more). Here is the %s."
+msgstr "Diese Seite gibt es nicht (mehr). Hier geht es zur %s."
+
+msgid "home page"
+msgstr "Startseite"
+
+msgid "Home cooking, made fresh every day"
+msgstr "Hausgemacht, jeden Tag frisch gekocht"
+
+msgid "Tell your guests in one or two lines what makes your kitchen special."
+msgstr "Sagen Sie Ihren Gästen in ein, zwei Sätzen, was Ihre Küche besonders macht."
+
+msgid "What guests say"
+msgstr "Das sagen andere"
+
+msgid "Put a short quote from a guest, a review or an article here."
+msgstr "Hier steht ein kurzes Zitat von einem Gast, aus einer Bewertung oder einem Artikel."
+
+msgid "Name, where it was published"
+msgstr "Name, wo es erschienen ist"
+
+msgid "Our recommendations"
+msgstr "Unsere Empfehlungen"
+
+msgid "Favourites from our kitchen"
+msgstr "Die Lieblinge aus unserer Küche"
+
+msgid "See the whole menu"
+msgstr "Ganze Speisekarte ansehen"
+
+msgid "Opening hours"
+msgstr "Öffnungszeiten"
+
+msgid "Give a meal: order a gift card."
+msgstr "Genuss verschenken: einen Gutschein bestellen."
+
+msgid "Choose the amount and quantity and send us the form. We confirm your order by e-mail."
+msgstr "Wählen Sie Betrag und Anzahl und senden Sie uns das Formular. Wir bestätigen Ihre Bestellung per E-Mail."
+
+msgid "Come by"
+msgstr "Vorbeikommen"
+
+msgid "Visit us"
+msgstr "Besuchen Sie uns"
+
+msgid "About us"
+msgstr "Über uns"
+
+msgid "Our story"
+msgstr "Unsere Geschichte"
+
+msgid "Who cooks here, and since when? Where do the recipes come from? A few sentences are enough."
+msgstr "Wer kocht hier, und seit wann? Woher kommen die Rezepte? Ein paar Sätze genügen."
+
+msgid "Replace this text in the editor. Photos of your kitchen or your team fit well next to it."
+msgstr "Ersetzen Sie diesen Text im Editor. Fotos aus Ihrer Küche oder von Ihrem Team passen gut daneben."
+
+msgid "Primary"
+msgstr "Hauptfarbe"
+
+msgid "Primary dark"
+msgstr "Hauptfarbe dunkel"
+
+msgid "Base"
+msgstr "Grund"
+
+msgid "Paper"
+msgstr "Papier"
+
+msgid "White"
+msgstr "Weiß"
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Muted"
+msgstr "Grau"
+
+msgid "Small"
+msgstr "Klein"
+
+msgid "Medium"
+msgstr "Normal"
+
+msgid "Large"
+msgstr "Groß"
+
+msgid "Extra large"
+msgstr "Titel"
+
+msgid "Huge"
+msgstr "Plakat"
+
+msgid "Header"
+msgstr "Kopfzeile"
+
+msgid "Footer"
+msgstr "Fußzeile"
+
+msgid "Home page (no title, full width)"
+msgstr "Startseite (ohne Titel, volle Breite)"
+
+msgid "Wide page (menu)"
+msgstr "Breite Seite (Speisekarte)"
+
+msgid "Midnight"
+msgstr "Mitternacht"
+
+msgid "Olive"
+msgstr "Olive"
+
+msgid "Home: about us"
+msgstr "Startseite: Über uns"
+
+msgid "Your story in a few lines, with the Instagram button from MenuDash → Restaurant."
+msgstr "Ihre Geschichte in ein paar Sätzen, mit dem Instagram-Knopf aus MenuDash → Restaurant."
+
+msgid "How to get to the restaurant (MenuDash → Restaurant → Getting here)."
+msgstr "Wie man zum Restaurant kommt (MenuDash → Restaurant → Getting here)."
+
+msgid "Footer (address, getting here, opening hours)"
+msgstr "Fußzeile (Adresse, Anreise, Öffnungszeiten)"
+
+msgid "Home: gift cards"
+msgstr "Startseite: Gutschein"
+
+msgid "A short teaser with the picture of the card and a button to the gift card page. Shows only while MenuDash takes gift card orders and a page has the gift card form."
+msgstr "Ein kurzer Hinweis mit dem Bild des Gutscheins und einem Knopf zur Gutschein-Seite. Erscheint nur, solange MenuDash Gutschein-Bestellungen annimmt und eine Seite das Formular enthält."
+
+msgid "Gift card page"
+msgstr "Gutschein-Seite"
+
+msgid "An introduction and MenuDash's gift card order form ([menudash_giftcard]). Amounts, e-mail address, picture and terms are set under MenuDash → Gift cards."
+msgstr "Eine Einleitung und das Gutschein-Formular von MenuDash ([menudash_giftcard]). Beträge, E-Mail-Adresse, Bild und Bedingungen stellt man unter MenuDash → Gift cards ein."
+
+msgid "Header (coloured band)"
+msgstr "Kopfzeile (farbiges Band)"
+
+msgid "Home: welcome"
+msgstr "Startseite: Begrüßung"
+
+msgid "The restaurant's name line, a big headline, the \"open now\" badge and the buttons (menu, reserve, order online), with a bowl drawing beside it."
+msgstr "Ort, große Überschrift, der Hinweis „Jetzt geöffnet“ und die Knöpfe (Speisekarte, Reservieren, Online bestellen), daneben eine Schüssel-Zeichnung."
+
+msgid "The opening hours from MenuDash → Hours & holidays."
+msgstr "Die Öffnungszeiten aus MenuDash → Hours & holidays."
+
+msgid "Home: our recommendations"
+msgstr "Startseite: Unsere Empfehlungen"
+
+msgid "The dishes marked \"Recommended\" in the MenuDash menu, with their photos; they change with the menu by themselves."
+msgstr "Die in der MenuDash-Speisekarte als „Empfohlen“ markierten Gerichte mit Fotos; sie ändern sich mit der Speisekarte von selbst."
+
+msgid "Today's specials"
+msgstr "Heute empfehlen wir"
+
+msgid "Today's specials from MenuDash (the second, short CSV), e.g. at the top of the home page."
+msgstr "Die Tagesempfehlungen aus MenuDash (die zweite, kurze CSV), z. B. oben auf der Startseite."
+
+msgid "Home: what guests say"
+msgstr "Startseite: Das sagen andere"
+
+msgid "One quote from a guest, a review or an article, with its source; on a coloured band."
+msgstr "Ein Zitat von einem Gast, aus einer Bewertung oder einem Artikel, mit Quelle; auf einem farbigen Band."
+
+msgid "Home: visit us / delivery (with map)"
+msgstr "Startseite: Besuchen Sie uns / Liefern lassen (mit Karte)"
+
+msgid "Two ways to your food: come by (address, phone, getting here, directions) or order online (ordering times with \"order now\"), with the map below. Everything comes from MenuDash → Restaurant; without an order link the delivery column goes."
+msgstr "Zwei Wege zum Essen: vorbeikommen (Adresse, Telefon, Anreise, Route) oder online bestellen (Bestellzeiten mit „Jetzt bestellbar“), darunter die Karte. Alles kommt aus MenuDash → Restaurant; ohne Bestell-Link fällt die Spalte „Liefern lassen“ weg."

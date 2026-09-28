@@ -1,0 +1,12 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"landingPage": "/",
+	"preferredVersions": { "php": "8.3", "wp": "latest" },
+	"login": true,
+	"steps": [
+		{ "step": "setSiteOptions", "options": { "blogname": "Sample Kitchen", "blogdescription": "Home cooking since 2024", "permalink_structure": "/%postname%/" } },
+		{ "step": "activatePlugin", "pluginPath": "menudash/menudash.php" },
+		{ "step": "activateTheme", "themeFolderName": "menudash-theme" },
+		{ "step": "runPHP", "code": "<?php require '/menudash-dev/setup-demo.php'; require '/theme-dev/setup-theme.php';" }
+	]
+}

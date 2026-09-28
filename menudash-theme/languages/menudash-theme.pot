@@ -1,0 +1,327 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MenuDash Theme 1.0.0\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: menudash-theme\n"
+
+msgid "Restaurant (MenuDash)"
+msgstr ""
+
+msgid "Switzerland"
+msgstr ""
+
+msgid "Germany"
+msgstr ""
+
+msgid "Austria"
+msgstr ""
+
+msgid "Liechtenstein"
+msgstr ""
+
+msgid "France"
+msgstr ""
+
+msgid "Italy"
+msgstr ""
+
+msgid "United Kingdom"
+msgstr ""
+
+msgid "United States"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Call"
+msgstr ""
+
+msgid "Directions"
+msgstr ""
+
+msgid "Menu"
+msgstr ""
+
+msgid "Quick links"
+msgstr ""
+
+msgid "Show map"
+msgstr ""
+
+msgid "The map comes from Google Maps; showing it sends your IP address to Google."
+msgstr ""
+
+msgid "Open in Google Maps"
+msgstr ""
+
+msgid "Place (street · town)"
+msgstr ""
+
+msgid "Open now"
+msgstr ""
+
+msgid "Buttons (menu, reserve, order)"
+msgstr ""
+
+msgid "Address and contact"
+msgstr ""
+
+msgid "Getting here"
+msgstr ""
+
+msgid "Instagram / Facebook"
+msgstr ""
+
+msgid "Delivery"
+msgstr ""
+
+msgid "Map"
+msgstr ""
+
+msgid "© and privacy"
+msgstr ""
+
+msgid "Recommended dishes"
+msgstr ""
+
+msgid "Gift card teaser"
+msgstr ""
+
+msgid "From MenuDash; change it there."
+msgstr ""
+
+msgid "Order now · until … (example)"
+msgstr ""
+
+msgid "Open now · until … (example)"
+msgstr ""
+
+msgid "Get directions"
+msgstr ""
+
+msgid "Reserve · %s"
+msgstr ""
+
+msgid "Order online"
+msgstr ""
+
+msgid "Reservations by phone: %s"
+msgstr ""
+
+msgid "E-mail: %s"
+msgstr ""
+
+msgid "Follow us on Instagram @%s"
+msgstr ""
+
+msgid "Eating at home?"
+msgstr ""
+
+msgid "No problem: order online with %s."
+msgstr ""
+
+msgid "No problem: order online."
+msgstr ""
+
+msgid "Order with %s"
+msgstr ""
+
+msgid "Map: %s"
+msgstr ""
+
+msgid "Privacy"
+msgstr ""
+
+msgid "No. %s"
+msgstr ""
+
+msgid "Gift card"
+msgstr ""
+
+msgid "Give a meal"
+msgstr ""
+
+msgid "A gift card for a meal with us: ordered online in a minute."
+msgstr ""
+
+msgid "Order a gift card"
+msgstr ""
+
+msgid "Page not found"
+msgstr ""
+
+msgid "This page does not exist (any more). Here is the %s."
+msgstr ""
+
+msgid "home page"
+msgstr ""
+
+msgid "Home cooking, made fresh every day"
+msgstr ""
+
+msgid "Tell your guests in one or two lines what makes your kitchen special."
+msgstr ""
+
+msgid "What guests say"
+msgstr ""
+
+msgid "Put a short quote from a guest, a review or an article here."
+msgstr ""
+
+msgid "Name, where it was published"
+msgstr ""
+
+msgid "Our recommendations"
+msgstr ""
+
+msgid "Favourites from our kitchen"
+msgstr ""
+
+msgid "See the whole menu"
+msgstr ""
+
+msgid "Opening hours"
+msgstr ""
+
+msgid "Give a meal: order a gift card."
+msgstr ""
+
+msgid "Choose the amount and quantity and send us the form. We confirm your order by e-mail."
+msgstr ""
+
+msgid "Come by"
+msgstr ""
+
+msgid "Visit us"
+msgstr ""
+
+msgid "About us"
+msgstr ""
+
+msgid "Our story"
+msgstr ""
+
+msgid "Who cooks here, and since when? Where do the recipes come from? A few sentences are enough."
+msgstr ""
+
+msgid "Replace this text in the editor. Photos of your kitchen or your team fit well next to it."
+msgstr ""
+
+msgid "Primary"
+msgstr ""
+
+msgid "Primary dark"
+msgstr ""
+
+msgid "Base"
+msgstr ""
+
+msgid "Paper"
+msgstr ""
+
+msgid "White"
+msgstr ""
+
+msgid "Text"
+msgstr ""
+
+msgid "Muted"
+msgstr ""
+
+msgid "Small"
+msgstr ""
+
+msgid "Medium"
+msgstr ""
+
+msgid "Large"
+msgstr ""
+
+msgid "Extra large"
+msgstr ""
+
+msgid "Huge"
+msgstr ""
+
+msgid "Header"
+msgstr ""
+
+msgid "Footer"
+msgstr ""
+
+msgid "Home page (no title, full width)"
+msgstr ""
+
+msgid "Wide page (menu)"
+msgstr ""
+
+msgid "Midnight"
+msgstr ""
+
+msgid "Olive"
+msgstr ""
+
+msgid "Home: about us"
+msgstr ""
+
+msgid "Your story in a few lines, with the Instagram button from MenuDash → Restaurant."
+msgstr ""
+
+msgid "How to get to the restaurant (MenuDash → Restaurant → Getting here)."
+msgstr ""
+
+msgid "Footer (address, getting here, opening hours)"
+msgstr ""
+
+msgid "Home: gift cards"
+msgstr ""
+
+msgid "A short teaser with the picture of the card and a button to the gift card page. Shows only while MenuDash takes gift card orders and a page has the gift card form."
+msgstr ""
+
+msgid "Gift card page"
+msgstr ""
+
+msgid "An introduction and MenuDash's gift card order form ([menudash_giftcard]). Amounts, e-mail address, picture and terms are set under MenuDash → Gift cards."
+msgstr ""
+
+msgid "Header (coloured band)"
+msgstr ""
+
+msgid "Home: welcome"
+msgstr ""
+
+msgid "The restaurant's name line, a big headline, the \"open now\" badge and the buttons (menu, reserve, order online), with a bowl drawing beside it."
+msgstr ""
+
+msgid "The opening hours from MenuDash → Hours & holidays."
+msgstr ""
+
+msgid "Home: our recommendations"
+msgstr ""
+
+msgid "The dishes marked \"Recommended\" in the MenuDash menu, with their photos; they change with the menu by themselves."
+msgstr ""
+
+msgid "Today's specials"
+msgstr ""
+
+msgid "Today's specials from MenuDash (the second, short CSV), e.g. at the top of the home page."
+msgstr ""
+
+msgid "Home: what guests say"
+msgstr ""
+
+msgid "One quote from a guest, a review or an article, with its source; on a coloured band."
+msgstr ""
+
+msgid "Home: visit us / delivery (with map)"
+msgstr ""
+
+msgid "Two ways to your food: come by (address, phone, getting here, directions) or order online (ordering times with \"order now\"), with the map below. Everything comes from MenuDash → Restaurant; without an order link the delivery column goes."
+msgstr ""
