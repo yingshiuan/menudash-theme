@@ -6,6 +6,8 @@ MenuDash holds everything the restaurant keeps up to date: the menu, today's spe
 
 <img src="docs/screenshot-desktop.png" alt="The home page on a computer" width="720"> <img src="docs/screenshot-phone.png" alt="The home page on a phone" width="200">
 
+<img src="docs/screenshot-menu.png" alt="The menu page: jump buttons, the lunch menu (today, with the whole week one tap away) and today's specials above the menu" width="720">
+
 ## What's on the home page
 
 | Section | Where its content comes from |
