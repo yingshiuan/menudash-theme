@@ -12,7 +12,7 @@
  *                               with MenuDash links (mdt_bound_button)
  *   menudash-theme/contact      only for pages saved with 1.0/1.1: now MenuDash's Contact block
  *   menudash-theme/directions   only for pages saved with 1.0/1.1: now MenuDash's Contact block
- *   menudash-theme/social       variant="icons": Facebook and Instagram icons; variant="follow": the Instagram button
+ *   menudash-theme/social       variant="icons": icons for the social links from MenuDash → Restaurant; variant="follow": the Instagram button
  *   menudash-theme/delivery     the whole delivery column; nothing without an order link
  *   menudash-theme/map          the Google Maps map, loaded on request
  *   menudash-theme/legal        "© Company · Privacy"
@@ -318,6 +318,22 @@ function mdt_block_directions( $atts ) {
 	return function_exists( 'mdash_directions_html' ) ? mdash_directions_html( implode( "\n", $lines ) ) : '';
 }
 
+/**
+ * WordPress's Social Icons have no Tripadvisor icon, so a Tripadvisor link is saved as the
+ * plain link icon ("chain"); here it gets the owl instead. Also for links added by hand.
+ * Icon: Simple Icons (simpleicons.org), CC0.
+ */
+function mdt_tripadvisor_icon( $content, $block ) {
+	$url = isset( $block['attrs']['url'] ) ? (string) $block['attrs']['url'] : '';
+	if ( 'chain' !== ( isset( $block['attrs']['service'] ) ? $block['attrs']['service'] : '' ) || ! preg_match( '#^(https?://)?([a-z0-9-]+\.)*tripadvisor\.[a-z.]+(/|$)#i', $url ) ) {
+		return $content;
+	}
+	$svg = '<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M12.006 4.295c-2.67 0-5.338.784-7.645 2.353H0l1.963 2.135a5.997 5.997 0 0 0 4.04 10.43 5.976 5.976 0 0 0 4.075-1.6L12 19.705l1.922-2.09a5.972 5.972 0 0 0 4.072 1.598 6 6 0 0 0 6-5.998 5.982 5.982 0 0 0-1.957-4.432L24 6.648h-4.35a13.573 13.573 0 0 0-7.644-2.353zM12 6.255c1.531 0 3.063.303 4.504.903C13.943 8.138 12 10.43 12 13.1c0-2.671-1.942-4.962-4.504-5.942A11.72 11.72 0 0 1 12 6.256zM6.002 9.157a4.059 4.059 0 1 1 0 8.118 4.059 4.059 0 0 1 0-8.118zm11.992.002a4.057 4.057 0 1 1 .003 8.115 4.057 4.057 0 0 1-.003-8.115zm-11.992 1.93a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256zm11.992 0a2.128 2.128 0 0 0 0 4.256 2.128 2.128 0 0 0 0-4.256z"/></svg>';
+	$content = preg_replace( '#<svg\b.*?</svg>#s', $svg, $content, 1 );
+	return str_replace( 'wp-social-link-chain', 'wp-social-link-chain wp-social-link-tripadvisor', $content );
+}
+add_filter( 'render_block_core/social-link', 'mdt_tripadvisor_icon', 10, 2 );
+
 function mdt_block_social( $atts ) {
 	if ( 'follow' === $atts['variant'] ) {
 		if ( '' === mdt_d( 'instagram' ) ) {
@@ -329,10 +345,21 @@ function mdt_block_social( $atts ) {
 		return mdt_render( '<!-- wp:social-links {"iconColor":"white","iconColorValue":"#FFFFFF","iconBackgroundColor":"primary","showLabels":true,"className":"mdt-follow","style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} --><ul class="wp-block-social-links has-visible-labels has-icon-color has-icon-background-color mdt-follow" style="margin-top:var(--wp--preset--spacing--40)"><!-- wp:social-link ' . serialize_block_attributes( array( 'url' => esc_url_raw( mdash_social_url( 'instagram', mdt_d( 'instagram' ) ) ), 'service' => 'instagram', 'label' => wp_strip_all_tags( $label ) ) ) . ' /--></ul><!-- /wp:social-links -->' );
 	}
 	$links = '';
-	foreach ( array( 'facebook' => 'Facebook', 'instagram' => 'Instagram' ) as $service => $label ) {
-		if ( '' !== mdt_d( $service ) ) {
-			$links .= '<!-- wp:social-link ' . serialize_block_attributes( array( 'url' => esc_url_raw( mdash_social_url( $service, mdt_d( $service ) ) ), 'service' => $service, 'label' => $label ) ) . ' /-->';
+	// Every link filled in under MenuDash → Restaurant (older add-ons: Instagram and Facebook).
+	$social = array();
+	if ( function_exists( 'mdash_social_links' ) ) {
+		$social = mdash_social_links();
+	} else {
+		foreach ( array( 'facebook' => 'Facebook', 'instagram' => 'Instagram' ) as $service => $label ) {
+			if ( '' !== mdt_d( $service ) ) {
+				$social[ $service ] = array( $label, mdash_social_url( $service, mdt_d( $service ) ) );
+			}
 		}
+	}
+	foreach ( $social as $service => $link ) {
+		// WordPress has no Tripadvisor icon: saved as the link icon, drawn as the owl (mdt_tripadvisor_icon).
+		$icon   = 'tripadvisor' === $service ? 'chain' : $service;
+		$links .= '<!-- wp:social-link ' . serialize_block_attributes( array( 'url' => esc_url_raw( $link[1] ), 'service' => $icon, 'label' => $link[0] ) ) . ' /-->';
 	}
 	return '' === $links ? '' : mdt_render( '<!-- wp:social-links {"iconColor":"cream","className":"is-style-logos-only"} --><ul class="wp-block-social-links has-icon-color is-style-logos-only">' . $links . '</ul><!-- /wp:social-links -->' );
 }

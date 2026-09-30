@@ -46,9 +46,11 @@ Leave the order link empty, or delete the delivery block, and the visit column t
 
 The theme is written in English and includes German (`de_DE`, and `de_CH` with "ss") and Traditional Chinese (`zh_TW`, `zh_HK`), the same three languages as MenuDash. WordPress picks the language from *Settings → General → Site Language*. To add another, translate `menudash-theme/languages/menudash-theme.pot` (e.g. with Poedit) and save the files as `languages/<locale>.po` and `.mo`.
 
-## Two languages (Polylang)
+## Two or more languages (Polylang)
 
-The theme is in English, German and Traditional Chinese, following *Settings → General → Site Language*. For a site in two languages at once, with a switch for guests, use the free **[Polylang](https://wordpress.org/plugins/polylang/)** plugin:
+The theme is in English, German and Traditional Chinese, following *Settings → General → Site Language*. For a site in two or more languages at once, with a switch for guests, use the free **[Polylang](https://wordpress.org/plugins/polylang/)** plugin:
+
+<img src="docs/screenshot-languages.png" alt="The same home page in German, English and Chinese: navigation, opening badge, heading, buttons and the DE | EN | 中文 switch all change with the page" width="720">
 
 1. Install Polylang and add the languages under *Languages* (e.g. German first, then English).
 2. Under *Languages → Settings → URL modifications*, tick **"The front page URL contains the language code instead of the page name or page id"**, so the English home page is `/en/`.
@@ -56,7 +58,7 @@ The theme is in English, German and Traditional Chinese, following *Settings →
 4. Translate each page (Home, Menu, Gift card …) with the **+** in the Pages list. Give each its address in its own language, e.g. `/speisekarte/` and `/en/menu/`, `/gutschein/` and `/en/gift-card/` (the free Polylang can't use the same address twice; on a German site the theme already makes the menu page at `/speisekarte/`).
 
 The theme does the rest by itself:
-- The header's navigation stays one for all languages. Each link to a page goes to that page's translation, under the translated title, and **DE | EN** is added at the end (also in the phone menu). If you add Polylang's own language switcher to the navigation, the theme leaves it to that one.
+- The header's navigation stays one for all languages. Each link to a page goes to that page's translation, under the translated title, and the languages (**DE | EN | 中文**) are added at the end (also in the phone menu). If you add Polylang's own language switcher to the navigation, the theme leaves it to that one.
 - Its texts and MenuDash's (buttons, opening hours, "open now", address labels, gift card form, recommended dishes) follow the language of the page, and the *Menu* buttons go to the menu page in that language.
 
 The menu itself needs no translated page: MenuDash shows German, English and Chinese on one page, with its own switch.
