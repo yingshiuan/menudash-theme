@@ -255,7 +255,12 @@ function mdt_empty_note( $name ) {
 /** The page with the menu ([menudash]), or /menu/. */
 function mdt_menu_url() {
 	$pages = function_exists( 'mdash_menu_pages_public' ) ? mdash_menu_pages_public() : array();
-	return $pages ? get_permalink( $pages[0] ) : home_url( '/menu/' );
+	if ( ! $pages ) {
+		return home_url( '/menu/' );
+	}
+	// With Polylang: the menu page in the language of the page being shown.
+	$id = function_exists( 'pll_get_post' ) && pll_get_post( $pages[0] ) ? pll_get_post( $pages[0] ) : $pages[0];
+	return get_permalink( $id );
 }
 
 function mdt_block_buttons( $atts ) {

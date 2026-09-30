@@ -113,11 +113,13 @@ function mdt_setup_home() {
 add_action( 'after_switch_theme', 'mdt_setup_home' );
 
 /**
- * On activation, a "Menu" page (German: "Speisekarte", slug menu) holding the menu, unless a
+ * On activation, a "Menu" page (German: "Speisekarte" at /speisekarte/) holding the menu, unless a
  * page with [menudash] exists already, in any status, so switching back and forth never
  * makes a second one. It gets the wide template by itself (see above). Needs MenuDash.
  */
 function mdt_setup_menu() {
+	/* translators: the menu page's web address, lower case without spaces (German: speisekarte) */
+	$slug = sanitize_title( _x( 'menu', 'page address', 'menudash-theme' ) );
 	if ( ! shortcode_exists( 'menudash' ) ) {
 		return;
 	}
@@ -132,7 +134,7 @@ function mdt_setup_menu() {
 			'post_type'    => 'page',
 			'post_status'  => 'publish',
 			'post_title'   => __( 'Menu', 'menudash-theme' ),
-			'post_name'    => get_page_by_path( 'menu' ) ? '' : 'menu',
+			'post_name'    => get_page_by_path( $slug ) ? '' : $slug,
 			'post_content' => "<!-- wp:shortcode -->\n[menudash]\n<!-- /wp:shortcode -->",
 		)
 	);
@@ -253,5 +255,85 @@ add_filter(
 			},
 			$content
 		);
+	}
+);
+
+/*
+ * Two or more languages with Polylang (the free version is enough). The header's navigation
+ * is one for all languages (Polylang translates Site Editor navigation only in its Pro
+ * version), so the theme translates it while it is drawn: a link to a page goes to that
+ * page's translation, under its translated title, and "DE | EN" is added at the end, unless
+ * Polylang's own language switcher block is already in the navigation. Without Polylang
+ * none of this runs.
+ */
+add_filter(
+	'render_block_core/navigation-link',
+	function ( $content, $block ) {
+		if ( ! function_exists( 'pll_get_post' ) || ! function_exists( 'pll_current_language' ) || ! pll_current_language() ) {
+			return $content;
+		}
+		$a     = isset( $block['attrs'] ) ? $block['attrs'] : array();
+		$url   = isset( $a['url'] ) ? (string) $a['url'] : '';
+		$label = isset( $a['label'] ) ? wp_strip_all_tags( (string) $a['label'] ) : '';
+		$id    = isset( $a['id'] ) && 'post-type' === ( isset( $a['kind'] ) ? $a['kind'] : '' ) ? (int) $a['id'] : 0;
+		// A custom link to the home page counts as a link to the front page. (The saved address,
+		// not home_url(), which Polylang changes to /en/ on English pages.)
+		if ( ! $id && '' !== $url && untrailingslashit( $url ) === untrailingslashit( (string) get_option( 'home' ) ) && 'page' === get_option( 'show_on_front' ) ) {
+			$id = (int) get_option( 'page_on_front' );
+		}
+		if ( ! $id ) {
+			return $content;
+		}
+		$to    = pll_get_post( $id ) ? (int) pll_get_post( $id ) : $id;
+		$front = 'page' === get_option( 'show_on_front' ) && ( (int) get_option( 'page_on_front' ) === $to || (int) get_option( 'page_on_front' ) === $id );
+		$new   = $front && function_exists( 'pll_home_url' ) ? pll_home_url() : get_permalink( $to );
+		$html  = $content;
+		if ( '' !== $url && untrailingslashit( $url ) !== untrailingslashit( $new ) ) {
+			$html = str_replace( 'href="' . esc_url( $url ) . '"', 'href="' . esc_url( $new ) . '"', $html );
+		}
+		// The label is swapped only when it is one of the page's titles (a label of your own stays).
+		$titles = array();
+		foreach ( function_exists( 'pll_get_post_translations' ) ? pll_get_post_translations( $id ) : array( $id ) as $tid ) {
+			$titles[] = get_post_field( 'post_title', $tid );
+		}
+		$title = get_post_field( 'post_title', $to );
+		if ( '' !== $label && $label !== $title && in_array( $label, $titles, true ) ) {
+			$html = str_replace( '>' . esc_html( $label ) . '<', '>' . esc_html( $title ) . '<', $html );
+		}
+		if ( get_queried_object_id() === $to && false === strpos( $html, 'current-menu-item' ) ) {
+			$html = preg_replace( '/class="wp-block-navigation-item /', 'class="wp-block-navigation-item current-menu-item ', $html, 1 );
+			$html = preg_replace( '/<a class="wp-block-navigation-item__content"/', '<a class="wp-block-navigation-item__content" aria-current="page"', $html, 1 );
+		}
+		return $html;
+	},
+	10,
+	2
+);
+
+add_filter(
+	'render_block_core/navigation',
+	function ( $content ) {
+		if ( ! function_exists( 'pll_the_languages' ) || false !== strpos( $content, 'polylang' ) || false !== strpos( $content, 'mdt-lang' ) ) {
+			return $content;
+		}
+		$langs = pll_the_languages( array( 'raw' => 1, 'hide_if_empty' => 0 ) );
+		if ( ! is_array( $langs ) || count( $langs ) < 2 ) {
+			return $content;
+		}
+		$items = '';
+		foreach ( $langs as $l ) {
+			$items .= sprintf(
+				'<li class="wp-block-navigation-item mdt-lang%1$s"><a class="wp-block-navigation-item__content" href="%2$s" lang="%3$s" hreflang="%3$s"%4$s title="%5$s">%6$s</a></li>',
+				$l['current_lang'] ? ' is-current' : '',
+				esc_url( $l['url'] ),
+				esc_attr( $l['locale'] ),
+				$l['current_lang'] ? ' aria-current="true"' : '',
+				esc_attr( $l['name'] ),
+				esc_html( strtoupper( $l['slug'] ) )
+			);
+		}
+		// At the end of the list of links (also in the phone menu, which is the same list).
+		$pos = strrpos( $content, '</ul>' );
+		return false === $pos ? $content : substr_replace( $content, $items . '</ul>', $pos, 5 );
 	}
 );

@@ -17,8 +17,14 @@ mdt_setup_menu();
 // (WordPress may already have made an automatic one that only lists the pages.)
 if ( ! get_posts( array( 'post_type' => 'wp_navigation', 'title' => 'Main menu', 'numberposts' => 1 ) ) ) {
 	$links = '<!-- wp:navigation-link {"label":"' . esc_attr__( 'Home', 'menudash-theme' ) . '","url":"' . home_url( '/' ) . '","kind":"custom"} /-->';
-	foreach ( array( 'menu', 'gift-card' ) as $slug ) {
-		$page = get_page_by_path( $slug );
+	// The menu page (the one with [menudash], at /speisekarte/ on a German site) and the gift card page.
+	$menu_page = null;
+	foreach ( get_posts( array( 'post_type' => 'page', 'post_status' => 'publish', 'numberposts' => -1, 'orderby' => 'ID', 'order' => 'ASC' ) ) as $p ) {
+		if ( ! $menu_page && has_shortcode( $p->post_content, 'menudash' ) ) {
+			$menu_page = $p;
+		}
+	}
+	foreach ( array( $menu_page, get_page_by_path( 'gift-card' ) ) as $page ) {
 		if ( $page ) {
 			$links .= sprintf( '<!-- wp:navigation-link {"label":"%s","type":"page","id":%d,"url":"%s","kind":"post-type"} /-->', esc_attr( get_the_title( $page ) ), $page->ID, get_permalink( $page ) );
 		}

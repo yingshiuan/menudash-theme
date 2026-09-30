@@ -364,3 +364,8 @@ msgstr "Karte: erscheint hier, sobald unter MenuDash → Restaurant die Adresse 
 
 msgid "Instagram / Facebook: show here once their links are entered under MenuDash → Restaurant (MenuDash Restaurant add-on)."
 msgstr "Instagram / Facebook: erscheinen hier, sobald ihre Links unter MenuDash → Restaurant eingetragen sind (Add-on MenuDash Restaurant)."
+
+#. translators: the menu page's web address, lower case without spaces (German: speisekarte)
+msgctxt "page address"
+msgid "menu"
+msgstr "speisekarte"

@@ -301,3 +301,9 @@ h1, h2 { overflow-wrap: break-word; text-wrap: balance; }
 /* The editor's note where a part needs MenuDash Restaurant (guests never see it). */
 .mdt-addon-note { margin: .5rem 0; padding: .7rem .9rem; border: 1.5px dashed currentColor; border-radius: 8px; font-size: .875rem; line-height: 1.4; opacity: .85; }
 .mdt-addon-note span { display: block; font-size: .75rem; opacity: .75; margin-top: .25rem; }
+
+/* Polylang's languages in the header navigation (functions.php): DE | EN, the current one bold. */
+.wp-block-navigation .mdt-lang a { font-size: .8125rem; letter-spacing: .08em; opacity: .75; }
+.wp-block-navigation .mdt-lang.is-current a { opacity: 1; font-weight: 800; text-decoration: none; }
+.wp-block-navigation__responsive-container:not(.is-menu-open) .mdt-lang + .mdt-lang { margin-left: -1rem; }
+.wp-block-navigation__responsive-container:not(.is-menu-open) .mdt-lang + .mdt-lang::before { content: "|"; opacity: .45; margin-right: .6rem; }

@@ -1,371 +1,371 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: MenuDash Theme 1.0.0\n"
-"Language: \n"
+"Project-Id-Version: MenuDash Theme 1.4.0\n"
+"Language: zh_HK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Domain: menudash-theme\n"
 
 msgid "Restaurant (MenuDash)"
-msgstr ""
+msgstr "餐廳 (MenuDash)"
 
 msgid "Switzerland"
-msgstr ""
+msgstr "瑞士"
 
 msgid "Germany"
-msgstr ""
+msgstr "德國"
 
 msgid "Austria"
-msgstr ""
+msgstr "奧地利"
 
 msgid "Liechtenstein"
-msgstr ""
+msgstr "列支敦斯登"
 
 msgid "France"
-msgstr ""
+msgstr "法國"
 
 msgid "Italy"
-msgstr ""
+msgstr "義大利"
 
 msgid "United Kingdom"
-msgstr ""
+msgstr "英國"
 
 msgid "United States"
-msgstr ""
+msgstr "美國"
 
 msgid "Home"
-msgstr ""
+msgstr "首頁"
 
 msgid "Call"
-msgstr ""
+msgstr "致電"
 
 msgid "Directions"
-msgstr ""
+msgstr "路線"
 
 msgid "Menu"
-msgstr ""
+msgstr "菜單"
 
 msgid "Quick links"
-msgstr ""
+msgstr "快速連結"
 
 msgid "Show map"
-msgstr ""
+msgstr "顯示地圖"
 
 msgid "The map comes from Google Maps; showing it sends your IP address to Google."
-msgstr ""
+msgstr "地圖由 Google 地圖提供；顯示地圖時，您的 IP 位址會傳送給 Google。"
 
 msgid "Open in Google Maps"
-msgstr ""
+msgstr "在 Google 地圖中開啟"
 
 msgid "Place (street · town)"
-msgstr ""
+msgstr "地點（街道 · 城市）"
 
 msgid "Open now"
-msgstr ""
+msgstr "營業中"
 
 msgid "Buttons (menu, reserve, order)"
-msgstr ""
+msgstr "按鈕（菜單、訂位、訂餐）"
 
 msgid "Address and contact"
-msgstr ""
+msgstr "地址與聯絡方式"
 
 msgid "Getting here"
-msgstr ""
+msgstr "交通"
 
 msgid "Instagram / Facebook"
-msgstr ""
+msgstr "Instagram / Facebook"
 
 msgid "Delivery"
-msgstr ""
+msgstr "外送"
 
 msgid "Map"
-msgstr ""
+msgstr "地圖"
 
 msgid "© and privacy"
-msgstr ""
+msgstr "© 與隱私權"
 
 msgid "Recommended dishes"
-msgstr ""
+msgstr "推薦菜式"
 
 msgid "Gift card teaser"
-msgstr ""
+msgstr "禮券介紹"
 
 msgid "From MenuDash; change it there."
-msgstr ""
+msgstr "來自 MenuDash，請在那裡修改。"
 
 msgid "Order now · until … (example)"
-msgstr ""
+msgstr "現可訂餐 · 至 …（範例）"
 
 msgid "Open now · until … (example)"
-msgstr ""
+msgstr "營業中 · 至 …（範例）"
 
 msgid "Get directions"
-msgstr ""
+msgstr "規劃路線"
 
 msgid "Reserve · %s"
-msgstr ""
+msgstr "訂位 · %s"
 
 msgid "Order online"
-msgstr ""
+msgstr "線上訂餐"
 
 msgid "Reservations by phone: %s"
-msgstr ""
+msgstr "電話訂位：%s"
 
 msgid "E-mail: %s"
-msgstr ""
+msgstr "電郵：%s"
 
 msgid "Follow us on Instagram @%s"
-msgstr ""
+msgstr "在 Instagram 追蹤我們 @%s"
 
 msgid "Eating at home?"
-msgstr ""
+msgstr "想在家享用？"
 
 msgid "No problem: order online with %s."
-msgstr ""
+msgstr "沒問題：透過 %s 線上訂餐。"
 
 msgid "No problem: order online."
-msgstr ""
+msgstr "沒問題：線上訂餐。"
 
 msgid "Order with %s"
-msgstr ""
+msgstr "透過 %s 訂餐"
 
 msgid "Map: %s"
-msgstr ""
+msgstr "地圖：%s"
 
 msgid "Privacy"
-msgstr ""
+msgstr "隱私權"
 
 msgid "No. %s"
-msgstr ""
+msgstr "%s 號"
 
 msgid "Gift card"
-msgstr ""
+msgstr "禮券"
 
 msgid "Give a meal"
-msgstr ""
+msgstr "送一頓好菜"
 
 msgid "A gift card for a meal with us: ordered online in a minute."
-msgstr ""
+msgstr "送一張我們餐廳的禮券：一分鐘即可線上訂購。"
 
 msgid "Order a gift card"
-msgstr ""
+msgstr "訂購禮券"
 
 msgid "Page not found"
-msgstr ""
+msgstr "找不到頁面"
 
 msgid "This page does not exist (any more). Here is the %s."
-msgstr ""
+msgstr "此頁面不存在（或已移除）。請前往%s。"
 
 msgid "home page"
-msgstr ""
+msgstr "首頁"
 
 msgid "Home cooking, made fresh every day"
-msgstr ""
+msgstr "家常好味，每日新鮮烹煮"
 
 msgid "Tell your guests in one or two lines what makes your kitchen special."
-msgstr ""
+msgstr "用一兩句話告訴客人，您的廚房有什麼特別之處。"
 
 msgid "What guests say"
-msgstr ""
+msgstr "客人怎麼說"
 
 msgid "Put a short quote from a guest, a review or an article here."
-msgstr ""
+msgstr "在此放上一段客人、評論或文章的簡短引言。"
 
 msgid "Name, where it was published"
-msgstr ""
+msgstr "姓名，刊登出處"
 
 msgid "Our recommendations"
-msgstr ""
+msgstr "本店推薦"
 
 msgid "Favourites from our kitchen"
-msgstr ""
+msgstr "我們廚房的人氣菜式"
 
 msgid "See the whole menu"
-msgstr ""
+msgstr "查看完整菜單"
 
 msgid "Opening hours"
-msgstr ""
+msgstr "營業時間"
 
 msgid "Give a meal: order a gift card."
-msgstr ""
+msgstr "送一頓好菜：訂購禮券。"
 
 msgid "Choose the amount and quantity and send us the form. We confirm your order by e-mail."
-msgstr ""
+msgstr "請選擇金額與數量並送出表格。我們會以電郵確認您的訂單。"
 
 msgid "Come by"
-msgstr ""
+msgstr "歡迎光臨"
 
 msgid "Visit us"
-msgstr ""
+msgstr "歡迎來店"
 
 msgid "About us"
-msgstr ""
+msgstr "關於我們"
 
 msgid "Our story"
-msgstr ""
+msgstr "我們的故事"
 
 msgid "Who cooks here, and since when? Where do the recipes come from? A few sentences are enough."
-msgstr ""
+msgstr "誰在這裡掌廚、從什麼時候開始？食譜從何而來？幾句話就夠了。"
 
 msgid "Replace this text in the editor. Photos of your kitchen or your team fit well next to it."
-msgstr ""
+msgstr "請在編輯器中替換這段文字。旁邊很適合放上廚房或團隊的照片。"
 
 msgid "Primary"
-msgstr ""
+msgstr "主色"
 
 msgid "Primary dark"
-msgstr ""
+msgstr "深主色"
 
 msgid "Base"
-msgstr ""
+msgstr "底色"
 
 msgid "Paper"
-msgstr ""
+msgstr "紙色"
 
 msgid "White"
-msgstr ""
+msgstr "白色"
 
 msgid "Text"
-msgstr ""
+msgstr "文字"
 
 msgid "Muted"
-msgstr ""
+msgstr "淡色"
 
 msgid "Small"
-msgstr ""
+msgstr "小"
 
 msgid "Medium"
-msgstr ""
+msgstr "中"
 
 msgid "Large"
-msgstr ""
+msgstr "大"
 
 msgid "Extra large"
-msgstr ""
+msgstr "特大"
 
 msgid "Huge"
-msgstr ""
+msgstr "超大"
 
 msgid "Header"
-msgstr ""
+msgstr "頁首"
 
 msgid "Footer"
-msgstr ""
+msgstr "頁尾"
 
 msgid "Home page (no title, full width)"
-msgstr ""
+msgstr "首頁（無標題、全寬）"
 
 msgid "Wide page (menu)"
-msgstr ""
+msgstr "寬版頁面（菜單）"
 
 msgid "Midnight"
-msgstr ""
+msgstr "午夜藍"
 
 msgid "Olive"
-msgstr ""
+msgstr "橄欖綠"
 
 msgid "Home: about us"
-msgstr ""
+msgstr "首頁：關於我們"
 
 msgid "Your story in a few lines, with the Instagram button from MenuDash → Restaurant."
-msgstr ""
+msgstr "用幾句話介紹您的故事，並附上 MenuDash → Restaurant 中的 Instagram 按鈕。"
 
 msgid "How to get to the restaurant (MenuDash → Restaurant → Getting here)."
-msgstr ""
+msgstr "如何前往餐廳（MenuDash → Restaurant → 交通）。"
 
 msgid "Footer (address, getting here, opening hours)"
-msgstr ""
+msgstr "頁尾（地址、交通、營業時間）"
 
 msgid "Home: gift cards"
-msgstr ""
+msgstr "首頁：禮券"
 
 msgid "A short teaser with the picture of the card and a button to the gift card page. Shows only while MenuDash takes gift card orders and a page has the gift card form."
-msgstr ""
+msgstr "簡短介紹，附禮券圖片及前往禮券頁面的按鈕。只在 MenuDash 接受禮券訂購且有頁面放了禮券表格時顯示。"
 
 msgid "Gift card page"
-msgstr ""
+msgstr "禮券頁面"
 
 msgid "An introduction and MenuDash's gift card order form ([menudash_giftcard]). Amounts, e-mail address, picture and terms are set under MenuDash → Gift cards."
-msgstr ""
+msgstr "一段介紹及 MenuDash 的禮券訂購表格（[menudash_giftcard]）。金額、電郵地址、圖片及條款在 MenuDash → Gift cards 設定。"
 
 msgid "Header (coloured band)"
-msgstr ""
+msgstr "頁首（彩色橫條）"
 
 msgid "Home: welcome"
-msgstr ""
+msgstr "首頁：歡迎"
 
 msgid "The restaurant's name line, a big headline, the \"open now\" badge and the buttons (menu, reserve, order online), with a bowl drawing beside it."
-msgstr ""
+msgstr "餐廳名稱、大標題、「營業中」標示及按鈕（菜單、訂位、線上訂餐），旁邊配上碗的圖案。"
 
 msgid "The opening hours from MenuDash → Hours & holidays."
-msgstr ""
+msgstr "MenuDash → Hours & holidays 中的營業時間。"
 
 msgid "Home: our recommendations"
-msgstr ""
+msgstr "首頁：本店推薦"
 
 msgid "The dishes marked \"Recommended\" in the MenuDash menu, with their photos; they change with the menu by themselves."
-msgstr ""
+msgstr "MenuDash 菜單中標為「推薦」的菜式及其照片，會隨菜單自動更新。"
 
 msgid "Today's specials"
-msgstr ""
+msgstr "今日推介"
 
 msgid "Today's specials from MenuDash (the second, short CSV), e.g. at the top of the home page."
-msgstr ""
+msgstr "MenuDash 的今日推介（第二份簡短 CSV），例如放在首頁頂部。"
 
 msgid "Home: what guests say"
-msgstr ""
+msgstr "首頁：客人怎麼說"
 
 msgid "One quote from a guest, a review or an article, with its source; on a coloured band."
-msgstr ""
+msgstr "一段來自客人、評論或文章的引言及出處，放在彩色橫條上。"
 
 msgid "Home: visit us / delivery (with map)"
-msgstr ""
+msgstr "首頁：歡迎來店 / 外送（附地圖）"
 
 msgid "Two ways to your food: come by (address, phone, getting here, directions) or order online (ordering times with \"order now\"), with the map below. Everything comes from MenuDash → Restaurant; without an order link the delivery column goes."
-msgstr ""
+msgstr "兩種享用方式：來店（地址、電話、交通、路線）或線上訂餐（訂餐時間及「現可訂餐」），下方附地圖。全部來自 MenuDash → Restaurant；沒有訂餐連結時，外送欄位不會顯示。"
 
 msgid "Needs MenuDash Restaurant"
-msgstr ""
+msgstr "需要 MenuDash Restaurant"
 
 msgid "Here the address, getting here and opening hours appear once the MenuDash Restaurant add-on is installed."
-msgstr ""
+msgstr "安裝 MenuDash Restaurant 附加元件後，這裡會顯示地址、交通及營業時間。"
 
 msgid "Here the \"open now\" badge, the address and the Reserve and Order online buttons appear once the MenuDash Restaurant add-on is installed."
-msgstr ""
+msgstr "安裝 MenuDash Restaurant 附加元件後，這裡會顯示「營業中」標示、地址，以及訂位和線上訂餐按鈕。"
 
 msgid "With the MenuDash Restaurant add-on this section fills itself: address, phone, getting here, directions, delivery and map, from MenuDash → Restaurant. Until then, write your address here."
-msgstr ""
+msgstr "安裝 MenuDash Restaurant 附加元件後，此區塊會自動填入 MenuDash → Restaurant 中的地址、電話、交通、路線、外送及地圖。在此之前，請在這裡填寫您的地址。"
 
 msgid "Only you see this note, in the editor."
-msgstr ""
+msgstr "此提示只在編輯器中顯示，只有您看得到。"
 
 msgid "Here the \"Follow us on Instagram\" button appears once the MenuDash Restaurant add-on is installed and an Instagram link is entered under MenuDash → Restaurant."
-msgstr ""
+msgstr "安裝 MenuDash Restaurant 附加元件並在 MenuDash → Restaurant 填入 Instagram 連結後，這裡會顯示「在 Instagram 追蹤我們」按鈕。"
 
 msgid "Street and number"
-msgstr ""
+msgstr "街道及門牌號碼"
 
 msgid "Postcode and town"
-msgstr ""
+msgstr "郵遞區號及城市"
 
 msgid "How to get here by tram, bus or car, and when you are open. Replace this text in the editor."
-msgstr ""
+msgstr "如何搭電車、巴士或開車前來，以及營業時間。請在編輯器中替換這段文字。"
 
 msgid "Gift card teaser: shows here while the MenuDash Gift Cards add-on takes orders and a page has the gift card form."
-msgstr ""
+msgstr "禮券介紹：當 MenuDash Gift Cards 附加元件接受訂購且有頁面放了禮券表格時，會顯示在這裡。"
 
 msgid "Delivery: shows here once an order link is entered under MenuDash → Restaurant (MenuDash Restaurant add-on)."
-msgstr ""
+msgstr "外送：在 MenuDash → Restaurant 填入訂餐連結後會顯示在這裡（MenuDash Restaurant 附加元件）。"
 
 msgid "Map: shows here once the address is entered under MenuDash → Restaurant (MenuDash Restaurant add-on)."
-msgstr ""
+msgstr "地圖：在 MenuDash → Restaurant 填入地址後會顯示在這裡（MenuDash Restaurant 附加元件）。"
 
 msgid "Instagram / Facebook: show here once their links are entered under MenuDash → Restaurant (MenuDash Restaurant add-on)."
-msgstr ""
+msgstr "Instagram / Facebook：在 MenuDash → Restaurant 填入連結後會顯示在這裡（MenuDash Restaurant 附加元件）。"
 
 #. translators: the menu page's web address, lower case without spaces (German: speisekarte)
 msgctxt "page address"
 msgid "menu"
-msgstr ""
+msgstr "menu"
