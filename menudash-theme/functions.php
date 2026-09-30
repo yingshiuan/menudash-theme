@@ -262,7 +262,7 @@ add_filter(
  * Two or more languages with Polylang (the free version is enough). The header's navigation
  * is one for all languages (Polylang translates Site Editor navigation only in its Pro
  * version), so the theme translates it while it is drawn: a link to a page goes to that
- * page's translation, under its translated title, and "DE | EN" is added at the end, unless
+ * page's translation, under its translated title, and "DE | EN | 中文" (the site's languages) is added at the end, unless
  * Polylang's own language switcher block is already in the navigation. Without Polylang
  * none of this runs.
  */
@@ -329,7 +329,7 @@ add_filter(
 				esc_attr( $l['locale'] ),
 				$l['current_lang'] ? ' aria-current="true"' : '',
 				esc_attr( $l['name'] ),
-				esc_html( strtoupper( $l['slug'] ) )
+				esc_html( 'zh' === substr( $l['slug'], 0, 2 ) ? '中文' : strtoupper( $l['slug'] ) ) // As MenuDash writes it: DE, EN, 中文.
 			);
 		}
 		// At the end of the list of links (also in the phone menu, which is the same list).
