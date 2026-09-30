@@ -16,7 +16,8 @@
  *   menudash-theme/delivery     the whole delivery column; nothing without an order link
  *   menudash-theme/map          the Google Maps map, loaded on request
  *   menudash-theme/legal        "© Company · Privacy"
- *   menudash-theme/picks        the dishes marked Recommended in the menu, with photos
+ *   menudash-theme/picks        the dishes marked Recommended in the menu, with photos; with
+ *                               MenuDash 2.3 its block menudash/picks, which the pattern now uses
  *   menudash-theme/giftcard     the gift card teaser; only while gift cards can be ordered
  */
 
@@ -36,6 +37,7 @@ function mdt_blocks() {
 		'legal'      => __( '© and privacy', 'menudash-theme' ),
 		'picks'      => __( 'Recommended dishes', 'menudash-theme' ),
 		'giftcard'   => __( 'Gift card teaser', 'menudash-theme' ),
+		'addon'      => __( 'Needs MenuDash Restaurant', 'menudash-theme' ),
 	);
 }
 
@@ -48,6 +50,9 @@ add_action(
 			'contact'    => array( 'variant' => array( 'type' => 'string', 'default' => 'visit' ) ),
 			'directions' => array( 'first' => array( 'type' => 'boolean', 'default' => false ) ),
 			'social'     => array( 'variant' => array( 'type' => 'string', 'default' => 'icons' ) ),
+			'addon'      => array( 'part' => array( 'type' => 'string', 'default' => 'footer' ) ),
+			// A section of its own: full width in the editor too.
+			'giftcard'   => array( 'align' => array( 'type' => 'string', 'default' => 'full' ) ),
 		);
 		foreach ( mdt_blocks() as $name => $title ) {
 			register_block_type(
@@ -56,9 +61,12 @@ add_action(
 					'title'           => $title,
 					'category'        => 'menudash-theme',
 					'attributes'      => ( isset( $atts[ $name ] ) ? $atts[ $name ] : array() ) + array( 'className' => array( 'type' => 'string', 'default' => '' ) ),
-					'supports'        => array( 'html' => false ),
+					'supports'        => 'giftcard' === $name ? array( 'html' => false, 'align' => array( 'full' ) ) : array( 'html' => false ),
 					'render_callback' => function ( $a ) use ( $name ) {
-						return function_exists( 'mdash_detail' ) ? call_user_func( "mdt_block_$name", $a ) : '';
+						// Recommended dishes, gift cards and © work with MenuDash alone; the rest needs Restaurant.
+						$html = mdt_has_restaurant() || in_array( $name, array( 'picks', 'giftcard', 'legal', 'addon' ), true ) ? call_user_func( "mdt_block_$name", $a ) : '';
+						// Empty in the editor: say when it shows, instead of WordPress's grey "rendered as empty".
+						return '' === $html ? mdt_empty_note( $name ) : $html;
 					},
 				)
 			);
@@ -148,6 +156,100 @@ function mdt_bound_button( $key, $text, $outline = false, $label = '' ) {
 	}
 	return '<!-- wp:button ' . serialize_block_attributes( $attrs ) . ' -->' . "\n"
 		. '<div class="wp-block-button' . ( $outline ? ' is-style-outline' : '' ) . '">' . $a . esc_html( $text ) . '</a></div>' . "\n<!-- /wp:button -->\n";
+}
+
+/**
+ * A note in the editor only, where the theme leaves out a part because the MenuDash
+ * Restaurant add-on isn't installed: it says what would show there and where it comes from.
+ * Guests see nothing. With the add-on it disappears, and the part itself shows instead.
+ */
+function mdt_block_addon( $a ) {
+	if ( mdt_has_restaurant() || ! ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+		return '';
+	}
+	$texts = array(
+		'footer' => __( 'Here the address, getting here and opening hours appear once the MenuDash Restaurant add-on is installed.', 'menudash-theme' ),
+		'hero'   => __( 'Here the "open now" badge, the address and the Reserve and Order online buttons appear once the MenuDash Restaurant add-on is installed.', 'menudash-theme' ),
+		'visit'  => __( 'With the MenuDash Restaurant add-on this section fills itself: address, phone, getting here, directions, delivery and map, from MenuDash → Restaurant. Until then, write your address here.', 'menudash-theme' ),
+		'follow' => __( 'Here the "Follow us on Instagram" button appears once the MenuDash Restaurant add-on is installed and an Instagram link is entered under MenuDash → Restaurant.', 'menudash-theme' ),
+	);
+	$part = isset( $texts[ $a['part'] ] ) ? $a['part'] : 'footer';
+	return '<p class="mdt-addon-note">' . esc_html( $texts[ $part ] ) . ' <span>' . esc_html__( 'Only you see this note, in the editor.', 'menudash-theme' ) . '</span></p>';
+}
+
+/** "Come by" and "Visit us", the start of the home page's visit section. */
+function mdt_visit_eyebrow() {
+	return '<!-- wp:paragraph {"style":{"typography":{"fontSize":"0.8125rem","fontWeight":"700","textTransform":"uppercase","letterSpacing":"0.18em"}},"textColor":"primary"} -->' . "\n"
+		. '<p class="has-primary-color has-text-color" style="font-size:0.8125rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase">' . esc_html__( 'Come by', 'menudash-theme' ) . "</p>\n<!-- /wp:paragraph -->\n"
+		. "<!-- wp:heading -->\n" . '<h2 class="wp-block-heading">' . esc_html__( 'Visit us', 'menudash-theme' ) . "</h2>\n<!-- /wp:heading -->\n";
+}
+
+/**
+ * The visit section's content with MenuDash Restaurant: address, phone, getting here and
+ * directions, delivery beside it, and the map below; all filled from MenuDash → Restaurant.
+ */
+function mdt_visit_markup() {
+	/* translators: %s: the restaurant's phone number, as a link */
+	$by_phone = trim( str_replace( '%s', '', __( 'Reservations by phone: %s', 'menudash-theme' ) ) );
+	/* translators: %s: e-mail link */
+	$by_mail = trim( str_replace( '%s', '', __( 'E-mail: %s', 'menudash-theme' ) ) );
+	return '<!-- wp:columns {"align":"wide","className":"mdt-two-ways","style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} -->' . "\n"
+		. '<div class="wp-block-columns alignwide mdt-two-ways" style="margin-top:var(--wp--preset--spacing--40)">' . "\n"
+		. '<!-- wp:column {"width":"50%"} -->' . "\n" . '<div class="wp-block-column" style="flex-basis:50%">' . "\n"
+		. mdt_visit_eyebrow()
+		. '<!-- wp:menudash/contact {"parts":["address"],"fontSize":"large"} /-->' . "\n"
+		. '<!-- wp:menudash/contact ' . serialize_block_attributes( array( 'parts' => array( 'phone', 'email' ), 'phoneLabel' => $by_phone, 'emailLabel' => $by_mail ) ) . " /-->\n"
+		. '<!-- wp:menudash/contact {"parts":["directions"],"directions":"first"} /-->' . "\n"
+		. "<!-- wp:buttons -->\n<div class=\"wp-block-buttons\">\n" . mdt_bound_button( 'route', __( 'Get directions', 'menudash-theme' ) ) . "</div>\n<!-- /wp:buttons -->\n"
+		. "</div>\n<!-- /wp:column -->\n"
+		. '<!-- wp:column {"width":"50%"} -->' . "\n" . '<div class="wp-block-column" style="flex-basis:50%">' . "\n"
+		. "<!-- wp:menudash-theme/delivery /-->\n"
+		. "</div>\n<!-- /wp:column -->\n"
+		. "</div>\n<!-- /wp:columns -->\n"
+		. "<!-- wp:menudash-theme/map /-->\n";
+}
+
+/*
+ * The visit section's fill-in text (without MenuDash Restaurant) makes way for the filled-in
+ * version once the add-on is there, also on a home page saved before, where the editor
+ * stored the text in the page. What the owner typed there is replaced by the Restaurant tab.
+ */
+add_filter(
+	'render_block_core/group',
+	function ( $content, $block ) {
+		$class = isset( $block['attrs']['className'] ) ? (string) $block['attrs']['className'] : '';
+		if ( false === strpos( $class, 'mdt-visit-fallback' ) || ! mdt_has_restaurant() ) {
+			return $content;
+		}
+		return do_blocks( mdt_visit_markup() );
+	},
+	10,
+	2
+);
+
+/** In the editor only: what an empty block would show, and what it waits for. */
+function mdt_empty_note( $name ) {
+	if ( ! ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+		return '';
+	}
+	$texts = array(
+		'giftcard' => __( 'Gift card teaser: shows here while the MenuDash Gift Cards add-on takes orders and a page has the gift card form.', 'menudash-theme' ),
+		'delivery' => __( 'Delivery: shows here once an order link is entered under MenuDash → Restaurant (MenuDash Restaurant add-on).', 'menudash-theme' ),
+		'map'      => __( 'Map: shows here once the address is entered under MenuDash → Restaurant (MenuDash Restaurant add-on).', 'menudash-theme' ),
+		'social'   => __( 'Instagram / Facebook: show here once their links are entered under MenuDash → Restaurant (MenuDash Restaurant add-on).', 'menudash-theme' ),
+	);
+	if ( ! isset( $texts[ $name ] ) ) {
+		return '';
+	}
+	$note = '<p class="mdt-addon-note">' . esc_html( $texts[ $name ] ) . ' <span>' . esc_html__( 'Only you see this note, in the editor.', 'menudash-theme' ) . '</span></p>';
+	// The gift card teaser is a section of its own: its note gets the same band, so it
+	// doesn't look like part of the section next to it.
+	if ( 'giftcard' === $name ) {
+		$note = '<div class="wp-block-group alignfull mdt-gc-home has-paper-background-color has-background is-layout-constrained"><div class="alignwide">'
+			. '<p class="mdt-eyebrow" style="font-size:0.8125rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--wp--preset--color--primary)">' . esc_html__( 'Gift card', 'menudash-theme' ) . '</p>'
+			. $note . '</div></div>';
+	}
+	return $note;
 }
 
 /** The page with the menu ([menudash]), or /menu/. */
@@ -260,7 +362,7 @@ function mdt_block_legal() {
 	$id    = (int) get_option( 'wp_page_for_privacy_policy' );
 	$page  = $id ? get_post( $id ) : null; // get_post( 0 ) would be the current page.
 	$link  = $page && 'publish' === $page->post_status ? '<a href="' . esc_url( get_permalink( $page ) ) . '">' . esc_html__( 'Privacy', 'menudash-theme' ) . '</a>' : '';
-	$owner = '' !== mdt_d( 'company' ) ? mdt_d( 'company' ) : mdt_d( 'name' );
+	$owner = '' !== mdt_d( 'company' ) ? mdt_d( 'company' ) : ( '' !== mdt_d( 'name' ) ? mdt_d( 'name' ) : get_bloginfo( 'name' ) );
 	$parts = array_filter( array( '' !== $owner ? '© ' . esc_html( $owner ) : '', $link ) );
 	return $parts ? '<p class="alignwide" style="font-size:0.8125rem">' . implode( ' · ', $parts ) . '</p>' : '';
 }
@@ -270,6 +372,11 @@ function mdt_block_legal() {
  * (dishes without a photo come last). Each links to the menu.
  */
 function mdt_block_picks() {
+	// MenuDash 2.3 has its own Recommended dishes block; this one then shows the same, and
+	// stays for pages saved with it (their "whole menu" button is a block of its own).
+	if ( function_exists( 'mdash_picks_render' ) ) {
+		return mdash_picks_render( array( 'button' => false ) );
+	}
 	if ( ! function_exists( 'mdash_get_menu' ) || ! ( $menu = mdash_get_menu() ) ) { // phpcs:ignore
 		return '';
 	}

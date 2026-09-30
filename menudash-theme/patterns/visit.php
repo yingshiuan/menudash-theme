@@ -5,42 +5,37 @@
  * Categories: menudash-theme
  * Description: Two ways to your food: come by (address, phone, getting here, directions) or order online (ordering times with "order now"), with the map below. Everything comes from MenuDash → Restaurant; without an order link the delivery column goes.
  */
+
 ?>
 <!-- wp:group {"align":"full","className":"is-style-mdt-on-cream","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull is-style-mdt-on-cream" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)">
-<!-- wp:columns {"align":"wide","className":"mdt-two-ways"} -->
-<div class="wp-block-columns alignwide mdt-two-ways">
-<!-- wp:column {"width":"50%"} -->
-<div class="wp-block-column" style="flex-basis:50%">
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"0.8125rem","fontWeight":"700","textTransform":"uppercase","letterSpacing":"0.18em"}},"textColor":"primary"} -->
-<p class="has-primary-color has-text-color" style="font-size:0.8125rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase"><?php echo esc_html__( 'Come by', 'menudash-theme' ); ?></p>
+<!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
+<div class="wp-block-group alignwide"><!-- wp:group {"className":"mdt-visit-bowl","layout":{"type":"default"}} -->
+<div class="wp-block-group mdt-visit-bowl"></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+<?php if ( mdt_has_restaurant() ) : ?>
+<?php echo mdt_visit_markup(); // phpcs:ignore -- block markup, escaped inside ?>
+<?php else : // MenuDash alone: text to fill in. Marked mdt-visit-fallback, so once MenuDash Restaurant is installed the theme shows the filled-in version instead, even on a saved page. ?>
+<!-- wp:group {"align":"wide","className":"mdt-visit-fallback","layout":{"type":"constrained","contentSize":"640px","justifyContent":"left"}} -->
+<div class="wp-block-group alignwide mdt-visit-fallback">
+<?php echo mdt_visit_eyebrow(); // phpcs:ignore -- escaped inside ?>
+<!-- wp:paragraph {"fontSize":"large"} -->
+<p class="has-large-font-size"><?php echo esc_html__( 'Street and number', 'menudash-theme' ); ?><br><?php echo esc_html__( 'Postcode and town', 'menudash-theme' ); ?></p>
 <!-- /wp:paragraph -->
-<!-- wp:heading -->
-<h2 class="wp-block-heading"><?php echo esc_html__( 'Visit us', 'menudash-theme' ); ?></h2>
-<!-- /wp:heading -->
-<!-- wp:menudash/contact {"parts":["address"],"fontSize":"large"} /-->
-<?php
-/* translators: %s: the restaurant's phone number, as a link */
-$by_phone = trim( str_replace( '%s', '', __( 'Reservations by phone: %s', 'menudash-theme' ) ) );
-/* translators: %s: e-mail link */
-$by_mail = trim( str_replace( '%s', '', __( 'E-mail: %s', 'menudash-theme' ) ) );
-echo '<!-- wp:menudash/contact ' . serialize_block_attributes( array( 'parts' => array( 'phone', 'email' ), 'phoneLabel' => $by_phone, 'emailLabel' => $by_mail ) ) . " /-->\n";
-?>
-<!-- wp:menudash/contact {"parts":["directions"],"directions":"first"} /-->
+<!-- wp:paragraph -->
+<p><?php echo esc_html__( 'How to get here by tram, bus or car, and when you are open. Replace this text in the editor.', 'menudash-theme' ); ?></p>
+<!-- /wp:paragraph -->
+<!-- wp:menudash-theme/addon {"part":"visit"} /-->
 <!-- wp:buttons -->
 <div class="wp-block-buttons">
-<?php echo mdt_bound_button( 'route', __( 'Get directions', 'menudash-theme' ) ); ?>
+<!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( mdt_menu_url() ); ?>"><?php echo esc_html__( 'Menu', 'menudash-theme' ); ?></a></div>
+<!-- /wp:button -->
 </div>
 <!-- /wp:buttons -->
 </div>
-<!-- /wp:column -->
-<!-- wp:column {"width":"50%"} -->
-<div class="wp-block-column" style="flex-basis:50%">
-<!-- wp:menudash-theme/delivery /-->
-</div>
-<!-- /wp:column -->
-</div>
-<!-- /wp:columns -->
-<!-- wp:menudash-theme/map /-->
+<!-- /wp:group -->
+<?php endif; ?>
 </div>
 <!-- /wp:group -->

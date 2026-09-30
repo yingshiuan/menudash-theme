@@ -11,6 +11,7 @@ update_option( 'timezone_string', 'Europe/Berlin' );
 
 // Recommended dishes need the "Recommended" mark; the sample menu has some.
 mdt_setup_home();
+mdt_setup_menu();
 
 // The top menu as a block navigation: Home · Menu · Gift card.
 // (WordPress may already have made an automatic one that only lists the pages.)

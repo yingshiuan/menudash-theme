@@ -325,3 +325,42 @@ msgstr "Startseite: Besuchen Sie uns / Liefern lassen (mit Karte)"
 
 msgid "Two ways to your food: come by (address, phone, getting here, directions) or order online (ordering times with \"order now\"), with the map below. Everything comes from MenuDash → Restaurant; without an order link the delivery column goes."
 msgstr "Zwei Wege zum Essen: vorbeikommen (Adresse, Telefon, Anreise, Route) oder online bestellen (Bestellzeiten mit „Jetzt bestellbar“), darunter die Karte. Alles kommt aus MenuDash → Restaurant; ohne Bestell-Link fällt die Spalte „Liefern lassen“ weg."
+
+msgid "Needs MenuDash Restaurant"
+msgstr "Braucht MenuDash Restaurant"
+
+msgid "Here the address, getting here and opening hours appear once the MenuDash Restaurant add-on is installed."
+msgstr "Hier erscheinen Adresse, Anreise und Öffnungszeiten, sobald das Add-on MenuDash Restaurant installiert ist."
+
+msgid "Here the \"open now\" badge, the address and the Reserve and Order online buttons appear once the MenuDash Restaurant add-on is installed."
+msgstr "Hier erscheinen das Schild „Jetzt geöffnet“, die Adresse und die Knöpfe Reservieren und Online bestellen, sobald das Add-on MenuDash Restaurant installiert ist."
+
+msgid "With the MenuDash Restaurant add-on this section fills itself: address, phone, getting here, directions, delivery and map, from MenuDash → Restaurant. Until then, write your address here."
+msgstr "Mit dem Add-on MenuDash Restaurant füllt sich dieser Abschnitt von selbst: Adresse, Telefon, Anreise, Route, Lieferung und Karte, aus MenuDash → Restaurant. Bis dahin tragen Sie Ihre Adresse hier ein."
+
+msgid "Only you see this note, in the editor."
+msgstr "Diesen Hinweis sehen nur Sie, im Editor."
+
+msgid "Here the \"Follow us on Instagram\" button appears once the MenuDash Restaurant add-on is installed and an Instagram link is entered under MenuDash → Restaurant."
+msgstr "Hier erscheint der Knopf „Folge uns auf Instagram“, sobald das Add-on MenuDash Restaurant installiert und unter MenuDash → Restaurant ein Instagram-Link eingetragen ist."
+
+msgid "Street and number"
+msgstr "Strasse und Nummer"
+
+msgid "Postcode and town"
+msgstr "PLZ und Ort"
+
+msgid "How to get here by tram, bus or car, and when you are open. Replace this text in the editor."
+msgstr "Wie man mit Tram, Bus oder Auto zu Ihnen kommt, und wann Sie geöffnet haben. Ersetzen Sie diesen Text im Editor."
+
+msgid "Gift card teaser: shows here while the MenuDash Gift Cards add-on takes orders and a page has the gift card form."
+msgstr "Gutschein-Hinweis: erscheint hier, solange das Add-on MenuDash Gift Cards Bestellungen annimmt und eine Seite das Gutschein-Formular hat."
+
+msgid "Delivery: shows here once an order link is entered under MenuDash → Restaurant (MenuDash Restaurant add-on)."
+msgstr "Lieferung: erscheint hier, sobald unter MenuDash → Restaurant ein Bestell-Link eingetragen ist (Add-on MenuDash Restaurant)."
+
+msgid "Map: shows here once the address is entered under MenuDash → Restaurant (MenuDash Restaurant add-on)."
+msgstr "Karte: erscheint hier, sobald unter MenuDash → Restaurant die Adresse eingetragen ist (Add-on MenuDash Restaurant)."
+
+msgid "Instagram / Facebook: show here once their links are entered under MenuDash → Restaurant (MenuDash Restaurant add-on)."
+msgstr "Instagram / Facebook: erscheinen hier, sobald ihre Links unter MenuDash → Restaurant eingetragen sind (Add-on MenuDash Restaurant)."

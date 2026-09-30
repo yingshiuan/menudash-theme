@@ -2,7 +2,7 @@
 Theme Name: MenuDash Theme
 Theme URI: https://github.com/yingshiuan/menudash-theme
 Description: A restaurant website theme made for the MenuDash plugin: the menu, today's specials, opening hours, holidays, gift cards and your restaurant's details come from MenuDash, and the theme shows them in a warm, simple design. Home page sections, header and footer are edited in Appearance → Editor; colours and fonts under Styles. English and German included.
-Version: 1.3.0
+Version: 1.4.0
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
@@ -139,6 +139,8 @@ header + .mdt-specials { margin-block-start: 0; }
 .wp-block-button.is-style-outline > .wp-block-button__link { background: transparent; border: 2px solid currentColor; }
 /* The theme's MenuDash blocks in the editor: a dashed outline says "comes from MenuDash". */
 .mdt-live-block { outline: 1px dashed rgba(36, 63, 102, .4); outline-offset: 4px; }
+/* The visit section's fill-in text too: MenuDash Restaurant replaces it by itself. */
+.editor-styles-wrapper .mdt-visit-fallback { outline: 1px dashed rgba(36, 63, 102, .4); outline-offset: 8px; }
 .mdt-delivery .mdt-delivery-hours { margin: .4rem 0 1.2rem; }
 .mdt-delivery .menudash-open { margin-top: .2rem; }
 
@@ -269,6 +271,8 @@ h1, h2 { overflow-wrap: break-word; text-wrap: balance; }
 /* ---- The bowl drawing beside the welcome, in the site's primary colour ---- */
 .mdt-hero-bowl { aspect-ratio: 1; width: 100%; max-width: 380px; margin: 0 auto; background: var(--wp--preset--color--primary); -webkit-mask: url(assets/img/bowl.svg) center / contain no-repeat; mask: url(assets/img/bowl.svg) center / contain no-repeat; }
 @media (max-width: 781px) { .mdt-hero-bowl { max-width: 220px; } }
+/* The small bowl above "Visit us". */
+.mdt-visit-bowl { width: 96px; aspect-ratio: 1; background: var(--wp--preset--color--primary); -webkit-mask: url(assets/img/bowl.svg) center / contain no-repeat; mask: url(assets/img/bowl.svg) center / contain no-repeat; }
 
 /* ---- Recommended dishes from MenuDash: a grid of round photos with number and name ---- */
 .mdt-picks-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--wp--preset--spacing--40); max-width: var(--wp--style--global--wide-size); margin: var(--wp--preset--spacing--40) auto 0; }
@@ -281,6 +285,11 @@ h1, h2 { overflow-wrap: break-word; text-wrap: balance; }
 @media (max-width: 600px) { .mdt-pick { width: calc(50% - var(--wp--preset--spacing--40)); } }
 .mdt-pick .mdt-zh { font-size: .9375rem; }
 
+/* MenuDash's Recommended dishes block (MenuDash 2.3) in the theme's colours and fonts. */
+.menudash-picks.menudash-picks { margin-top: var(--wp--preset--spacing--40); }
+.menudash-picks .mdash-pick-name { font-weight: 700; }
+.menudash-picks .mdash-pick-photo.is-none { background: var(--wp--preset--color--white); }
+
 /* ---- Gift card teaser (only while MenuDash takes orders) ---- */
 .mdt-gc-home { padding: var(--wp--preset--spacing--60) clamp(16px, 4vw, 40px); }
 .mdt-gc-card { max-width: 280px; }
@@ -289,3 +298,6 @@ h1, h2 { overflow-wrap: break-word; text-wrap: balance; }
 .mdt-delivery { display: flex; flex-direction: column; gap: var(--wp--style--block-gap, 1.25rem); }
 .mdt-delivery > * { margin-block: 0; }
 
+/* The editor's note where a part needs MenuDash Restaurant (guests never see it). */
+.mdt-addon-note { margin: .5rem 0; padding: .7rem .9rem; border: 1.5px dashed currentColor; border-radius: 8px; font-size: .875rem; line-height: 1.4; opacity: .85; }
+.mdt-addon-note span { display: block; font-size: .75rem; opacity: .75; margin-top: .25rem; }

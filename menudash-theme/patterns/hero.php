@@ -12,8 +12,12 @@
 <div class="wp-block-columns alignwide are-vertically-aligned-center">
 <!-- wp:column {"verticalAlignment":"center","width":"55%"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:55%">
+<?php if ( mdt_has_restaurant() ) : // The badge and the address line need MenuDash Restaurant. ?>
 <!-- wp:menudash/open /-->
 <!-- wp:menudash/contact {"parts":["address"],"oneLine":true,"textColor":"primary","style":{"typography":{"fontSize":"0.8125rem","fontWeight":"700","textTransform":"uppercase","letterSpacing":"0.18em"}},"className":"mdt-place"} /-->
+<?php else : ?>
+<!-- wp:menudash-theme/addon {"part":"hero"} /-->
+<?php endif; ?>
 <!-- wp:heading {"level":1,"style":{"typography":{"lineHeight":"0.9"}}} -->
 <h1 class="wp-block-heading" style="line-height:0.9"><?php echo esc_html__( 'Home cooking, made fresh every day', 'menudash-theme' ); ?></h1>
 <!-- /wp:heading -->
@@ -26,9 +30,11 @@
 <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( mdt_menu_url() ); ?>"><?php echo esc_html__( 'Menu', 'menudash-theme' ); ?></a></div>
 <!-- /wp:button -->
 <?php
+if ( mdt_has_restaurant() ) :
 /* translators: %s: the restaurant's phone number */
 echo mdt_bound_button( 'reserve', trim( str_replace( '· %s', '', __( 'Reserve · %s', 'menudash-theme' ) ) ), true, __( 'Reserve · %s', 'menudash-theme' ) );
 echo mdt_bound_button( 'order', __( 'Order online', 'menudash-theme' ), true );
+endif;
 ?>
 </div>
 <!-- /wp:buttons -->

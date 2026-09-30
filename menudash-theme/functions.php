@@ -25,7 +25,7 @@ add_action(
 		// MenuDash's boxes (menu, specials, gift cards) in the theme's colours, unless the
 		// owner chose colours under MenuDash → Design; then those win.
 		if ( ! function_exists( 'mdash_colors_custom' ) || ! mdash_colors_custom() ) {
-			wp_add_inline_style( 'menudash-theme', 'body .menudash{--mdash-accent:var(--wp--preset--color--primary);--mdash-bg:var(--wp--preset--color--cream);--mdash-ink:var(--wp--preset--color--ink);--mdash-muted:var(--wp--preset--color--muted);--mdash-on-accent:var(--wp--preset--color--white)}' );
+			wp_add_inline_style( 'menudash-theme', 'body .menudash,body .menudash-picks{--mdash-accent:var(--wp--preset--color--primary);--mdash-bg:var(--wp--preset--color--cream);--mdash-ink:var(--wp--preset--color--ink);--mdash-muted:var(--wp--preset--color--muted);--mdash-on-accent:var(--wp--preset--color--white)}' );
 		}
 	}
 );
@@ -36,6 +36,16 @@ add_action(
 		register_block_pattern_category( 'menudash-theme', array( 'label' => __( 'Restaurant (MenuDash)', 'menudash-theme' ) ) );
 	}
 );
+
+/**
+ * Whether the MenuDash Restaurant add-on is there (address, hours, "open now"). Without it
+ * the theme leaves out what only it can fill: the footer shows the basics, the welcome has
+ * no badge or reserve buttons, and the home page no "Visit us" section. Installing the
+ * add-on brings them in by itself (patterns are read on every page view).
+ */
+function mdt_has_restaurant() {
+	return function_exists( 'mdash_detail' );
+}
 
 /** A restaurant detail from MenuDash → Restaurant ("phone", "address", "city" …), or ''. */
 function mdt_d( $key ) {
@@ -101,6 +111,33 @@ function mdt_setup_home() {
 	}
 }
 add_action( 'after_switch_theme', 'mdt_setup_home' );
+
+/**
+ * On activation, a "Menu" page (German: "Speisekarte", slug menu) holding the menu, unless a
+ * page with [menudash] exists already, in any status, so switching back and forth never
+ * makes a second one. It gets the wide template by itself (see above). Needs MenuDash.
+ */
+function mdt_setup_menu() {
+	if ( ! shortcode_exists( 'menudash' ) ) {
+		return;
+	}
+	$pages = get_posts( array( 'post_type' => 'page', 'post_status' => array( 'publish', 'future', 'draft', 'pending', 'private' ), 'numberposts' => -1 ) );
+	foreach ( $pages as $page ) {
+		if ( has_shortcode( $page->post_content, 'menudash' ) ) {
+			return;
+		}
+	}
+	wp_insert_post(
+		array(
+			'post_type'    => 'page',
+			'post_status'  => 'publish',
+			'post_title'   => __( 'Menu', 'menudash-theme' ),
+			'post_name'    => get_page_by_path( 'menu' ) ? '' : 'menu',
+			'post_content' => "<!-- wp:shortcode -->\n[menudash]\n<!-- /wp:shortcode -->",
+		)
+	);
+}
+add_action( 'after_switch_theme', 'mdt_setup_menu' );
 
 /**
  * Shortcode blocks inside theme patterns (the header's holiday notice, the footer's hours)

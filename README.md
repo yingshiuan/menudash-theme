@@ -13,7 +13,7 @@ MenuDash holds everything the restaurant keeps up to date: the menu, today's spe
 | Section | Where its content comes from |
 |---|---|
 | Welcome: headline, "Open now · until 22:00", buttons *Menu · Reserve · Order online* | the text and buttons in the editor; the badge, and the reserve and order links, from MenuDash |
-| Our recommendations | the dishes marked **Recommended** in the menu, with their photos |
+| Our recommendations | MenuDash's *Recommended dishes* block: the dishes marked **Recommended** in the menu, or the ones chosen in its sidebar, optionally in groups (tabs), with their photos |
 | What guests say | a quote you type in the editor |
 | About us | your text, and the Instagram button from MenuDash |
 | Gift card | shows by itself while MenuDash takes gift card orders |
@@ -24,9 +24,9 @@ On phones a bar at the bottom offers **Call · Directions · Menu**. The menu pa
 
 ## Install
 
-1. Install and activate **MenuDash** 2.1 or later first (see its [releases](https://github.com/yingshiuan/menudash/releases)). The theme works with MenuDash alone. The sections with the restaurant's address, opening hours, "open now" badge, holiday notice and contact buttons need the **MenuDash Restaurant** add-on, the specials and lunch-menu sections **MenuDash Specials** (1.1 for the lunch menu), and the gift card page **MenuDash Gift Cards** (see [MenuDash → Add-ons](https://github.com/yingshiuan/menudash#add-ons)). Without an add-on its parts simply stay empty.
+1. Install and activate **MenuDash** 2.3 or later first (see its [releases](https://github.com/yingshiuan/menudash/releases); 2.1 works too, but then the recommendations can't be chosen or grouped). The theme works with MenuDash alone. The sections with the restaurant's address, opening hours, "open now" badge, holiday notice and contact buttons need the **MenuDash Restaurant** add-on, the specials and lunch-menu sections **MenuDash Specials** (1.1 for the lunch menu), and the gift card page **MenuDash Gift Cards** (see [MenuDash → Add-ons](https://github.com/yingshiuan/menudash#add-ons)). Without an add-on its parts simply stay empty.
 2. Download `menudash-theme.zip` from this repository's [releases](https://github.com/yingshiuan/menudash-theme/releases), then *Appearance → Themes → Add New Theme → Upload Theme*, and activate it.
-3. On activation the theme makes a **Home** page from its sections and sets it as the front page (a site with a front page already keeps it; the sections are then in the block inserter under *Restaurant (MenuDash)*).
+3. On activation the theme makes a **Home** page from its sections and sets it as the front page (a site with a front page already keeps it; the sections are then in the block inserter under *Restaurant (MenuDash)*), and a **Menu** page (*Speisekarte* on a German site) with the menu, unless a page with `[menudash]` exists already.
 4. Upload your menu, and with MenuDash Restaurant fill in **MenuDash → Restaurant** (address, phone, delivery …) and **MenuDash → Hours & holidays**.
 5. Add your logo under *Appearance → Editor* (the header shows the site title until then), and build the top menu under *Appearance → Editor → Navigation*.
 
@@ -54,7 +54,7 @@ dev/serve.sh 9403 de      # the same in German
 dev/build-zip.sh          # dist/menudash-theme.zip
 ```
 
-`serve.sh` downloads MenuDash into `dev/.cache` the first time (or uses `MENUDASH_DIR`). It needs Node.js; WordPress runs in [WordPress Playground](https://wordpress.org/playground/).
+`serve.sh` downloads MenuDash into `dev/.cache` the first time (or uses `MENUDASH_DIR`). It needs Node.js; WordPress runs in [WordPress Playground](https://wordpress.org/playground/). Wait until it prints "Ready!", then open the address. You're logged in automatically; otherwise log in at `/wp-admin/` with `admin` / `password`. Stop it with Ctrl+C. The site is fresh at every start: changes made in the dashboard are gone after a restart.
 
 The theme's MenuDash blocks are in `menudash-theme/inc/blocks.php` (`menudash-theme/delivery`, `map`, `social`, `picks`, `giftcard` …; `open`, `buttons`, `place`, `contact` and `directions` are only kept for pages saved with earlier versions). They read MenuDash with `mdash_detail()`, `mdash_hours()` and the menu data, and print nothing without MenuDash.
 

@@ -325,3 +325,42 @@ msgstr ""
 
 msgid "Two ways to your food: come by (address, phone, getting here, directions) or order online (ordering times with \"order now\"), with the map below. Everything comes from MenuDash → Restaurant; without an order link the delivery column goes."
 msgstr ""
+
+msgid "Needs MenuDash Restaurant"
+msgstr ""
+
+msgid "Here the address, getting here and opening hours appear once the MenuDash Restaurant add-on is installed."
+msgstr ""
+
+msgid "Here the \"open now\" badge, the address and the Reserve and Order online buttons appear once the MenuDash Restaurant add-on is installed."
+msgstr ""
+
+msgid "With the MenuDash Restaurant add-on this section fills itself: address, phone, getting here, directions, delivery and map, from MenuDash → Restaurant. Until then, write your address here."
+msgstr ""
+
+msgid "Only you see this note, in the editor."
+msgstr ""
+
+msgid "Here the \"Follow us on Instagram\" button appears once the MenuDash Restaurant add-on is installed and an Instagram link is entered under MenuDash → Restaurant."
+msgstr ""
+
+msgid "Street and number"
+msgstr ""
+
+msgid "Postcode and town"
+msgstr ""
+
+msgid "How to get here by tram, bus or car, and when you are open. Replace this text in the editor."
+msgstr ""
+
+msgid "Gift card teaser: shows here while the MenuDash Gift Cards add-on takes orders and a page has the gift card form."
+msgstr ""
+
+msgid "Delivery: shows here once an order link is entered under MenuDash → Restaurant (MenuDash Restaurant add-on)."
+msgstr ""
+
+msgid "Map: shows here once the address is entered under MenuDash → Restaurant (MenuDash Restaurant add-on)."
+msgstr ""
+
+msgid "Instagram / Facebook: show here once their links are entered under MenuDash → Restaurant (MenuDash Restaurant add-on)."
+msgstr ""
