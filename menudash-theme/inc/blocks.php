@@ -104,7 +104,9 @@ add_action(
 
 /** Block markup to HTML, with the shortcodes in it (the open badge, the hours) run. */
 function mdt_render( $markup ) {
-	return do_shortcode( do_blocks( $markup ) );
+	// Blocks only: the markup built here holds no shortcodes, and a second shortcode pass
+	// would run text from the Restaurant tab ("Tel. [gallery]") as one.
+	return do_blocks( $markup );
 }
 
 /** "de" on a German site, otherwise "en": the language for MenuDash's own texts. */
@@ -164,7 +166,7 @@ function mdt_bound_button( $key, $text, $outline = false, $label = '' ) {
  * Guests see nothing. With the add-on it disappears, and the part itself shows instead.
  */
 function mdt_block_addon( $a ) {
-	if ( mdt_has_restaurant() || ! ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+	if ( mdt_has_restaurant() || ! ( defined( 'REST_REQUEST' ) && REST_REQUEST && current_user_can( 'edit_posts' ) ) ) {
 		return '';
 	}
 	$texts = array(
@@ -229,7 +231,7 @@ add_filter(
 
 /** In the editor only: what an empty block would show, and what it waits for. */
 function mdt_empty_note( $name ) {
-	if ( ! ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+	if ( ! ( defined( 'REST_REQUEST' ) && REST_REQUEST && current_user_can( 'edit_posts' ) ) ) {
 		return '';
 	}
 	$texts = array(
@@ -259,7 +261,7 @@ function mdt_menu_url() {
 		return home_url( '/menu/' );
 	}
 	// With Polylang: the menu page in the language of the page being shown.
-	$id = function_exists( 'pll_get_post' ) && pll_get_post( $pages[0] ) ? pll_get_post( $pages[0] ) : $pages[0];
+	$id = function_exists( 'pll_get_post' ) && pll_get_post( $pages[0] ) && 'publish' === get_post_status( pll_get_post( $pages[0] ) ) ? pll_get_post( $pages[0] ) : $pages[0];
 	return get_permalink( $id );
 }
 
@@ -301,7 +303,7 @@ function mdt_block_contact( $atts ) {
 		$html .= '<p class="has-large-font-size">' . implode( '<br>', array_filter( array( $street, $town ) ) ) . '</p>';
 	}
 	/* translators: %s: the restaurant's phone number, as a link */
-	$contact = array_filter( array( '' !== $tel ? sprintf( __( 'Reservations by phone: %s', 'menudash-theme' ), $tel ) : '', '' !== $mail ? sprintf( /* translators: %s: e-mail link */ __( 'E-mail: %s', 'menudash-theme' ), $mail ) : '' ) );
+	$contact = array_filter( array( '' !== $tel ? sprintf( esc_html__( 'Reservations by phone: %s', 'menudash-theme' ), $tel ) : '', '' !== $mail ? sprintf( /* translators: %s: e-mail link */ esc_html__( 'E-mail: %s', 'menudash-theme' ), $mail ) : '' ) );
 	if ( $contact ) {
 		$html .= '<p>' . implode( '<br>', $contact ) . '</p>';
 	}
@@ -324,12 +326,12 @@ function mdt_block_social( $atts ) {
 		$handle = ltrim( basename( untrailingslashit( mdt_d( 'instagram' ) ) ), '@' );
 		/* translators: %s: the Instagram account name */
 		$label = sprintf( __( 'Follow us on Instagram @%s', 'menudash-theme' ), $handle );
-		return mdt_render( '<!-- wp:social-links {"iconColor":"white","iconColorValue":"#FFFFFF","iconBackgroundColor":"primary","showLabels":true,"className":"mdt-follow","style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} --><ul class="wp-block-social-links has-visible-labels has-icon-color has-icon-background-color mdt-follow" style="margin-top:var(--wp--preset--spacing--40)"><!-- wp:social-link {"url":"' . esc_url( mdash_social_url( 'instagram', mdt_d( 'instagram' ) ) ) . '","service":"instagram","label":"' . esc_attr( $label ) . '"} /--></ul><!-- /wp:social-links -->' );
+		return mdt_render( '<!-- wp:social-links {"iconColor":"white","iconColorValue":"#FFFFFF","iconBackgroundColor":"primary","showLabels":true,"className":"mdt-follow","style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} --><ul class="wp-block-social-links has-visible-labels has-icon-color has-icon-background-color mdt-follow" style="margin-top:var(--wp--preset--spacing--40)"><!-- wp:social-link ' . serialize_block_attributes( array( 'url' => esc_url_raw( mdash_social_url( 'instagram', mdt_d( 'instagram' ) ) ), 'service' => 'instagram', 'label' => wp_strip_all_tags( $label ) ) ) . ' /--></ul><!-- /wp:social-links -->' );
 	}
 	$links = '';
 	foreach ( array( 'facebook' => 'Facebook', 'instagram' => 'Instagram' ) as $service => $label ) {
 		if ( '' !== mdt_d( $service ) ) {
-			$links .= '<!-- wp:social-link {"url":"' . esc_url( mdash_social_url( $service, mdt_d( $service ) ) ) . '","service":"' . $service . '","label":"' . $label . '"} /-->';
+			$links .= '<!-- wp:social-link ' . serialize_block_attributes( array( 'url' => esc_url_raw( mdash_social_url( $service, mdt_d( $service ) ) ), 'service' => $service, 'label' => $label ) ) . ' /-->';
 		}
 	}
 	return '' === $links ? '' : mdt_render( '<!-- wp:social-links {"iconColor":"cream","className":"is-style-logos-only"} --><ul class="wp-block-social-links has-icon-color is-style-logos-only">' . $links . '</ul><!-- /wp:social-links -->' );
@@ -360,7 +362,7 @@ function mdt_block_map() {
 	// The iframe becomes the "Show map" placeholder in the render_block filter (functions.php).
 	/* translators: %s: the restaurant's name and address */
 	$title = sprintf( __( 'Map: %s', 'menudash-theme' ), trim( mdt_d( 'name' ) . ', ' . mdt_d( 'address' ), ', ' ) );
-	return '<div class="mdt-map alignwide mdt-map-wide"><iframe src="' . esc_url( $src ) . '" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="' . esc_attr( $title ) . '" allowfullscreen></iframe></div>';
+	return '<div class="mdt-map alignwide mdt-map-wide"><iframe src="' . esc_url( $src ) . '" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title="' . esc_attr( $title ) . '" allowfullscreen></iframe></div>';
 }
 
 function mdt_block_legal() {
@@ -432,7 +434,14 @@ function mdt_block_giftcard() {
 	if ( ! function_exists( 'mdash_gc_open' ) || ! mdash_gc_open() ) {
 		return '';
 	}
-	$page = get_posts( array( 'post_type' => 'page', 'post_status' => 'publish', 'numberposts' => 1, 's' => 'menudash_giftcard', 'fields' => 'ids' ) );
+	// The page that really has the form (a page that only mentions the word doesn't count).
+	$page = array();
+	foreach ( get_posts( array( 'post_type' => 'page', 'post_status' => 'publish', 'numberposts' => 20, 's' => 'menudash_giftcard' ) ) as $p ) {
+		if ( has_shortcode( $p->post_content, 'menudash_giftcard' ) ) {
+			$page = array( $p->ID );
+			break;
+		}
+	}
 	if ( ! $page ) {
 		return '';
 	}

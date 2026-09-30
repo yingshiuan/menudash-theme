@@ -309,10 +309,10 @@ msgid "The dishes marked \"Recommended\" in the MenuDash menu, with their photos
 msgstr "MenuDash 菜單中標為「推薦」的菜式及其照片，會隨菜單自動更新。"
 
 msgid "Today's specials"
-msgstr "今日推介"
+msgstr "今日推薦"
 
 msgid "Today's specials from MenuDash (the second, short CSV), e.g. at the top of the home page."
-msgstr "MenuDash 的今日推介（第二份簡短 CSV），例如放在首頁頂部。"
+msgstr "MenuDash 的今日推薦（第二份簡短 CSV），例如放在首頁頂部。"
 
 msgid "Home: what guests say"
 msgstr "首頁：客人怎麼說"

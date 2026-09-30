@@ -21,6 +21,10 @@ add_action(
 	'wp_enqueue_scripts',
 	function () {
 		wp_enqueue_style( 'menudash-theme', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
+		// MenuDash before 2.4 has no font setting: give its boxes the theme's two fonts.
+		if ( ! function_exists( 'mdash_fonts_css' ) ) {
+			wp_add_inline_style( 'menudash-theme', '.menudash{--mdash-display:var(--wp--preset--font-family--display);--mdash-sans:var(--wp--preset--font-family--sans)}.menudash.menudash .mdash-h,.menudash.menudash .mdash-sp-title{font-weight:800}.menudash.menudash .mdash-h{font-size:30px}' );
+		}
 		wp_enqueue_script( 'menudash-theme', get_theme_file_uri( 'assets/js/theme.js' ), array(), wp_get_theme()->get( 'Version' ), array( 'strategy' => 'defer', 'in_footer' => true ) );
 		// MenuDash's boxes (menu, specials, gift cards) in the theme's colours, unless the
 		// owner chose colours under MenuDash → Design; then those win.
@@ -243,7 +247,7 @@ add_filter(
 		return preg_replace_callback(
 			// "\s" before src, so an iframe already turned into data-src (render_block runs again
 			// for every block around it) is left alone.
-			'#<iframe\b([^>]*?\s)src="(https://(?:www\.|maps\.)?google\.[a-z.]+/maps[^"]*)"([^>]*)></iframe>#i',
+			'#<iframe\b([^>]*?\s)src="(https://(?:www\.|maps\.)?google\.(?:com|[a-z]{2,3}(?:\.[a-z]{2})?)/maps[^"]*)"([^>]*)></iframe>#i',
 			function ( $m ) {
 				$open = 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode( trim( mdt_d( 'name' ) . ', ' . mdt_d( 'address' ), ', ' ) );
 				return '<div class="mdt-map-slot"><iframe' . $m[1] . 'data-src="' . $m[2] . '"' . $m[3] . '></iframe>'
@@ -284,7 +288,8 @@ add_filter(
 		if ( ! $id ) {
 			return $content;
 		}
-		$to    = pll_get_post( $id ) ? (int) pll_get_post( $id ) : $id;
+		// A translation that isn't published yet is not linked: the page in its own language stays.
+		$to    = pll_get_post( $id ) && 'publish' === get_post_status( pll_get_post( $id ) ) ? (int) pll_get_post( $id ) : $id;
 		$front = 'page' === get_option( 'show_on_front' ) && ( (int) get_option( 'page_on_front' ) === $to || (int) get_option( 'page_on_front' ) === $id );
 		$new   = $front && function_exists( 'pll_home_url' ) ? pll_home_url() : get_permalink( $to );
 		$html  = $content;
@@ -336,4 +341,19 @@ add_filter(
 		$pos = strrpos( $content, '</ul>' );
 		return false === $pos ? $content : substr_replace( $content, $items . '</ul>', $pos, 5 );
 	}
+);
+
+/*
+ * Security: the theme's own blocks show text from MenuDash (dish names, Restaurant details).
+ * On the home page they are drawn before the_content runs shortcodes, so their brackets are
+ * encoded: that text can never run as a shortcode. Browsers show [ ] unchanged.
+ */
+add_filter(
+	'render_block',
+	function ( $content, $block ) {
+		$name = isset( $block['blockName'] ) ? (string) $block['blockName'] : '';
+		return 0 === strpos( $name, 'menudash-theme/' ) ? str_replace( array( '[', ']' ), array( '&#91;', '&#93;' ), $content ) : $content;
+	},
+	10,
+	2
 );

@@ -74,15 +74,10 @@ body { -webkit-font-smoothing: antialiased; }
 .mdt-zh { word-break: keep-all; color: var(--wp--preset--color--primary); font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif; font-weight: 500; }
 
 /* ---- MenuDash (menu, specials, holiday notice) in the site's fonts -------- */
-/* MenuDash's own headings use the site's heading font (bundled in assets/fonts, nothing
-   loaded from Google). */
-.menudash {
-	--mdash-display: var(--wp--preset--font-family--display);
-	--mdash-sans: var(--wp--preset--font-family--sans);
-}
+/* MenuDash 2.4 takes the theme's fonts itself (MenuDash → Colours, fonts & icons → Fonts), also
+   after they are changed in Styles; functions.php gives older MenuDash the theme's two fonts. */
 .menudash.menudash .mdash-h,
-.menudash.menudash .mdash-sp-title { font-weight: 800; letter-spacing: 0; }
-.menudash.menudash .mdash-h { font-size: 30px; }
+.menudash.menudash .mdash-sp-title { letter-spacing: 0; }
 
 /* ---- Today's specials (MenuDash [menudash_specials]) --------------------- */
 /* The same look as the menu page. With no specials uploaded the shortcode prints nothing,
