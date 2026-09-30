@@ -18,7 +18,7 @@ MenuDash holds everything the restaurant keeps up to date: the menu, today's spe
 | About us | your text, and the Instagram button from MenuDash |
 | Gift card | shows by itself while MenuDash takes gift card orders |
 | Visit us / Delivery, with a map | address, phone, getting here, delivery link and ordering times from MenuDash; the map loads only after a click |
-| Footer | address, social icons, getting here, opening hours, "© Company · Privacy" |
+| Footer | address, social icons (each link entered under MenuDash → Restaurant: Instagram, Facebook, Google, Tripadvisor, TikTok, YouTube, WhatsApp), getting here, opening hours, "© Company · Privacy" |
 
 On phones a bar at the bottom offers **Call · Directions · Menu**. The menu page (any page with `[menudash]`) gets a wide layout by itself: the lunch menu (today, with the whole week one tap away) and today's specials above the menu, jump buttons with one language switch at the top, and a back-to-top button while reading the menu.
 
