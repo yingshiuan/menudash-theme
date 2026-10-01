@@ -296,7 +296,7 @@ msgstr ""
 msgid "Home: welcome"
 msgstr ""
 
-msgid "The restaurant's name line, a big headline, the \"open now\" badge and the buttons (menu, reserve, order online), with a bowl drawing beside it."
+msgid "The restaurant's name line, a big headline, the \"open now\" badge and the buttons (menu, reserve, order online; each can be deleted or changed, reserve and order take their links from MenuDash → Restaurant), with a smiling drawing beside it."
 msgstr ""
 
 msgid "The opening hours from MenuDash → Hours & holidays."

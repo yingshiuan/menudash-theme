@@ -3,7 +3,7 @@
  * Title: Home: welcome
  * Slug: menudash-theme/hero
  * Categories: menudash-theme
- * Description: The restaurant's name line, a big headline, the "open now" badge and the buttons (menu, reserve, order online; each can be deleted or changed, reserve and order take their links from MenuDash → Restaurant), with a bowl drawing beside it.
+ * Description: The restaurant's name line, a big headline, the "open now" badge and the buttons (menu, reserve, order online; each can be deleted or changed, reserve and order take their links from MenuDash → Restaurant), with a smiling drawing beside it.
  */
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->

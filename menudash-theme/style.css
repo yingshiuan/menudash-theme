@@ -2,7 +2,7 @@
 Theme Name: MenuDash Theme
 Theme URI: https://github.com/yingshiuan/menudash-theme
 Description: A restaurant website theme made for the MenuDash plugin: the menu, today's specials, opening hours, holidays, gift cards and your restaurant's details come from MenuDash, and the theme shows them in a warm, simple design. Home page sections, header and footer are edited in Appearance → Editor; colours and fonts under Styles. English and German included.
-Version: 1.5.0
+Version: 1.6.0
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
@@ -263,11 +263,12 @@ h1, h2 { overflow-wrap: break-word; text-wrap: balance; }
 
 .mdt-delivery .mdt-table td:first-child { font-weight: 400; }
 
-/* ---- The bowl drawing beside the welcome, in the site's primary colour ---- */
-.mdt-hero-bowl { aspect-ratio: 1; width: 100%; max-width: 380px; margin: 0 auto; background: var(--wp--preset--color--primary); -webkit-mask: url(assets/img/bowl.svg) center / contain no-repeat; mask: url(assets/img/bowl.svg) center / contain no-repeat; }
+/* ---- The smile drawing (MenuDash's mark) beside the welcome, in the site's primary colour.
+   The classes keep their old "bowl" names, which pages made with earlier versions use. ---- */
+.mdt-hero-bowl { aspect-ratio: 1; width: 100%; max-width: 380px; margin: 0 auto; background: var(--wp--preset--color--primary); -webkit-mask: url(assets/img/smile.svg) center / contain no-repeat; mask: url(assets/img/smile.svg) center / contain no-repeat; }
 @media (max-width: 781px) { .mdt-hero-bowl { max-width: 220px; } }
-/* The small bowl above "Visit us". */
-.mdt-visit-bowl { width: 96px; aspect-ratio: 1; background: var(--wp--preset--color--primary); -webkit-mask: url(assets/img/bowl.svg) center / contain no-repeat; mask: url(assets/img/bowl.svg) center / contain no-repeat; }
+/* The small smile above "Visit us". */
+.mdt-visit-bowl { width: 96px; aspect-ratio: 1; background: var(--wp--preset--color--primary); -webkit-mask: url(assets/img/smile.svg) center / contain no-repeat; mask: url(assets/img/smile.svg) center / contain no-repeat; }
 
 /* ---- Recommended dishes from MenuDash: a grid of round photos with number and name ---- */
 .mdt-picks-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--wp--preset--spacing--40); max-width: var(--wp--style--global--wide-size); margin: var(--wp--preset--spacing--40) auto 0; }
@@ -276,7 +277,7 @@ h1, h2 { overflow-wrap: break-word; text-wrap: balance; }
 .mdt-pick figure { width: 100%; max-width: 170px; margin: 0 0 .6rem; }
 .mdt-pick img { display: block; width: 100%; height: auto; }
 .mdt-dish-none { aspect-ratio: 1; border-radius: 50%; background: var(--wp--preset--color--white); box-shadow: inset 0 0 0 2px rgba(43, 29, 26, .08); display: grid; place-items: center; }
-.mdt-dish-none span { width: 55%; aspect-ratio: 1; background: var(--wp--preset--color--primary); opacity: .35; -webkit-mask: url(assets/img/bowl.svg) center / contain no-repeat; mask: url(assets/img/bowl.svg) center / contain no-repeat; }
+.mdt-dish-none span { width: 55%; aspect-ratio: 1; background: var(--wp--preset--color--primary); opacity: .35; -webkit-mask: url(assets/img/smile.svg) center / contain no-repeat; mask: url(assets/img/smile.svg) center / contain no-repeat; }
 @media (max-width: 600px) { .mdt-pick { width: calc(50% - var(--wp--preset--spacing--40)); } }
 .mdt-pick .mdt-zh { font-size: .9375rem; }
 

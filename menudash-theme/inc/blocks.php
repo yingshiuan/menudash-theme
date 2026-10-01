@@ -445,7 +445,7 @@ function mdt_block_picks() {
 		list( $d, $photo, $name ) = $it;
 		$second = ! empty( $d['name']['zh'] ) ? $d['name']['zh'] : '';
 		$html  .= '<a class="mdt-pick" href="' . esc_url( $url ) . '">';
-		if ( ! $photo ) { // No photo yet: a plate with the bowl drawing, so the row stays even.
+		if ( ! $photo ) { // No photo yet: a plate with the smile drawing, so the row stays even.
 			$html .= '<figure class="mdt-dish mdt-dish-none" aria-hidden="true"><span></span></figure>';
 		} else {
 			$html .= '<figure class="mdt-dish' . ( $photo['alpha'] ? '' : ' mdt-dish-round' ) . '"><img src="' . esc_url( mdash_photo_url( $photo, 400 ) ) . '" alt="' . esc_attr( $name ) . '" width="400" height="400" loading="lazy"></figure>';

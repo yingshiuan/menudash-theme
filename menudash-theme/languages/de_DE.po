@@ -296,8 +296,8 @@ msgstr "Kopfzeile (farbiges Band)"
 msgid "Home: welcome"
 msgstr "Startseite: Begrüßung"
 
-msgid "The restaurant's name line, a big headline, the \"open now\" badge and the buttons (menu, reserve, order online), with a bowl drawing beside it."
-msgstr "Ort, große Überschrift, der Hinweis „Jetzt geöffnet“ und die Knöpfe (Speisekarte, Reservieren, Online bestellen), daneben eine Schüssel-Zeichnung."
+msgid "The restaurant's name line, a big headline, the \"open now\" badge and the buttons (menu, reserve, order online; each can be deleted or changed, reserve and order take their links from MenuDash → Restaurant), with a smiling drawing beside it."
+msgstr "Name des Restaurants, große Überschrift, der Hinweis „Jetzt geöffnet“ und die Knöpfe (Speisekarte, Reservieren, Online bestellen; jeder lässt sich löschen oder ändern, Reservieren und Online bestellen nehmen ihre Links aus MenuDash → Restaurant), daneben eine lächelnde Zeichnung."
 
 msgid "The opening hours from MenuDash → Hours & holidays."
 msgstr "Die Öffnungszeiten aus MenuDash → Hours & holidays."

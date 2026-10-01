@@ -296,8 +296,8 @@ msgstr "頁首（彩色橫條）"
 msgid "Home: welcome"
 msgstr "首頁：歡迎"
 
-msgid "The restaurant's name line, a big headline, the \"open now\" badge and the buttons (menu, reserve, order online), with a bowl drawing beside it."
-msgstr "餐廳名稱、大標題、「營業中」標示及按鈕（菜單、訂位、線上訂餐），旁邊配上碗的圖案。"
+msgid "The restaurant's name line, a big headline, the \"open now\" badge and the buttons (menu, reserve, order online; each can be deleted or changed, reserve and order take their links from MenuDash → Restaurant), with a smiling drawing beside it."
+msgstr "餐廳名稱、大標題、「營業中」標示及按鈕（菜單、訂位、線上訂餐；每個都可以刪除或修改，訂位和線上訂餐的連結來自 MenuDash → 餐廳資料），旁邊配上笑臉圖案。"
 
 msgid "The opening hours from MenuDash → Hours & holidays."
 msgstr "MenuDash → Hours & holidays 中的營業時間。"

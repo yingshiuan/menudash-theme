@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <title>Smile</title>
+  <!-- MenuDash's mark as a line drawing: two menu lines (dish, price) over a smile with a
+       licking tongue. Drawn for MenuDash Theme (GPL-2.0-or-later); shown in one colour. -->
+  <defs>
+    <!-- Below the smile's centre line, so the tongue hangs from it. -->
+    <clipPath id="below"><path d="M100 236 C125 292 275 292 300 236 L340 236 L340 380 L60 380 L60 236 Z"/></clipPath>
+  </defs>
+  <g fill="none" stroke="#000" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="200" cy="200" r="186" stroke-width="8" opacity=".35"/>
+    <path d="M112 132h132M112 182h132"/>
+    <path d="M276 132h22M276 182h22" opacity=".6"/>
+    <g clip-path="url(#below)">
+      <path d="M220 220 V296 c0 16 10 25 22 25 s22-9 22-25 V220"/>
+      <path d="M242 278 v20" stroke-width="8" opacity=".5"/>
+    </g>
+    <path d="M100 236 C125 292 275 292 300 236"/>
+    <path d="M84 226 q16 -10 32 0 M284 226 q16 -10 32 0" stroke-width="10"/>
+  </g>
+</svg>
