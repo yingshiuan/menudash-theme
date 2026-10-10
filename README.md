@@ -44,6 +44,8 @@ Leave the order link empty, or delete the delivery block, and the visit column t
 
 **Legal notice** (*Impressum*; in Switzerland and Germany a website that sells something must say who runs it): make a page *Legal notice* with the address `legal-notice` (`impressum` on a German site) and insert the pattern *Legal notice*. It shows your company, address, phone and e-mail from MenuDash → Restaurant; fill in your commercial register and company number. The footer links to the page once it is published.
 
+<img src="docs/screenshot-legal-notice.png" alt="The legal notice page: provider details from MenuDash → Restaurant, lines for the commercial register and company number, the website credit, and the Legal notice link in the footer" width="720">
+
 ## Languages
 
 The theme is written in English and includes German (`de_DE`, and `de_CH` with "ss") and Traditional Chinese (`zh_TW`, `zh_HK`), the same three languages as MenuDash. WordPress picks the language from *Settings → General → Site Language*. To add another, translate `menudash-theme/languages/menudash-theme.pot` (e.g. with Poedit) and save the files as `languages/<locale>.po` and `.mo`.
