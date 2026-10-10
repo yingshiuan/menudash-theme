@@ -15,7 +15,8 @@
  *   menudash-theme/social       variant="icons": icons for the social links from MenuDash → Restaurant; variant="follow": the Instagram button
  *   menudash-theme/delivery     the whole delivery column; nothing without an order link
  *   menudash-theme/map          the Google Maps map, loaded on request
- *   menudash-theme/legal        "© Company · Privacy"
+ *   menudash-theme/legal        "© Company · Legal notice · Privacy" (each link when its page exists)
+ *   menudash-theme/provider     who runs the website: company, address, phone, e-mail (legal notice)
  *   menudash-theme/picks        the dishes marked Recommended in the menu, with photos; with
  *                               MenuDash 2.3 its block menudash/picks, which the pattern now uses
  *   menudash-theme/giftcard     the gift card teaser; only while gift cards can be ordered
@@ -35,6 +36,7 @@ function mdt_blocks() {
 		'delivery'   => __( 'Delivery', 'menudash-theme' ),
 		'map'        => __( 'Map', 'menudash-theme' ),
 		'legal'      => __( '© and privacy', 'menudash-theme' ),
+		'provider'   => __( 'Provider (legal notice)', 'menudash-theme' ),
 		'picks'      => __( 'Recommended dishes', 'menudash-theme' ),
 		'giftcard'   => __( 'Gift card teaser', 'menudash-theme' ),
 		'addon'      => __( 'Needs MenuDash Restaurant', 'menudash-theme' ),
@@ -239,6 +241,7 @@ function mdt_empty_note( $name ) {
 		'delivery' => __( 'Delivery: shows here once an order link is entered under MenuDash → Restaurant (MenuDash Restaurant add-on).', 'menudash-theme' ),
 		'map'      => __( 'Map: shows here once the address is entered under MenuDash → Restaurant (MenuDash Restaurant add-on).', 'menudash-theme' ),
 		'social'   => __( 'Instagram / Facebook: show here once their links are entered under MenuDash → Restaurant (MenuDash Restaurant add-on).', 'menudash-theme' ),
+		'provider' => __( 'Provider: the company name, address, phone and e-mail show here once they are entered under MenuDash → Restaurant (MenuDash Restaurant add-on).', 'menudash-theme' ),
 	);
 	if ( ! isset( $texts[ $name ] ) ) {
 		return '';
@@ -392,13 +395,46 @@ function mdt_block_map() {
 	return '<div class="mdt-map alignwide mdt-map-wide"><iframe src="' . esc_url( $src ) . '" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title="' . esc_attr( $title ) . '" allowfullscreen></iframe></div>';
 }
 
+/** The published legal notice page, found by its address (German: impressum), or null. */
+function mdt_legal_page() {
+	/* translators: the legal notice page's web address, lower case without spaces (German: impressum) */
+	foreach ( array_unique( array( sanitize_title( _x( 'legal-notice', 'page address', 'menudash-theme' ) ), 'legal-notice', 'impressum' ) ) as $slug ) {
+		$page = get_page_by_path( $slug );
+		if ( $page && 'publish' === $page->post_status ) {
+			return $page;
+		}
+	}
+	return null;
+}
+
 function mdt_block_legal() {
 	$id    = (int) get_option( 'wp_page_for_privacy_policy' );
 	$page  = $id ? get_post( $id ) : null; // get_post( 0 ) would be the current page.
 	$link  = $page && 'publish' === $page->post_status ? '<a href="' . esc_url( get_permalink( $page ) ) . '">' . esc_html__( 'Privacy', 'menudash-theme' ) . '</a>' : '';
+	$legal = mdt_legal_page();
+	$legal = $legal ? '<a href="' . esc_url( get_permalink( $legal ) ) . '">' . esc_html__( 'Legal notice', 'menudash-theme' ) . '</a>' : '';
 	$owner = '' !== mdt_d( 'company' ) ? mdt_d( 'company' ) : ( '' !== mdt_d( 'name' ) ? mdt_d( 'name' ) : get_bloginfo( 'name' ) );
-	$parts = array_filter( array( '' !== $owner ? '© ' . esc_html( $owner ) : '', $link ) );
+	$parts = array_filter( array( '' !== $owner ? '© ' . esc_html( $owner ) : '', $legal, $link ) );
 	return $parts ? '<p class="alignwide" style="font-size:0.8125rem">' . implode( ' · ', $parts ) . '</p>' : '';
+}
+
+/** Who runs the website, for the legal notice: company and restaurant, address, phone, e-mail. */
+function mdt_block_provider() {
+	$who   = implode( ', ', array_unique( array_filter( array( mdt_d( 'company' ), mdt_d( 'name' ) ) ) ) );
+	$addr  = implode( ', ', array_filter( array( mdt_d( 'street' ), trim( mdt_d( 'postcode' ) . ' ' . mdt_d( 'city' ) ), mdt_country() ) ) );
+	$phone = mdt_d( 'phone' );
+	$mail  = mdt_d( 'email' );
+	$lines = array_filter(
+		array(
+			esc_html( $who ),
+			esc_html( $addr ),
+			/* translators: %s: phone number, as a link */
+			'' !== $phone ? sprintf( esc_html__( 'Phone: %s', 'menudash-theme' ), '<a href="' . esc_url( 'tel:' . mdash_tel( $phone ) ) . '">' . esc_html( $phone ) . '</a>' ) : '',
+			/* translators: %s: e-mail link */
+			'' !== $mail ? sprintf( esc_html__( 'E-mail: %s', 'menudash-theme' ), '<a href="' . esc_url( 'mailto:' . $mail ) . '">' . esc_html( $mail ) . '</a>' ) : '',
+		)
+	);
+	return $lines ? '<p>' . implode( '<br>', $lines ) . '</p>' : '';
 }
 
 /**

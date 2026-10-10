@@ -369,3 +369,43 @@ msgstr "Instagram / Facebook：在 MenuDash → Restaurant 填入連結後會顯
 msgctxt "page address"
 msgid "menu"
 msgstr "menu"
+
+msgid "Provider (legal notice)"
+msgstr "網站提供者（法律聲明）"
+
+msgid "Provider: the company name, address, phone and e-mail show here once they are entered under MenuDash → Restaurant (MenuDash Restaurant add-on)."
+msgstr "網站提供者：在 MenuDash → Restaurant 填入公司名稱、地址、電話和電子郵件後會顯示在這裡（MenuDash Restaurant 附加元件）。"
+
+msgid "Legal notice"
+msgstr "法律聲明"
+
+#. translators: the legal notice page's web address, lower case without spaces (German: impressum)
+msgctxt "page address"
+msgid "legal-notice"
+msgstr "legal-notice"
+
+#. translators: %s: phone number, as a link
+msgid "Phone: %s"
+msgstr "電話：%s"
+
+msgid "Provider"
+msgstr "網站提供者"
+
+msgid "Company name, street and number, postcode and town, phone and e-mail."
+msgstr "公司名稱、街道及門牌號碼、郵遞區號及城市、電話和電子郵件。"
+
+msgid "Commercial register: canton or court"
+msgstr "商業登記：登記機關"
+
+msgid "Company number: replace with yours (in Switzerland the UID, CHE-…)"
+msgstr "公司編號：請換成您的編號（瑞士為 UID，CHE-…）"
+
+msgid "Website"
+msgstr "網站"
+
+#. translators: %s: link to insdash.ch
+msgid "Design & development: %s"
+msgstr "設計與製作：%s"
+
+msgid "Who runs the website (from MenuDash → Restaurant), your company number and who made the website. For a page \"Legal notice\"."
+msgstr "網站由誰經營（來自 MenuDash → Restaurant）、您的公司編號，以及網站由誰製作。用於「法律聲明」頁面。"

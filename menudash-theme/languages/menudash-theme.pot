@@ -369,3 +369,43 @@ msgstr ""
 msgctxt "page address"
 msgid "menu"
 msgstr ""
+
+msgid "Provider (legal notice)"
+msgstr ""
+
+msgid "Provider: the company name, address, phone and e-mail show here once they are entered under MenuDash → Restaurant (MenuDash Restaurant add-on)."
+msgstr ""
+
+msgid "Legal notice"
+msgstr ""
+
+#. translators: the legal notice page's web address, lower case without spaces (German: impressum)
+msgctxt "page address"
+msgid "legal-notice"
+msgstr ""
+
+#. translators: %s: phone number, as a link
+msgid "Phone: %s"
+msgstr ""
+
+msgid "Provider"
+msgstr ""
+
+msgid "Company name, street and number, postcode and town, phone and e-mail."
+msgstr ""
+
+msgid "Commercial register: canton or court"
+msgstr ""
+
+msgid "Company number: replace with yours (in Switzerland the UID, CHE-…)"
+msgstr ""
+
+msgid "Website"
+msgstr ""
+
+#. translators: %s: link to insdash.ch
+msgid "Design & development: %s"
+msgstr ""
+
+msgid "Who runs the website (from MenuDash → Restaurant), your company number and who made the website. For a page \"Legal notice\"."
+msgstr ""

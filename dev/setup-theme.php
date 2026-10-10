@@ -13,6 +13,20 @@ update_option( 'timezone_string', 'Europe/Berlin' );
 mdt_setup_home();
 mdt_setup_menu();
 
+// A legal notice page (German: Impressum), linked in the footer. The theme doesn't make it by
+// itself, because the owner has to fill in the company number.
+if ( ! mdt_legal_page() ) {
+	wp_insert_post(
+		array(
+			'post_type'    => 'page',
+			'post_status'  => 'publish',
+			'post_title'   => __( 'Legal notice', 'menudash-theme' ),
+			'post_name'    => sanitize_title( _x( 'legal-notice', 'page address', 'menudash-theme' ) ),
+			'post_content' => '<!-- wp:pattern {"slug":"menudash-theme/legal-notice"} /-->',
+		)
+	);
+}
+
 // The top menu as a block navigation: Home · Menu · Gift card.
 // (WordPress may already have made an automatic one that only lists the pages.)
 if ( ! get_posts( array( 'post_type' => 'wp_navigation', 'title' => 'Main menu', 'numberposts' => 1 ) ) ) {

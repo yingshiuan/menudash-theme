@@ -18,7 +18,7 @@ MenuDash holds everything the restaurant keeps up to date: the menu, today's spe
 | About us | your text, and the Instagram button from MenuDash |
 | Gift card | shows by itself while MenuDash takes gift card orders |
 | Visit us / Delivery, with a map | address, phone, getting here, delivery link and ordering times from MenuDash; the map loads only after a click |
-| Footer | address, social icons (each link entered under MenuDash → Restaurant: Instagram, Facebook, Google, Tripadvisor, TikTok, YouTube, WhatsApp), getting here, opening hours, "© Company · Privacy" |
+| Footer | address, social icons (each link entered under MenuDash → Restaurant: Instagram, Facebook, Google, Tripadvisor, TikTok, YouTube, WhatsApp), getting here, opening hours, "© Company · Legal notice · Privacy" (each link once its page exists) |
 
 On phones a bar at the bottom offers **Call · Directions · Menu**. The menu page (any page with `[menudash]`) gets a wide layout by itself: the lunch menu (today, with the whole week one tap away) and today's specials above the menu, jump buttons with one language switch at the top, and a back-to-top button while reading the menu.
 
@@ -41,6 +41,8 @@ Parts with a thin dashed outline in the editor come from MenuDash (address, phon
 The buttons are WordPress's own: delete, reorder or add one with any link (your booking or order system). *Reserve*, *Order online* and *Get directions* take their links from **MenuDash → Restaurant** and hide when that detail is empty; *Reserve* opens the **Reservation link** if you entered one, otherwise it calls. More such buttons: inside a Buttons block, *Reserve / Order online / Call / Directions (MenuDash)*.
 
 Leave the order link empty, or delete the delivery block, and the visit column takes the whole width.
+
+**Legal notice** (*Impressum*; in Switzerland and Germany a website that sells something must say who runs it): make a page *Legal notice* with the address `legal-notice` (`impressum` on a German site) and insert the pattern *Legal notice*. It shows your company, address, phone and e-mail from MenuDash → Restaurant; fill in your commercial register and company number. The footer links to the page once it is published.
 
 ## Languages
 

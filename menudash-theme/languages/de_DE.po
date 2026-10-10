@@ -369,3 +369,43 @@ msgstr "Instagram / Facebook: erscheinen hier, sobald ihre Links unter MenuDash 
 msgctxt "page address"
 msgid "menu"
 msgstr "speisekarte"
+
+msgid "Provider (legal notice)"
+msgstr "Anbieter (Impressum)"
+
+msgid "Provider: the company name, address, phone and e-mail show here once they are entered under MenuDash → Restaurant (MenuDash Restaurant add-on)."
+msgstr "Anbieter: Firmenname, Adresse, Telefon und E-Mail erscheinen hier, sobald sie unter MenuDash → Restaurant eingetragen sind (Add-on MenuDash Restaurant)."
+
+msgid "Legal notice"
+msgstr "Impressum"
+
+#. translators: the legal notice page's web address, lower case without spaces (German: impressum)
+msgctxt "page address"
+msgid "legal-notice"
+msgstr "impressum"
+
+#. translators: %s: phone number, as a link
+msgid "Phone: %s"
+msgstr "Telefon: %s"
+
+msgid "Provider"
+msgstr "Anbieter"
+
+msgid "Company name, street and number, postcode and town, phone and e-mail."
+msgstr "Firmenname, Strasse und Nummer, PLZ und Ort, Telefon und E-Mail."
+
+msgid "Commercial register: canton or court"
+msgstr "Handelsregister: Kanton oder Registergericht"
+
+msgid "Company number: replace with yours (in Switzerland the UID, CHE-…)"
+msgstr "Firmennummer: durch Ihre ersetzen (in der Schweiz die UID, CHE-…)"
+
+msgid "Website"
+msgstr "Website"
+
+#. translators: %s: link to insdash.ch
+msgid "Design & development: %s"
+msgstr "Design & Umsetzung: %s"
+
+msgid "Who runs the website (from MenuDash → Restaurant), your company number and who made the website. For a page \"Legal notice\"."
+msgstr "Wer die Website betreibt (aus MenuDash → Restaurant), Ihre Firmennummer und wer die Website gemacht hat. Für eine Seite «Impressum»."
