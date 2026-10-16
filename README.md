@@ -42,6 +42,8 @@ The buttons are WordPress's own: delete, reorder or add one with any link (your 
 
 Leave the order link empty, or delete the delivery block, and the visit column takes the whole width.
 
+**Google and shared links:** the theme gives each page a short description (the site's tagline, or the page's excerpt) and the site icon as the picture shown when a link is shared. With **MenuDash Restaurant 1.5** or newer, MenuDash does this better (*Restaurant → Google → Search and sharing*: descriptions in every language, share pictures made from your dish photos), and the theme leaves it to MenuDash. With an SEO plugin (Yoast, Rank Math …), neither adds its own.
+
 **Legal notice** (*Impressum*; in Switzerland and Germany a website that sells something must say who runs it): make a page *Legal notice* with the address `legal-notice` (`impressum` on a German site) and insert the pattern *Legal notice*. It shows your company, address, phone and e-mail from MenuDash → Restaurant; fill in your commercial register and company number. The footer links to the page once it is published.
 
 <img src="docs/screenshot-legal-notice.png" alt="The legal notice page: provider details from MenuDash → Restaurant, lines for the commercial register and company number, the website credit, and the Legal notice link in the footer" width="720">

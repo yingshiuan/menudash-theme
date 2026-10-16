@@ -205,13 +205,18 @@ add_action(
 
 /**
  * What search engines and chat apps read: a description (the site's tagline, or a page's
- * excerpt) and the site icon as the share picture. Skipped when an SEO plugin does this.
- * The restaurant's address and hours for Google come from MenuDash itself.
+ * excerpt) and the site icon as the share picture. Skipped when an SEO plugin does this,
+ * or MenuDash Restaurant 1.5+ (Restaurant → Google → Search and sharing), which writes
+ * better ones from the restaurant's details. The restaurant's address and hours for
+ * Google come from MenuDash itself.
  */
 add_action(
 	'wp_head',
 	function () {
 		if ( defined( 'WPSEO_VERSION' ) || defined( 'RANK_MATH_VERSION' ) || defined( 'AIOSEO_VERSION' ) || defined( 'SEOPRESS_VERSION' ) ) {
+			return;
+		}
+		if ( function_exists( 'mdash_seo_active' ) && mdash_seo_active() ) {
 			return;
 		}
 		$text = is_singular() && has_excerpt() ? get_the_excerpt() : get_bloginfo( 'description' );
