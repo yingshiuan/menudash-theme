@@ -81,6 +81,8 @@ dev/build-zip.sh          # dist/menudash-theme.zip
 
 The theme's MenuDash blocks are in `menudash-theme/inc/blocks.php` (`menudash-theme/delivery`, `map`, `social`, `picks`, `giftcard` …; `open`, `buttons`, `place`, `contact` and `directions` are only kept for pages saved with earlier versions). They read MenuDash with `mdash_detail()`, `mdash_hours()` and the menu data, and print nothing without MenuDash.
 
+The theme puts the page's stylesheets (its own, MenuDash's and the core blocks') into the page instead of loading them as separate files, so phones draw the page sooner. If a caching or optimising plugin already combines them, keep separate files with `add_filter( 'menudash_theme_inline_styles', '__return_false' );`.
+
 ## Licence
 
 GPL-2.0-or-later, like WordPress. The fonts, DM Sans and Darker Grotesque, are under the SIL Open Font License (see `menudash-theme/assets/fonts`).

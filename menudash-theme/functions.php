@@ -17,10 +17,72 @@ add_action(
 	}
 );
 
+/**
+ * The page's stylesheets go into the page itself instead of being separate files: a phone
+ * then draws the page without first waiting for more downloads (0.6–0.9 s on a slow
+ * connection). WordPress does this for any style that names its file ('path'), up to the
+ * size limit; the limit is raised to fit the theme, MenuDash and the core blocks (about
+ * 110 KB on the menu page, 20 KB zipped). MenuDash's styles are enqueued while the template
+ * renders, so their paths are added at the start of wp_head, just before WordPress inlines
+ * (priority 1). Only files of themes and plugins, found from their URL. To keep separate
+ * files (for example with a caching plugin that combines them):
+ * add_filter( 'menudash_theme_inline_styles', '__return_false' );
+ */
+add_filter(
+	'styles_inline_size_limit',
+	function ( $limit ) {
+		return apply_filters( 'menudash_theme_inline_styles', true ) ? max( $limit, 150000 ) : $limit;
+	}
+);
+add_action(
+	'wp_head',
+	function () {
+		if ( ! apply_filters( 'menudash_theme_inline_styles', true ) ) {
+			return;
+		}
+		$styles = wp_styles();
+		$base   = content_url( '/' );
+		foreach ( $styles->queue as $handle ) {
+			$src = isset( $styles->registered[ $handle ] ) ? (string) $styles->registered[ $handle ]->src : '';
+			if ( 0 !== strpos( $src, $base ) || $styles->get_data( $handle, 'path' ) ) {
+				continue;
+			}
+			$rel  = strtok( substr( $src, strlen( $base ) ), '?' );
+			$file = WP_CONTENT_DIR . '/' . $rel;
+			if ( preg_match( '#^(themes|plugins)/[^.][\w./-]*\.css$#', $rel ) && false === strpos( $rel, '..' ) && is_readable( $file ) ) {
+				wp_style_add_data( $handle, 'path', $file );
+			}
+		}
+	},
+	0
+);
+
+/**
+ * The two fonts start loading at once (and the home page's smile drawing, its largest
+ * picture): with the styles in the page it is drawn sooner, and fonts that came later would
+ * make the text jump when they swap in.
+ */
+add_action(
+	'wp_head',
+	function () {
+		foreach ( array( 'DarkerGrotesque-Variable.woff2', 'DMSans-Variable.woff2' ) as $font ) {
+			printf( '<link rel="preload" as="font" type="font/woff2" href="%s" crossorigin>' . "\n", esc_url( get_theme_file_uri( 'assets/fonts/' . $font ) ) );
+		}
+		if ( is_front_page() ) {
+			// crossorigin: a CSS mask loads its picture that way, and the two must match.
+			printf( '<link rel="preload" as="image" href="%s" fetchpriority="high" crossorigin>' . "\n", esc_url( get_theme_file_uri( 'assets/img/smile.svg' ) ) );
+		}
+	},
+	0
+);
+
 add_action(
 	'wp_enqueue_scripts',
 	function () {
 		wp_enqueue_style( 'menudash-theme', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
+		if ( apply_filters( 'menudash_theme_inline_styles', true ) ) {
+			wp_style_add_data( 'menudash-theme', 'path', get_theme_file_path( 'style.css' ) ); // So it can go into the page (above).
+		}
 		// MenuDash before 2.4 has no font setting: give its boxes the theme's two fonts.
 		if ( ! function_exists( 'mdash_fonts_css' ) ) {
 			wp_add_inline_style( 'menudash-theme', '.menudash{--mdash-display:var(--wp--preset--font-family--display);--mdash-sans:var(--wp--preset--font-family--sans)}.menudash.menudash .mdash-h,.menudash.menudash .mdash-sp-title{font-weight:800}.menudash.menudash .mdash-h{font-size:30px}' );
