@@ -99,9 +99,108 @@ add_filter(
 add_action(
 	'enqueue_block_editor_assets',
 	function () {
-		wp_enqueue_script( 'menudash-theme-blocks', get_theme_file_uri( 'assets/js/blocks-editor.js' ), array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-server-side-render' ), wp_get_theme()->get( 'Version' ), true );
-		wp_localize_script( 'menudash-theme-blocks', 'mdtBlocks', array( 'names' => mdt_blocks(), 'hint' => __( 'From MenuDash; change it there.', 'menudash-theme' ) ) );
+		wp_enqueue_script( 'menudash-theme-blocks', get_theme_file_uri( 'assets/js/blocks-editor.js' ), array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-server-side-render', 'wp-hooks', 'wp-compose', 'wp-components', 'wp-data', 'wp-core-data' ), wp_get_theme()->get( 'Version' ), true );
+		wp_localize_script(
+			'menudash-theme-blocks',
+			'mdtBlocks',
+			array(
+				'names' => mdt_blocks(),
+				'hint'  => __( 'From MenuDash; change it there.', 'menudash-theme' ),
+				// The corner picture's panel on the header (mdt_mark()).
+				'mark'  => array(
+					'icon'    => has_site_icon() ? get_site_icon_url( 512 ) : '',
+					'title'   => __( 'Corner picture', 'menudash-theme' ),
+					'picture' => __( 'Picture', 'menudash-theme' ),
+					'auto'    => __( 'Automatic', 'menudash-theme' ),
+					'autoTip' => __( 'Automatic: the icon from MenuDash → Restaurant, otherwise the ring.', 'menudash-theme' ),
+					'ring'    => __( 'Ring', 'menudash-theme' ),
+					'own'     => __( 'Own picture', 'menudash-theme' ),
+					'none'    => __( 'No picture', 'menudash-theme' ),
+					'choose'  => __( 'Choose a picture', 'menudash-theme' ),
+					'other'   => __( 'Choose another picture', 'menudash-theme' ),
+					'opacity' => __( 'Strength (%)', 'menudash-theme' ),
+					'opTip'   => __( 'How clearly the picture shows in the coloured band. Default: 8.', 'menudash-theme' ),
+				),
+			)
+		);
 	}
+);
+
+/*
+ * The faint picture in the header band's right corner (class mdt-seal on the header's Group).
+ * The owner chooses it on that Group (Site Editor → Header → "Corner picture"):
+ *   ''      automatic: the icon from MenuDash → Restaurant (the Site Icon), else the ring
+ *   'ring'  always the ring
+ *   'image' an own picture from the media library (mdtMarkId)
+ *   'none'  no picture
+ * and how strong it shows (mdtMarkOpacity, in percent; 8 by default).
+ */
+add_filter(
+	'register_block_type_args',
+	function ( $args, $name ) {
+		if ( 'core/group' === $name ) {
+			$args['attributes'] = ( isset( $args['attributes'] ) ? $args['attributes'] : array() ) + array(
+				'mdtMark'        => array( 'type' => 'string', 'default' => '' ),
+				'mdtMarkId'      => array( 'type' => 'number', 'default' => 0 ),
+				'mdtMarkOpacity' => array( 'type' => 'number', 'default' => 8 ),
+			);
+		}
+		return $args;
+	},
+	10,
+	2
+);
+
+/** The corner picture for a header Group's settings: url ('' = the ring), round (an icon), off, opacity. */
+function mdt_mark( $attrs = array() ) {
+	$source  = isset( $attrs['mdtMark'] ) ? (string) $attrs['mdtMark'] : '';
+	$opacity = isset( $attrs['mdtMarkOpacity'] ) ? max( 0, min( 100, (int) $attrs['mdtMarkOpacity'] ) ) / 100 : .08;
+	$mark    = array( 'url' => '', 'round' => false, 'off' => 'none' === $source, 'opacity' => $opacity );
+	if ( 'image' === $source && ! empty( $attrs['mdtMarkId'] ) ) {
+		$mark['url'] = (string) wp_get_attachment_image_url( (int) $attrs['mdtMarkId'], 'large' );
+	} elseif ( '' === $source && has_site_icon() ) {
+		// The icon is usually a filled square: drawn as a circle, like the ring.
+		$mark['url']   = get_site_icon_url( 512 );
+		$mark['round'] = true;
+	}
+	return $mark;
+}
+
+add_filter(
+	'render_block_core/group',
+	function ( $content, $block ) {
+		$class = isset( $block['attrs']['className'] ) ? $block['attrs']['className'] : '';
+		if ( ! preg_match( '/(^|\s)mdt-seal(\s|$)/', $class ) ) {
+			return $content;
+		}
+		$mark = mdt_mark( $block['attrs'] );
+		$tag  = new WP_HTML_Tag_Processor( $content );
+		if ( ! $tag->next_tag() ) {
+			return $content;
+		}
+		if ( $mark['off'] ) {
+			$tag->add_class( 'mdt-seal-off' );
+			return $tag->get_updated_html();
+		}
+		$vars = '';
+		if ( '' !== $mark['url'] ) {
+			$tag->add_class( 'mdt-seal-img' );
+			$vars .= '--mdt-mark:url("' . esc_url( $mark['url'] ) . '");';
+		}
+		if ( $mark['round'] ) {
+			$tag->add_class( 'mdt-seal-round' );
+		}
+		if ( abs( $mark['opacity'] - .08 ) > .001 ) {
+			$vars .= '--mdt-mark-opacity:' . $mark['opacity'] . ';';
+		}
+		if ( '' !== $vars ) {
+			$style = (string) $tag->get_attribute( 'style' );
+			$tag->set_attribute( 'style', ( '' !== $style ? rtrim( $style, ';' ) . ';' : '' ) . $vars );
+		}
+		return $tag->get_updated_html();
+	},
+	10,
+	2
 );
 
 /** Block markup to HTML, with the shortcodes in it (the open badge, the hours) run. */
@@ -117,8 +216,8 @@ function mdt_lang() {
 }
 
 /** The small uppercase line above a heading. */
-function mdt_eyebrow( $text ) {
-	return '<!-- wp:paragraph {"style":{"typography":{"fontSize":"0.8125rem","fontWeight":"700","textTransform":"uppercase","letterSpacing":"0.18em"}},"textColor":"primary"} --><p class="has-primary-color has-text-color" style="font-size:0.8125rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase">' . esc_html( $text ) . '</p><!-- /wp:paragraph -->';
+function mdt_eyebrow( $text, $id = '' ) {
+	return '<!-- wp:paragraph {"style":{"typography":{"fontSize":"0.8125rem","fontWeight":"700","textTransform":"uppercase","letterSpacing":"0.18em"}},"textColor":"primary"} --><p' . ( '' !== $id ? ' id="' . esc_attr( $id ) . '"' : '' ) . ' class="has-primary-color has-text-color" style="font-size:0.8125rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase">' . esc_html( $text ) . '</p><!-- /wp:paragraph -->';
 }
 
 /** Old pages' menudash-theme/open, drawn by MenuDash's Open now block, which the theme uses now. */
@@ -193,17 +292,19 @@ function mdt_visit_eyebrow() {
  * directions, delivery beside it, and the map below; all filled from MenuDash → Restaurant.
  */
 function mdt_visit_markup() {
-	/* translators: %s: the restaurant's phone number, as a link */
-	$by_phone = trim( str_replace( '%s', '', __( 'Reservations by phone: %s', 'menudash-theme' ) ) );
+	/* translators: %s: the restaurant's phone number */
+	$by_phone = trim( str_replace( '%s', '', __( 'Phone: %s', 'menudash-theme' ) ) );
 	/* translators: %s: e-mail link */
 	$by_mail = trim( str_replace( '%s', '', __( 'E-mail: %s', 'menudash-theme' ) ) );
 	return '<!-- wp:columns {"align":"wide","className":"mdt-two-ways","style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} -->' . "\n"
 		. '<div class="wp-block-columns alignwide mdt-two-ways" style="margin-top:var(--wp--preset--spacing--40)">' . "\n"
 		. '<!-- wp:column {"width":"50%"} -->' . "\n" . '<div class="wp-block-column" style="flex-basis:50%">' . "\n"
 		. mdt_visit_eyebrow()
-		. '<!-- wp:menudash/contact {"parts":["address"],"fontSize":"large"} /-->' . "\n"
-		. '<!-- wp:menudash/contact ' . serialize_block_attributes( array( 'parts' => array( 'phone', 'email' ), 'phoneLabel' => $by_phone, 'emailLabel' => $by_mail ) ) . " /-->\n"
-		. '<!-- wp:menudash/contact {"parts":["directions"],"directions":"first"} /-->' . "\n"
+		. '<!-- wp:menudash/contact {"parts":["address"],"fontSize":"large","className":"mdt-visit-address"} /-->' . "\n"
+		// Lines up with "Delivery hours" in the column beside it (style.css).
+		. '<!-- wp:paragraph {"className":"mdt-contact-label"} -->' . "\n" . '<p class="mdt-contact-label"><strong>' . esc_html__( 'Reservations & contact', 'menudash-theme' ) . "</strong></p>\n<!-- /wp:paragraph -->\n"
+		. '<!-- wp:menudash/contact ' . serialize_block_attributes( array( 'parts' => array( 'phone', 'email' ), 'phoneLabel' => $by_phone, 'emailLabel' => $by_mail, 'className' => 'mdt-visit-contact' ) ) . " /-->\n"
+		. '<!-- wp:menudash/contact {"parts":["directions"],"directions":"first","className":"mdt-visit-directions"} /-->' . "\n"
 		. "<!-- wp:buttons -->\n<div class=\"wp-block-buttons\">\n" . mdt_bound_button( 'route', __( 'Get directions', 'menudash-theme' ) ) . "</div>\n<!-- /wp:buttons -->\n"
 		. "</div>\n<!-- /wp:column -->\n"
 		. '<!-- wp:column {"width":"50%"} -->' . "\n" . '<div class="wp-block-column" style="flex-basis:50%">' . "\n"
@@ -377,11 +478,13 @@ function mdt_block_delivery() {
 	/* translators: %s: the delivery service, e.g. "Uber Eats" */
 	$line    = '' !== $service ? sprintf( __( 'No problem: order online with %s.', 'menudash-theme' ), $service ) : __( 'No problem: order online.', 'menudash-theme' );
 	$text    = '<!-- wp:paragraph {"fontSize":"large"} --><p class="has-large-font-size">' . esc_html( $line ) . '</p><!-- /wp:paragraph -->';
-	$times   = '<!-- wp:menudash/open {"for":"order"} /--><!-- wp:menudash/hours {"for":"delivery","className":"mdt-table mdt-delivery-hours"} /-->';
+	// The delivery times can differ from the opening hours in the footer, so they say what they are.
+	$times   = '<!-- wp:menudash/open {"for":"order"} /--><!-- wp:paragraph {"className":"mdt-delivery-label"} --><p class="mdt-delivery-label"><strong>' . esc_html__( 'Delivery hours', 'menudash-theme' ) . '</strong></p><!-- /wp:paragraph --><!-- wp:menudash/hours {"for":"delivery","className":"mdt-table mdt-delivery-hours"} /-->';
 	/* translators: %s: the delivery service, e.g. "Uber Eats" */
 	$label   = '' !== $service ? sprintf( __( 'Order with %s', 'menudash-theme' ), $service ) : __( 'Order online', 'menudash-theme' );
 	$button  = '<!-- wp:buttons --><div class="wp-block-buttons">' . mdt_button( $order, $label, false, true ) . '</div><!-- /wp:buttons -->';
-	return '<div id="delivery" class="mdt-delivery">' . mdt_render( mdt_eyebrow( __( 'Delivery', 'menudash-theme' ) ) . $heading . $text . $times . $button ) . '</div>';
+	// #delivery sits on the eyebrow: on wide screens the wrapper is display: contents (style.css).
+	return '<div class="mdt-delivery">' . mdt_render( mdt_eyebrow( __( 'Delivery', 'menudash-theme' ), 'delivery' ) . $heading . $text . $times . $button ) . '</div>';
 }
 
 function mdt_block_map() {

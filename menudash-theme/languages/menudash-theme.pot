@@ -80,6 +80,12 @@ msgstr ""
 msgid "Delivery"
 msgstr ""
 
+msgid "Delivery hours"
+msgstr ""
+
+msgid "Reservations & contact"
+msgstr ""
+
 msgid "Map"
 msgstr ""
 
@@ -408,4 +414,37 @@ msgid "Design & development: %s"
 msgstr ""
 
 msgid "Who runs the website (from MenuDash → Restaurant), your company number and who made the website. For a page \"Legal notice\"."
+msgstr ""
+
+msgid "Corner picture"
+msgstr ""
+
+msgid "Picture"
+msgstr ""
+
+msgid "Automatic"
+msgstr ""
+
+msgid "Automatic: the icon from MenuDash → Restaurant, otherwise the ring."
+msgstr ""
+
+msgid "Ring"
+msgstr ""
+
+msgid "Own picture"
+msgstr ""
+
+msgid "No picture"
+msgstr ""
+
+msgid "Choose a picture"
+msgstr ""
+
+msgid "Choose another picture"
+msgstr ""
+
+msgid "Strength (%)"
+msgstr ""
+
+msgid "How clearly the picture shows in the coloured band. Default: 8."
 msgstr ""

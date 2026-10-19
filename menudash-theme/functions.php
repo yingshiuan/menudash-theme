@@ -17,6 +17,17 @@ add_action(
 	}
 );
 
+// A site without blog posts has nothing to subscribe to: no RSS feed links in the page head.
+add_action(
+	'wp',
+	function () {
+		if ( ! (int) wp_count_posts()->publish ) {
+			remove_action( 'wp_head', 'feed_links', 2 );
+			remove_action( 'wp_head', 'feed_links_extra', 3 );
+		}
+	}
+);
+
 /**
  * The page's stylesheets go into the page itself instead of being separate files: a phone
  * then draws the page without first waiting for more downloads (0.6–0.9 s on a slow

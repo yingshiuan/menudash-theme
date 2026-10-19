@@ -80,6 +80,12 @@ msgstr "Instagram / Facebook"
 msgid "Delivery"
 msgstr "外送"
 
+msgid "Delivery hours"
+msgstr "外送時間"
+
+msgid "Reservations & contact"
+msgstr "訂位及聯絡"
+
 msgid "Map"
 msgstr "地圖"
 
@@ -409,3 +415,36 @@ msgstr "設計與製作：%s"
 
 msgid "Who runs the website (from MenuDash → Restaurant), your company number and who made the website. For a page \"Legal notice\"."
 msgstr "網站由誰經營（來自 MenuDash → Restaurant）、您的公司編號，以及網站由誰製作。用於「法律聲明」頁面。"
+
+msgid "Corner picture"
+msgstr "角落圖案"
+
+msgid "Picture"
+msgstr "圖案"
+
+msgid "Automatic"
+msgstr "自動"
+
+msgid "Automatic: the icon from MenuDash → Restaurant, otherwise the ring."
+msgstr "自動：使用 MenuDash → Restaurant 中的圖示，否則顯示圓環。"
+
+msgid "Ring"
+msgstr "圓環"
+
+msgid "Own picture"
+msgstr "自訂圖片"
+
+msgid "No picture"
+msgstr "不顯示"
+
+msgid "Choose a picture"
+msgstr "選擇圖片"
+
+msgid "Choose another picture"
+msgstr "選擇其他圖片"
+
+msgid "Strength (%)"
+msgstr "濃度 (%)"
+
+msgid "How clearly the picture shows in the coloured band. Default: 8."
+msgstr "圖案在色帶中的明顯程度。預設：8。"

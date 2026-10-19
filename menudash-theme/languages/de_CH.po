@@ -80,6 +80,12 @@ msgstr "Instagram / Facebook"
 msgid "Delivery"
 msgstr "Liefern lassen"
 
+msgid "Delivery hours"
+msgstr "Lieferzeiten"
+
+msgid "Reservations & contact"
+msgstr "Reservierung & Kontakt"
+
 msgid "Map"
 msgstr "Karte"
 
@@ -117,7 +123,7 @@ msgid "E-mail: %s"
 msgstr "E-Mail: %s"
 
 msgid "Follow us on Instagram @%s"
-msgstr "Folgt uns auf Instagram @%s"
+msgstr "Folgen Sie uns auf Instagram @%s"
 
 msgid "Eating at home?"
 msgstr "Lieber zu Hause essen?"
@@ -409,3 +415,36 @@ msgstr "Design & Umsetzung: %s"
 
 msgid "Who runs the website (from MenuDash → Restaurant), your company number and who made the website. For a page \"Legal notice\"."
 msgstr "Wer die Website betreibt (aus MenuDash → Restaurant), Ihre Firmennummer und wer die Website gemacht hat. Für eine Seite «Impressum»."
+
+msgid "Corner picture"
+msgstr "Bild in der Ecke"
+
+msgid "Picture"
+msgstr "Bild"
+
+msgid "Automatic"
+msgstr "Automatisch"
+
+msgid "Automatic: the icon from MenuDash → Restaurant, otherwise the ring."
+msgstr "Automatisch: das Icon aus MenuDash → Restaurant, sonst der Ring."
+
+msgid "Ring"
+msgstr "Ring"
+
+msgid "Own picture"
+msgstr "Eigenes Bild"
+
+msgid "No picture"
+msgstr "Kein Bild"
+
+msgid "Choose a picture"
+msgstr "Bild wählen"
+
+msgid "Choose another picture"
+msgstr "Anderes Bild wählen"
+
+msgid "Strength (%)"
+msgstr "Stärke (%)"
+
+msgid "How clearly the picture shows in the coloured band. Default: 8."
+msgstr "Wie deutlich das Bild im farbigen Band zu sehen ist. Standard: 8."

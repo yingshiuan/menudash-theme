@@ -15,7 +15,8 @@
 <!-- wp:column -->
 <div class="wp-block-column">
 <!-- wp:site-title {"level":0,"style":{"typography":{"fontSize":"1.75rem","fontWeight":"800","lineHeight":"1"}},"fontFamily":"display"} /-->
-<!-- wp:menudash/contact {"parts":["address","country","phone","email"]} /-->
+<!-- wp:menudash/contact {"parts":["address","country"],"mapLink":true} /-->
+<!-- wp:menudash/contact {"parts":["phone","email"]} /-->
 <!-- wp:menudash-theme/social {"variant":"icons"} /-->
 </div>
 <!-- /wp:column -->

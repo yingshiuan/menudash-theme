@@ -18,7 +18,7 @@ MenuDash holds everything the restaurant keeps up to date: the menu, today's spe
 | About us | your text, and the Instagram button from MenuDash |
 | Gift card | shows by itself while MenuDash takes gift card orders |
 | Visit us / Delivery, with a map | address, phone, getting here, delivery link and ordering times from MenuDash; the map loads only after a click |
-| Footer | address, social icons (each link entered under MenuDash → Restaurant: Instagram, Facebook, Google, Tripadvisor, TikTok, YouTube, WhatsApp), getting here, opening hours, "© Company · Legal notice · Privacy" (each link once its page exists) |
+| Footer | address (opens Google Maps), phone and e-mail, social icons (each link entered under MenuDash → Restaurant: Instagram, Facebook, Google, Tripadvisor, TikTok, YouTube, WhatsApp), getting here, opening hours, "© Company · Legal notice · Privacy" (each link once its page exists) |
 
 On phones a bar at the bottom offers **Call · Directions · Menu**. The menu page (any page with `[menudash]`) gets a wide layout by itself: the lunch menu (today, with the whole week one tap away) and today's specials above the menu, jump buttons with one language switch at the top, and a back-to-top button while reading the menu.
 
@@ -37,6 +37,8 @@ Requires WordPress 6.5+ and PHP 7.4+.
 It's a block theme: *Appearance → Editor* for the header, footer and templates, *Styles* for colours and fonts (dark blue on beige by default, plus three colour sets: *Terracotta*, *Olive* and *Midnight*), and *Pages → Home* for the home page's texts.
 
 Parts with a thin dashed outline in the editor come from MenuDash (address, phone, delivery, map, the footer's contact lines). They are drawn fresh on every page view, so saving a page never freezes old details into it: change them in MenuDash, not in the editor. The theme's own blocks are in the inserter under *MenuDash Theme*; *Open now*, *Opening hours* and *Contact* (address, phone, e-mail, getting here — choose the parts in its sidebar) are MenuDash's blocks, under *MenuDash*. The home page is made of sections: to change the badge, an address line or the buttons inside one, click **Edit pattern** first.
+
+**Corner picture:** the faint drawing in the header's right corner. Select the header's coloured band in *Appearance → Editor* and choose under *Corner picture*: *Automatic* (your icon from MenuDash → Restaurant, otherwise a ring), *Ring*, *Own picture* or *No picture*, and how strong it shows.
 
 The buttons are WordPress's own: delete, reorder or add one with any link (your booking or order system). *Reserve*, *Order online* and *Get directions* take their links from **MenuDash → Restaurant** and hide when that detail is empty; *Reserve* opens the **Reservation link** if you entered one, otherwise it calls. More such buttons: inside a Buttons block, *Reserve / Order online / Call / Directions (MenuDash)*.
 

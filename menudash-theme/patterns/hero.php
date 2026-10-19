@@ -10,8 +10,8 @@
 <div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)">
 <!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|50"}}}} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-center">
-<!-- wp:column {"verticalAlignment":"center","width":"55%"} -->
-<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:55%">
+<!-- wp:column {"verticalAlignment":"center","width":"60%"} -->
+<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:60%">
 <?php if ( mdt_has_restaurant() ) : // The badge and the address line need MenuDash Restaurant. ?>
 <!-- wp:menudash/open /-->
 <!-- wp:menudash/contact {"parts":["address"],"oneLine":true,"textColor":"primary","style":{"typography":{"fontSize":"0.8125rem","fontWeight":"700","textTransform":"uppercase","letterSpacing":"0.18em"}},"className":"mdt-place"} /-->
@@ -40,8 +40,8 @@ endif;
 <!-- /wp:buttons -->
 </div>
 <!-- /wp:column -->
-<!-- wp:column {"verticalAlignment":"center","width":"45%"} -->
-<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:45%">
+<!-- wp:column {"verticalAlignment":"center","width":"40%"} -->
+<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:40%">
 <!-- wp:group {"className":"mdt-hero-bowl","layout":{"type":"default"}} -->
 <div class="wp-block-group mdt-hero-bowl"></div>
 <!-- /wp:group -->
