@@ -3,11 +3,15 @@
  * MenuDash Theme. Most of it is in theme.json, the templates and the patterns; this file
  * loads the styles and translations, adds the theme's MenuDash blocks (inc/blocks.php), the
  * phone action bar, the details for search engines and chat apps, and the map on request.
+ * inc/setup.php offers to install MenuDash while it is missing.
  */
 
 defined( 'ABSPATH' ) || exit;
 
 require get_theme_file_path( 'inc/blocks.php' ); // The blocks that show what is entered in MenuDash.
+if ( is_admin() ) {
+	require get_theme_file_path( 'inc/setup.php' ); // "Install and activate MenuDash".
+}
 
 add_action(
 	'after_setup_theme',
@@ -171,6 +175,16 @@ function mdt_setup_home() {
 	if ( 'page' === get_option( 'show_on_front' ) && get_post( (int) get_option( 'page_on_front' ) ) ) {
 		return;
 	}
+	mdt_make_home();
+}
+add_action( 'after_switch_theme', 'mdt_setup_home' );
+
+/**
+ * A new "Home" page with the theme's sections, made the front page. An older front page
+ * stays under Pages (Appearance → Plugins & Layout uses this to bring the default back).
+ * Returns the new page's ID, or 0.
+ */
+function mdt_make_home() {
 	$sections = array( 'hero', 'picks', 'testimonial', 'about', 'giftcard-home', 'visit' );
 	$content  = implode( "\n\n", array_map( function ( $s ) { return '<!-- wp:pattern {"slug":"menudash-theme/' . $s . '"} /-->'; }, $sections ) );
 	$id       = wp_insert_post(
@@ -182,12 +196,13 @@ function mdt_setup_home() {
 			'meta_input'   => array( '_wp_page_template' => 'page-home' ),
 		)
 	);
-	if ( $id && ! is_wp_error( $id ) ) {
-		update_option( 'show_on_front', 'page' );
-		update_option( 'page_on_front', $id );
+	if ( ! $id || is_wp_error( $id ) ) {
+		return 0;
 	}
+	update_option( 'show_on_front', 'page' );
+	update_option( 'page_on_front', $id );
+	return $id;
 }
-add_action( 'after_switch_theme', 'mdt_setup_home' );
 
 /**
  * On activation, a "Menu" page (German: "Speisekarte" at /speisekarte/) holding the menu, unless a

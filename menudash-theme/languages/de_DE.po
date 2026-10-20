@@ -448,3 +448,378 @@ msgstr "Stärke (%)"
 
 msgid "How clearly the picture shows in the coloured band. Default: 8."
 msgstr "Wie deutlich das Bild im farbigen Band zu sehen ist. Standard: 8."
+
+msgid "MenuDash is installed and active. Your menu page is ready."
+msgstr "MenuDash ist installiert und aktiv. Die Seite für Ihre Speisekarte ist bereit."
+
+msgid "Upload your menu"
+msgstr "Speisekarte hochladen"
+
+msgid "MenuDash couldn't be installed."
+msgstr "MenuDash konnte nicht installiert werden."
+
+#. translators: %s: link to MenuDash on GitHub
+msgid "Download menudash.zip from %s and upload it under Plugins → Add New → Upload Plugin."
+msgstr "Laden Sie menudash.zip von %s herunter und laden Sie die Datei unter Plugins → Neues Plugin hinzufügen → Plugin hochladen hoch."
+
+msgid "Activate MenuDash"
+msgstr "MenuDash aktivieren"
+
+msgid "Install and activate MenuDash"
+msgstr "MenuDash installieren und aktivieren"
+
+msgid "MenuDash Theme works with the free MenuDash plugin"
+msgstr "MenuDash Theme arbeitet mit dem kostenlosen Plugin MenuDash"
+
+msgid "Your menu, today's specials, the dishes on the home page and the holiday notice come from MenuDash. Once it is active, the theme makes your menu page."
+msgstr "Ihre Speisekarte, die Tagesempfehlungen, die Gerichte auf der Startseite und der Ferienhinweis kommen aus MenuDash. Sobald es aktiv ist, erstellt das Theme die Seite für Ihre Speisekarte."
+
+msgid "Ask your site's administrator to install it."
+msgstr "Bitten Sie die Person, die Ihre Website verwaltet, es zu installieren."
+
+msgid "Not now"
+msgstr "Jetzt nicht"
+
+msgid "About MenuDash"
+msgstr "Über MenuDash"
+
+msgid "Sorry, you are not allowed to install plugins on this site."
+msgstr "Sie dürfen auf dieser Website leider keine Plugins installieren."
+
+msgid "The site can't write to its plugins folder."
+msgstr "Die Website kann nicht in ihren Plugin-Ordner schreiben."
+
+msgid "The download didn't contain MenuDash."
+msgstr "Der Download enthielt MenuDash nicht."
+
+msgid "A new home page with the default layout is now your front page. The old one is still under Pages."
+msgstr "Eine neue Startseite mit dem Standard-Layout ist jetzt Ihre Startseite. Die alte finden Sie weiterhin unter Seiten."
+
+msgid "Activate"
+msgstr "Aktivieren"
+
+msgid "Active"
+msgstr "Aktiv"
+
+msgid "Add-ons are uploaded under Plugins → Add New → Upload Plugin."
+msgstr "Add-ons laden Sie unter Plugins → Neues Plugin hinzufügen → Plugin hochladen hoch."
+
+msgid "Address, opening hours, \"open now\", holiday notice, contact buttons, map."
+msgstr "Adresse, Öffnungszeiten, „Jetzt geöffnet“, Ferienhinweis, Kontakt-Buttons, Karte."
+
+msgid "As the theme made them"
+msgstr "So, wie das Theme sie erstellt hat"
+
+msgid "Back to the default"
+msgstr "Auf Standard zurücksetzen"
+
+msgid "Bring back what the theme made when it was activated. Your own pages are never deleted."
+msgstr "Stellen Sie wieder her, was das Theme beim Aktivieren erstellt hat. Ihre eigenen Seiten werden nie gelöscht."
+
+#. translators: %s: names of the changed templates, e.g. "Header, Front Page"
+msgid "Changed in the Editor: %s"
+msgstr "Im Editor geändert: %s"
+
+
+msgid "Default layout"
+msgstr "Standard-Layout"
+
+msgid "Gift card orders."
+msgstr "Gutschein-Bestellungen."
+
+msgid "Header, footer and templates"
+msgstr "Kopfzeile, Fußzeile und Templates"
+
+msgid "Home page"
+msgstr "Startseite"
+
+msgid "How to get it"
+msgstr "So erhalten Sie es"
+
+msgid "Install and activate"
+msgstr "Installieren und aktivieren"
+
+msgid "Installed, not active"
+msgstr "Installiert, nicht aktiv"
+
+msgid "Make a new home page"
+msgstr "Neue Startseite erstellen"
+
+msgid "Make a new home page with the default layout and show it instead of the current one? The current one stays under Pages."
+msgstr "Eine neue Startseite mit dem Standard-Layout erstellen und statt der jetzigen zeigen? Die jetzige bleibt unter Seiten."
+
+msgid "Make the menu page"
+msgstr "Speisekarte-Seite erstellen"
+
+msgid "Menu page"
+msgstr "Speisekarte-Seite"
+
+msgid "Missing"
+msgstr "Fehlt"
+
+msgid "Needs MenuDash"
+msgstr "Braucht MenuDash"
+
+msgid "No home page: the site shows the latest posts."
+msgstr "Keine Startseite: Die Website zeigt die neuesten Beiträge."
+
+msgid "Not installed"
+msgstr "Nicht installiert"
+
+
+msgid "Plugins"
+msgstr "Plugins"
+
+msgid "Plugins & Layout"
+msgstr "Plugins & Layout"
+
+msgid "Sorry, you are not allowed to change the layout."
+msgstr "Sie dürfen das Layout leider nicht ändern."
+
+msgid "The header, footer and templates are back to the theme's default."
+msgstr "Kopfzeile, Fußzeile und Templates sind wieder wie im Theme vorgegeben."
+
+msgid "The menu page is made."
+msgstr "Die Speisekarte-Seite ist erstellt."
+
+msgid "The menu, the recommended dishes on the home page, colours. Free."
+msgstr "Die Speisekarte, die empfohlenen Gerichte auf der Startseite, Farben. Kostenlos."
+
+msgid "The theme shows what you enter in MenuDash. The free MenuDash plugin is needed; each add-on brings more sections."
+msgstr "Das Theme zeigt, was Sie in MenuDash eingeben. Das kostenlose Plugin MenuDash wird benötigt; jedes Add-on bringt weitere Bereiche."
+
+msgid "Today's specials and the lunch menu."
+msgstr "Tagesempfehlungen und Mittagsmenü."
+
+msgid "Undo all changes to the header, footer and templates? Your pages, menu and colours stay as they are."
+msgstr "Alle Änderungen an Kopfzeile, Fußzeile und Templates rückgängig machen? Ihre Seiten, die Speisekarte und die Farben bleiben, wie sie sind."
+
+msgid "Which dishes guests look at."
+msgstr "Welche Gerichte die Gäste anschauen."
+
+msgid "Where to change what"
+msgstr "Wo Sie was ändern"
+
+msgid "Almost everything is in Appearance → Editor. These links open the right place."
+msgstr "Fast alles finden Sie unter Design → Editor. Diese Links öffnen die richtige Stelle."
+
+msgid "Logo, top menu, corner picture, holiday notice."
+msgstr "Logo, Hauptmenü, Bild in der Ecke, Ferienhinweis."
+
+msgid "Top menu"
+msgstr "Hauptmenü"
+
+msgid "The links in the header (older themes: Appearance → Menus)."
+msgstr "Die Links in der Kopfzeile (bei älteren Themes: Design → Menüs)."
+
+msgid "Colours and fonts"
+msgstr "Farben und Schriften"
+
+msgid "Colours, fonts, sizes and spacing for the whole site (older themes: Customize, Background)."
+msgstr "Farben, Schriften, Größen und Abstände für die ganze Website (bei älteren Themes: Customizer, Hintergrund)."
+
+msgid "Texts, pictures and the order of the sections."
+msgstr "Texte, Bilder und die Reihenfolge der Bereiche."
+
+msgid "Address, opening hours, links at the bottom (older themes: Widgets)."
+msgstr "Adresse, Öffnungszeiten, Links unten auf der Seite (bei älteren Themes: Widgets)."
+
+msgid "Sections"
+msgstr "Bereiche"
+
+msgid "The ready-made sections to add to any page (Patterns)."
+msgstr "Die fertigen Bereiche, die Sie in jede Seite einfügen können (Vorlagen)."
+
+msgid "Page layouts"
+msgstr "Seiten-Layouts"
+
+msgid "How each kind of page is built (Templates)."
+msgstr "Wie jede Art von Seite aufgebaut ist (Templates)."
+
+msgid "Menu, hours and restaurant details"
+msgstr "Speisekarte, Öffnungszeiten und Restaurant-Angaben"
+
+msgid "Entered in MenuDash; the theme shows them everywhere."
+msgstr "Werden in MenuDash eingegeben; das Theme zeigt sie überall."
+
+msgid "Fonts"
+msgstr "Schriften"
+
+msgid "Styles → Typography: the theme's two fonts; the button next to \"Fonts\" adds or uploads others."
+msgstr "Stile → Typografie: die beiden Schriften des Themes; der Button neben „Schriftarten“ fügt weitere hinzu oder lädt sie hoch."
+
+msgctxt "Color name"
+msgid "Primary"
+msgstr "Hauptfarbe"
+
+msgctxt "Color name"
+msgid "Primary dark"
+msgstr "Hauptfarbe dunkel"
+
+msgctxt "Color name"
+msgid "Base"
+msgstr "Grund"
+
+msgctxt "Color name"
+msgid "Paper"
+msgstr "Papier"
+
+msgctxt "Color name"
+msgid "White"
+msgstr "Weiß"
+
+msgctxt "Color name"
+msgid "Text"
+msgstr "Text"
+
+msgctxt "Color name"
+msgid "Muted"
+msgstr "Grau"
+
+msgctxt "Font size name"
+msgid "Small"
+msgstr "Klein"
+
+msgctxt "Font size name"
+msgid "Medium"
+msgstr "Normal"
+
+msgctxt "Font size name"
+msgid "Large"
+msgstr "Groß"
+
+msgctxt "Font size name"
+msgid "Extra large"
+msgstr "Titel"
+
+msgctxt "Font size name"
+msgid "Huge"
+msgstr "Plakat"
+
+msgctxt "Template part name"
+msgid "Header"
+msgstr "Kopfzeile"
+
+msgctxt "Template part name"
+msgid "Footer"
+msgstr "Fußzeile"
+
+msgctxt "Custom template name"
+msgid "Home page (no title, full width)"
+msgstr "Startseite (ohne Titel, volle Breite)"
+
+msgctxt "Custom template name"
+msgid "Wide page (menu)"
+msgstr "Breite Seite (Speisekarte)"
+
+msgctxt "Style variation name"
+msgid "Midnight"
+msgstr "Mitternacht"
+
+msgctxt "Style variation name"
+msgid "Olive"
+msgstr "Olive"
+
+msgctxt "Style variation name"
+msgid "Terracotta"
+msgstr "Terrakotta"
+
+msgctxt "Pattern title"
+msgid "Page not found"
+msgstr "Seite nicht gefunden"
+
+msgctxt "Pattern title"
+msgid "Home: about us"
+msgstr "Startseite: Über uns"
+
+msgctxt "Pattern description"
+msgid "Your story in a few lines, with the Instagram button from MenuDash → Restaurant."
+msgstr "Ihre Geschichte in ein paar Sätzen, mit dem Instagram-Knopf aus MenuDash → Restaurant."
+
+msgctxt "Pattern title"
+msgid "Getting here"
+msgstr "Anreise"
+
+msgctxt "Pattern description"
+msgid "How to get to the restaurant (MenuDash → Restaurant → Getting here)."
+msgstr "Wie man zum Restaurant kommt (MenuDash → Restaurant → Getting here)."
+
+msgctxt "Pattern title"
+msgid "Footer (address, getting here, opening hours; without MenuDash Restaurant: name and menu)"
+msgstr "Fußzeile (Adresse, Anreise, Öffnungszeiten; ohne MenuDash Restaurant: Name und Speisekarte)"
+
+msgctxt "Pattern title"
+msgid "Home: gift cards"
+msgstr "Startseite: Gutschein"
+
+msgctxt "Pattern description"
+msgid "A short teaser with the picture of the card and a button to the gift card page. Shows only while MenuDash takes gift card orders and a page has the gift card form."
+msgstr "Ein kurzer Hinweis mit dem Bild des Gutscheins und einem Knopf zur Gutschein-Seite. Erscheint nur, solange MenuDash Gutschein-Bestellungen annimmt und eine Seite das Formular enthält."
+
+msgctxt "Pattern title"
+msgid "Gift card page"
+msgstr "Gutschein-Seite"
+
+msgctxt "Pattern description"
+msgid "An introduction and MenuDash's gift card order form ([menudash_giftcard]). Amounts, e-mail address, picture and terms are set under MenuDash → Gift cards."
+msgstr "Eine Einleitung und das Gutschein-Formular von MenuDash ([menudash_giftcard]). Beträge, E-Mail-Adresse, Bild und Bedingungen stellt man unter MenuDash → Gift cards ein."
+
+msgctxt "Pattern title"
+msgid "Header (coloured band)"
+msgstr "Kopfzeile (farbiges Band)"
+
+msgctxt "Pattern title"
+msgid "Home: welcome"
+msgstr "Startseite: Begrüßung"
+
+msgctxt "Pattern description"
+msgid "The restaurant's name line, a big headline, the \"open now\" badge and the buttons (menu, reserve, order online; each can be deleted or changed, reserve and order take their links from MenuDash → Restaurant), with a smiling drawing beside it."
+msgstr "Name des Restaurants, große Überschrift, der Hinweis „Jetzt geöffnet“ und die Knöpfe (Speisekarte, Reservieren, Online bestellen; jeder lässt sich löschen oder ändern, Reservieren und Online bestellen nehmen ihre Links aus MenuDash → Restaurant), daneben eine lächelnde Zeichnung."
+
+msgctxt "Pattern title"
+msgid "Opening hours"
+msgstr "Öffnungszeiten"
+
+msgctxt "Pattern description"
+msgid "The opening hours from MenuDash → Hours & holidays."
+msgstr "Die Öffnungszeiten aus MenuDash → Hours & holidays."
+
+msgctxt "Pattern title"
+msgid "Legal notice"
+msgstr "Impressum"
+
+msgctxt "Pattern description"
+msgid "Who runs the website (from MenuDash → Restaurant), your company number and who made the website. For a page \"Legal notice\"."
+msgstr "Wer die Website betreibt (aus MenuDash → Restaurant), Ihre Firmennummer und wer die Website gemacht hat. Für eine Seite «Impressum»."
+
+msgctxt "Pattern title"
+msgid "Home: our recommendations"
+msgstr "Startseite: Unsere Empfehlungen"
+
+msgctxt "Pattern description"
+msgid "Recommended dishes from the MenuDash menu, with their photos: the ones marked Recommended, or the ones chosen in the block's sidebar."
+msgstr "Empfohlene Gerichte aus der MenuDash-Speisekarte, mit Fotos: die als Empfohlen markierten oder die in der Seitenleiste des Blocks gewählten."
+
+msgctxt "Pattern title"
+msgid "Today's specials"
+msgstr "Heute empfehlen wir"
+
+msgctxt "Pattern description"
+msgid "Today's specials from MenuDash (the second, short CSV), e.g. at the top of the home page."
+msgstr "Die Tagesempfehlungen aus MenuDash (die zweite, kurze CSV), z. B. oben auf der Startseite."
+
+msgctxt "Pattern title"
+msgid "Home: what guests say"
+msgstr "Startseite: Das sagen andere"
+
+msgctxt "Pattern description"
+msgid "One quote from a guest, a review or an article, with its source; on a coloured band."
+msgstr "Ein Zitat von einem Gast, aus einer Bewertung oder einem Artikel, mit Quelle; auf einem farbigen Band."
+
+msgctxt "Pattern title"
+msgid "Home: visit us / delivery (with map)"
+msgstr "Startseite: Besuchen Sie uns / Liefern lassen (mit Karte)"
+
+msgctxt "Pattern description"
+msgid "Two ways to your food: come by (address, phone, getting here, directions) or order online (ordering times with \"order now\"), with the map below. Everything comes from MenuDash → Restaurant; without an order link the delivery column goes."
+msgstr "Zwei Wege zum Essen: vorbeikommen (Adresse, Telefon, Anreise, Route) oder online bestellen (Bestellzeiten mit „Jetzt bestellbar“), darunter die Karte. Alles kommt aus MenuDash → Restaurant; ohne Bestell-Link fällt die Spalte „Liefern lassen“ weg."

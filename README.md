@@ -24,13 +24,15 @@ On phones a bar at the bottom offers **Call · Directions · Menu**. The menu pa
 
 ## Install
 
-1. Install and activate **MenuDash** 2.4 or later first (see its [releases](https://github.com/yingshiuan/menudash/releases); 2.1 works too, but then the recommendations can't be chosen or grouped, and the menu keeps the theme's fonts when you change them in Styles only from 2.4). The theme works with MenuDash alone. The sections with the restaurant's address, opening hours, "open now" badge, holiday notice and contact buttons need the **MenuDash Restaurant** add-on, the specials and lunch-menu sections **MenuDash Specials** (1.1 for the lunch menu), and the gift card page **MenuDash Gift Cards** (see [MenuDash → Add-ons](https://github.com/yingshiuan/menudash#add-ons)). Without an add-on its parts simply stay empty.
+1. Install and activate **MenuDash** 2.4 or later first (see its [releases](https://github.com/yingshiuan/menudash/releases); 2.1 works too, but then the recommendations can't be chosen or grouped, and the menu keeps the theme's fonts when you change them in Styles only from 2.4). The theme works with MenuDash alone. The sections with the restaurant's address, opening hours, "open now" badge, holiday notice and contact buttons need the **MenuDash Restaurant** add-on, the specials and lunch-menu sections **MenuDash Specials** (1.1 for the lunch menu), and the gift card page **MenuDash Gift Cards** (see [MenuDash → Add-ons](https://github.com/yingshiuan/menudash#add-ons)). Without an add-on its parts simply stay empty. Installed the theme first? While MenuDash is missing, the Dashboard, Themes and Plugins screens show an **Install and activate MenuDash** button (from 1.10.0): it installs the latest release from GitHub, and the theme then makes the Menu page by itself. The paid add-ons are installed by hand. **Appearance → Plugins & Layout** shows MenuDash and each add-on (active, installed or missing, with a button), and brings back the default layout: a new Home page with the theme's sections (the old one stays under Pages), the Menu page, and the header, footer and templates as the theme made them (changes made in the Editor go to the bin).
 2. Download `menudash-theme.zip` from this repository's [releases](https://github.com/yingshiuan/menudash-theme/releases), then *Appearance → Themes → Add New Theme → Upload Theme*, and activate it.
 3. On activation the theme makes a **Home** page from its sections and sets it as the front page (a site with a front page already keeps it; the sections are then in the block inserter under *Restaurant (MenuDash)*), and a **Menu** page (*Speisekarte* on a German site) with the menu, unless a page with `[menudash]` exists already.
 4. Upload your menu, and with MenuDash Restaurant fill in **MenuDash → Restaurant** (address, phone, delivery …) and **MenuDash → Hours & holidays**.
 5. Add your logo under *Appearance → Editor* (the header shows the site title until then), and build the top menu under *Appearance → Editor → Navigation*.
 
 Requires WordPress 6.5+ and PHP 7.4+.
+
+<img src="docs/screenshot-plugins-layout.png" alt="Appearance → Plugins & Layout: MenuDash and its add-ons, the default layout, and where to change what" width="820">
 
 ## Editing
 
