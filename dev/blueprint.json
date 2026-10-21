@@ -4,6 +4,7 @@
 	"preferredVersions": { "php": "8.3", "wp": "latest" },
 	"login": true,
 	"steps": [
+		{ "step": "defineWpConfigConsts", "consts": { "WP_DEVELOPMENT_MODE": "theme" } },
 		{ "step": "setSiteOptions", "options": { "blogname": "Sample Kitchen", "blogdescription": "Home cooking since 2024", "permalink_structure": "/%postname%/" } },
 		{ "step": "activatePlugin", "pluginPath": "menudash/menudash.php" },
 		{ "step": "activateTheme", "themeFolderName": "menudash-theme" },

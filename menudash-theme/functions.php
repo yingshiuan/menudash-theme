@@ -151,18 +151,33 @@ function mdt_country() {
 
 /**
  * A page with the menu ([menudash]) gets the wide template by itself, so the menu has room
- * for its two columns even when nobody picked a template for the page.
+ * for its two columns even when nobody picked a template for the page. A page with another
+ * MenuDash part (gift card, shop, contact, opening hours …) gets the wide page without the
+ * specials, so it is as wide as the menu. Pages of plain text keep the narrow, easy-to-read page.
  */
 add_filter(
 	'template_include',
 	function ( $template ) {
-		if ( is_page() && has_shortcode( (string) get_post_field( 'post_content', get_queried_object_id() ), 'menudash' ) && ! get_page_template_slug() ) {
-			$wide = locate_block_template( get_theme_file_path( 'templates/page-wide.html' ), 'page-wide', array( 'page-wide' ) );
-			if ( $wide ) {
-				return $wide;
+		if ( ! is_page() || get_page_template_slug() ) {
+			return $template;
+		}
+		$content = (string) get_post_field( 'post_content', get_queried_object_id() );
+		// A page made of a pattern (<!-- wp:pattern {"slug":…} /-->): what the pattern holds counts.
+		if ( preg_match_all( '/<!-- wp:pattern \{"slug":"([^"]+)"\}/', $content, $refs ) ) {
+			foreach ( $refs[1] as $slug ) {
+				$pattern  = WP_Block_Patterns_Registry::get_instance()->get_registered( $slug );
+				$content .= $pattern ? $pattern['content'] : '';
 			}
 		}
-		return $template;
+		if ( has_shortcode( $content, 'menudash' ) ) {
+			$slug = 'page-wide';
+		} elseif ( preg_match( '/<!-- wp:menudash\/|\[menudash_/', $content ) ) {
+			$slug = 'page-wide-plain';
+		} else {
+			return $template;
+		}
+		$wide = locate_block_template( get_theme_file_path( "templates/$slug.html" ), $slug, array( $slug ) );
+		return $wide ? $wide : $template;
 	}
 );
 

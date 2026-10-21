@@ -7,6 +7,7 @@
 	},
 	"login": true,
 	"steps": [
+		{ "step": "defineWpConfigConsts", "consts": { "WP_DEVELOPMENT_MODE": "theme" } },
 		{
 			"step": "setSiteLanguage",
 			"language": "de_DE"

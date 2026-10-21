@@ -322,6 +322,13 @@
 			"postTypes": [
 				"page"
 			]
+		},
+		{
+			"name": "page-wide-plain",
+			"title": "Wide page (gift card, shop, visit us)",
+			"postTypes": [
+				"page"
+			]
 		}
 	]
 }

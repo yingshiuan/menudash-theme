@@ -823,3 +823,37 @@ msgstr "Startseite: Besuchen Sie uns / Liefern lassen (mit Karte)"
 msgctxt "Pattern description"
 msgid "Two ways to your food: come by (address, phone, getting here, directions) or order online (ordering times with \"order now\"), with the map below. Everything comes from MenuDash → Restaurant; without an order link the delivery column goes."
 msgstr "Zwei Wege zum Essen: vorbeikommen (Adresse, Telefon, Anreise, Route) oder online bestellen (Bestellzeiten mit „Jetzt bestellbar“), darunter die Karte. Alles kommt aus MenuDash → Restaurant; ohne Bestell-Link fällt die Spalte „Liefern lassen“ weg."
+
+msgid "Error 404"
+msgstr "Fehler 404"
+
+msgid "This page is not on the menu"
+msgstr "Diese Seite steht nicht auf der Karte"
+
+msgid "Maybe the link is old, or the page has moved. Carry on here:"
+msgstr "Vielleicht ist der Link alt, oder die Seite ist umgezogen. Hier geht es weiter:"
+
+msgctxt "Pattern description"
+msgid "The 404 page: a big \"404\" with the smiling drawing as the zero, a short note and buttons to the menu and the home page."
+msgstr "Die 404-Seite: eine große „404“ mit der lächelnden Zeichnung als Null, ein kurzer Hinweis und Knöpfe zur Speisekarte und zur Startseite."
+
+msgctxt "Custom template name"
+msgid "Wide page (gift card, shop, visit us)"
+msgstr "Breite Seite (Gutschein, Shop, Besuchen Sie uns)"
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Call · %s"
+msgstr "Anrufen · %s"
+
+msgid "Send an e-mail"
+msgstr "E-Mail schreiben"
+
+msgctxt "Pattern title"
+msgid "Visit us page with the map"
+msgstr "Seite „Besuchen Sie uns“ mit Karte"
+
+msgctxt "Pattern description"
+msgid "A whole \"Come and see us\" page: \"Open now\", the address (opens Google Maps), getting here, the Directions, Call and E-mail buttons and the opening hours, with the Google map below. Everything comes from MenuDash → Restaurant and Hours & holidays."
+msgstr "Eine ganze Seite „Besuchen Sie uns“: „Jetzt geöffnet“, die Adresse (öffnet Google Maps), Anreise, die Knöpfe Route, Anrufen und E-Mail und die Öffnungszeiten, darunter die Google-Karte. Alles kommt aus MenuDash → Restaurant und Öffnungszeiten & Ferien."

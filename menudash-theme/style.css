@@ -2,7 +2,7 @@
 Theme Name: MenuDash Theme
 Theme URI: https://github.com/yingshiuan/menudash-theme
 Description: A restaurant website theme made for the MenuDash plugin: the menu, today's specials, opening hours, holidays, gift cards and your restaurant's details come from MenuDash, and the theme shows them in a warm, simple design. Home page sections, header and footer are edited in Appearance → Editor; colours and fonts under Styles. English and German included.
-Version: 1.10.0
+Version: 1.11.0
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
@@ -194,7 +194,7 @@ header + .mdt-specials { margin-block-start: 0; }
 .mdt-hours tr:last-child td, .mdt-table tr:last-child td { border-bottom: 0; }
 .mdt-hours td:last-child, .mdt-table td:last-child { padding-left: 1em; text-align: right; font-variant-numeric: tabular-nums; }
 .mdt-table td:first-child { font-weight: 700; }
-.is-style-mdt-on-cream .mdt-hours td, .mdt-delivery .mdt-table td, .is-style-mdt-on-cream .mdt-table td { border-bottom-color: rgba(43, 29, 26, .15); }
+.is-style-mdt-on-cream .mdt-hours td, .wp-block-post-content .mdt-hours td, .mdt-delivery .mdt-table td, .is-style-mdt-on-cream .mdt-table td { border-bottom-color: rgba(43, 29, 26, .15); }
 
 /* ---- Map (Visit us, location page) ------------------------------------ */
 .mdt-map {
@@ -262,8 +262,12 @@ header + .mdt-specials { margin-block-start: 0; }
 	.mdt-swipe .mdt-picks > .wp-block-group { flex-basis: 44cqw; width: 44cqw; }
 }
 
+/* ---- Wide page (gift card, shop, visit us): a group inside with its own narrower width (the
+   Visit us page has one of 960 px) uses the page's width, so it lines up with the title. */
+.mdt-wide-page .wp-block-post-content > .wp-block-group.is-layout-constrained > :not(.alignleft):not(.alignright):not(.alignfull) { max-width: none; margin-left: 0 !important; margin-right: 0 !important; }
+
 /* ---- Gift card page: MenuDash's gift card form ([menudash_giftcard]) at the wide size, like the menu. */
-.wp-block-post-content > .menudash-giftcard { max-width: var(--wp--style--global--wide-size); padding-left: 0; padding-right: 0; background: transparent; }
+.wp-block-post-content > .menudash-giftcard, .wp-block-post-content > .wp-block-group > .menudash-giftcard { max-width: var(--wp--style--global--wide-size); padding-left: 0; padding-right: 0; background: transparent; }
 /* The total in the amount buttons' font, so "CHF 50.–" has the same dash in both. */
 .menudash-giftcard .mdash-gc-total { font-family: var(--wp--preset--font-family--display); font-size: 1.25rem; font-weight: 800; }
 
@@ -301,6 +305,15 @@ h1, h2 { overflow-wrap: break-word; text-wrap: balance; }
 .mdt-hero-bowl { aspect-ratio: 1; width: 100%; max-width: 380px; margin: 0 auto; background: var(--wp--preset--color--primary); -webkit-mask: url(assets/img/smile.svg) center / contain no-repeat; mask: url(assets/img/smile.svg) center / contain no-repeat; }
 /* On a phone a small drawing, so the recommended dishes come up sooner. */
 @media (max-width: 781px) { .mdt-hero-bowl { max-width: 150px; } }
+
+/* ---- 404: "404" in the display font, the smiling drawing as the zero ---- */
+.mdt-404-num {
+	display: flex; align-items: center; justify-content: center; gap: .04em; margin: 0;
+	font-family: var(--wp--preset--font-family--display); font-weight: 800; line-height: 1;
+	font-size: clamp(6rem, 16vw, 11rem); color: var(--wp--preset--color--primary);
+}
+.mdt-404-zero { display: block; width: .82em; height: .82em; background: currentColor; -webkit-mask: url(assets/img/smile.svg) center / contain no-repeat; mask: url(assets/img/smile.svg) center / contain no-repeat; }
+@media (max-width: 781px) { .mdt-404 { text-align: center; } .mdt-404 .wp-block-buttons { justify-content: center; } .mdt-404-num { font-size: 6rem; } }
 /* The small smile above "Visit us". */
 .mdt-visit-bowl { width: 96px; aspect-ratio: 1; background: var(--wp--preset--color--primary); -webkit-mask: url(assets/img/smile.svg) center / contain no-repeat; mask: url(assets/img/smile.svg) center / contain no-repeat; }
 

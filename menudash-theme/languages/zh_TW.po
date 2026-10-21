@@ -823,3 +823,37 @@ msgstr "首頁：歡迎來店 / 外送（附地圖）"
 msgctxt "Pattern description"
 msgid "Two ways to your food: come by (address, phone, getting here, directions) or order online (ordering times with \"order now\"), with the map below. Everything comes from MenuDash → Restaurant; without an order link the delivery column goes."
 msgstr "兩種享用方式：來店（地址、電話、交通、路線）或線上訂餐（訂餐時間及「現可訂餐」），下方附地圖。全部來自 MenuDash → Restaurant；沒有訂餐連結時，外送欄位不會顯示。"
+
+msgid "Error 404"
+msgstr "錯誤 404"
+
+msgid "This page is not on the menu"
+msgstr "這一頁不在菜單上"
+
+msgid "Maybe the link is old, or the page has moved. Carry on here:"
+msgstr "可能連結已過期，或頁面已搬移。請從這裡繼續："
+
+msgctxt "Pattern description"
+msgid "The 404 page: a big \"404\" with the smiling drawing as the zero, a short note and buttons to the menu and the home page."
+msgstr "404 頁面：大大的「404」，以微笑插圖作為 0，附簡短說明及前往菜單和首頁的按鈕。"
+
+msgctxt "Custom template name"
+msgid "Wide page (gift card, shop, visit us)"
+msgstr "寬版頁面（禮券、商店、歡迎光臨）"
+
+msgid "Address"
+msgstr "地址"
+
+msgid "Call · %s"
+msgstr "致電 · %s"
+
+msgid "Send an e-mail"
+msgstr "寄電郵"
+
+msgctxt "Pattern title"
+msgid "Visit us page with the map"
+msgstr "「歡迎光臨」頁面（附地圖）"
+
+msgctxt "Pattern description"
+msgid "A whole \"Come and see us\" page: \"Open now\", the address (opens Google Maps), getting here, the Directions, Call and E-mail buttons and the opening hours, with the Google map below. Everything comes from MenuDash → Restaurant and Hours & holidays."
+msgstr "完整的「歡迎光臨」頁面：「營業中」、地址（開啟 Google 地圖）、交通、路線、致電及電郵按鈕和營業時間，下方附 Google 地圖。所有資料來自 MenuDash → 餐廳及營業時間與假期。"

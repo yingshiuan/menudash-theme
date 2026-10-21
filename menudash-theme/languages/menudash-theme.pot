@@ -851,3 +851,37 @@ msgstr ""
 msgctxt "Pattern description"
 msgid "Two ways to your food: come by (address, phone, getting here, directions) or order online (ordering times with \"order now\"), with the map below. Everything comes from MenuDash → Restaurant; without an order link the delivery column goes."
 msgstr ""
+
+msgid "Error 404"
+msgstr ""
+
+msgid "This page is not on the menu"
+msgstr ""
+
+msgid "Maybe the link is old, or the page has moved. Carry on here:"
+msgstr ""
+
+msgctxt "Pattern description"
+msgid "The 404 page: a big \"404\" with the smiling drawing as the zero, a short note and buttons to the menu and the home page."
+msgstr ""
+
+msgctxt "Custom template name"
+msgid "Wide page (gift card, shop, visit us)"
+msgstr ""
+
+msgid "Address"
+msgstr ""
+
+msgid "Call · %s"
+msgstr ""
+
+msgid "Send an e-mail"
+msgstr ""
+
+msgctxt "Pattern title"
+msgid "Visit us page with the map"
+msgstr ""
+
+msgctxt "Pattern description"
+msgid "A whole \"Come and see us\" page: \"Open now\", the address (opens Google Maps), getting here, the Directions, Call and E-mail buttons and the opening hours, with the Google map below. Everything comes from MenuDash → Restaurant and Hours & holidays."
+msgstr ""

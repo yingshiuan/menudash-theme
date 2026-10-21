@@ -22,6 +22,14 @@ MenuDash holds everything the restaurant keeps up to date: the menu, today's spe
 
 On phones a bar at the bottom offers **Call · Directions · Menu**. The menu page (any page with `[menudash]`) gets a wide layout by itself: the lunch menu (today, with the whole week one tap away) and today's specials above the menu, jump buttons with one language switch at the top, and a back-to-top button while reading the menu.
 
+Pages with another MenuDash part (gift card form, shop, opening hours, contact, a pattern made of them) get the same width as the menu by themselves, without the specials; pages of plain text, such as the legal notice, keep a narrower, easy-to-read column. A layout you pick for a page in the editor always wins (*Wide page (menu)*, *Wide page (gift card, shop, visit us)*).
+
+**Visit us page:** the pattern *Visit us page with the map* fills a whole page: "Open now", the address (a tap opens Google Maps), getting here, the buttons *Get directions*, *Call · your number* and *Send an e-mail* in one row, the opening hours with lines between the days, and the map. Everything comes from MenuDash → Restaurant and Hours & holidays.
+
+<img src="docs/screenshot-visit.png" alt="The visit us page: open now, address, getting here, the three buttons in one row, opening hours with lines, the map" width="720">
+
+**Not found (404):** a page that doesn't exist shows a big "404" with the theme's smile as the 0, "This page is not on the menu" and buttons to the menu and the home page.
+
 ## Install
 
 1. Install and activate **MenuDash** 2.4 or later first (see its [releases](https://github.com/yingshiuan/menudash/releases); 2.1 works too, but then the recommendations can't be chosen or grouped, and the menu keeps the theme's fonts when you change them in Styles only from 2.4). The theme works with MenuDash alone. The sections with the restaurant's address, opening hours, "open now" badge, holiday notice and contact buttons need the **MenuDash Restaurant** add-on, the specials and lunch-menu sections **MenuDash Specials** (1.1 for the lunch menu), and the gift card page **MenuDash Gift Cards** (see [MenuDash → Add-ons](https://github.com/yingshiuan/menudash#add-ons)). Without an add-on its parts simply stay empty. Installed the theme first? While MenuDash is missing, the Dashboard, Themes and Plugins screens show an **Install and activate MenuDash** button (from 1.10.0): it installs the latest release from GitHub, and the theme then makes the Menu page by itself. The paid add-ons are installed by hand. **Appearance → Plugins & Layout** shows MenuDash and each add-on (active, installed or missing, with a button), and brings back the default layout: a new Home page with the theme's sections (the old one stays under Pages), the Menu page, and the header, footer and templates as the theme made them (changes made in the Editor go to the bin).
