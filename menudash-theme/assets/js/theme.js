@@ -114,8 +114,30 @@
     });
   }
 
+  /* ---------- Phone action bar: away while reading, back on the way up ----------
+     Scrolling down (reading the menu) slides the bar out of sight; scrolling up, or reaching
+     the top or the end of the page, brings it back. When it has moved, a "resize" lets
+     MenuDash put its list bar and back-to-top button where the bar is (or isn't). */
+  function hideOnScroll(sel) {
+    var bar = document.querySelector(sel);
+    if (!bar) return;
+    var last = scrollY, busy = false;
+    function update() {
+      busy = false;
+      var y = scrollY, moved = y - last;
+      if (Math.abs(moved) < 8) return; // Small jitters (a finger resting) change nothing.
+      var end = innerHeight + y >= document.documentElement.scrollHeight - 60;
+      var hide = moved > 0 && y > 120 && !end;
+      if (hide !== bar.classList.contains("is-away")) bar.classList.toggle("is-away", hide);
+      last = y;
+    }
+    addEventListener("scroll", function () { if (!busy) { busy = true; requestAnimationFrame(update); } }, { passive: true });
+    bar.addEventListener("transitionend", function (e) { if (e.target === bar && e.propertyName === "transform") dispatchEvent(new Event("resize")); });
+    bar.addEventListener("focusin", function () { bar.classList.remove("is-away"); }); // Keyboard users always reach it.
+  }
+
   function start() {
-    makeTabs(); placeMenu(); mapsOnClick();
+    makeTabs(); placeMenu(); mapsOnClick(); hideOnScroll(".mdt-actionbar");
     // Measured again right before opening: the page may have scrolled.
     document.addEventListener("click", function (e) {
       if (e.target.closest && e.target.closest(".wp-block-navigation__responsive-container-open")) placeMenu();

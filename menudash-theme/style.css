@@ -2,7 +2,7 @@
 Theme Name: MenuDash Theme
 Theme URI: https://github.com/yingshiuan/menudash-theme
 Description: A restaurant website theme made for the MenuDash plugin: the menu, today's specials, opening hours, holidays, gift cards and your restaurant's details come from MenuDash, and the theme shows them in a warm, simple design. Home page sections, header and footer are edited in Appearance → Editor; colours and fonts under Styles. English and German included.
-Version: 1.13.0
+Version: 1.14.0
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
@@ -274,22 +274,103 @@ header + .mdt-specials { margin-block-start: 0; }
 /* The total in the amount buttons' font, so "CHF 50.–" has the same dash in both. */
 .menudash-giftcard .mdash-gc-total { font-family: var(--wp--preset--font-family--display); font-size: 1.25rem; font-weight: 800; }
 
-/* ---- Phone action bar: Call · Directions · Menu ------------------------ */
+/* ---- Phone action bar: Call · Directions · Menu ------------------------
+   Floating frosted glass, like the iPhone's own bars (iOS "Liquid Glass"): a pill above
+   the page that lets the page show through, blurred, with a bright edge and a soft shadow.
+   Icons and words in the primary colour; the current page (on the menu: Menu) sits in a
+   bubble tinted with it. */
 .mdt-actionbar { display: none; }
 @media (max-width: 781px) {
 	.mdt-actionbar {
-		position: fixed; inset: auto 0 0; z-index: 50; display: grid; grid-template-columns: repeat(3, 1fr);
-		padding: 6px 8px calc(6px + env(safe-area-inset-bottom)); background: var(--wp--preset--color--primary);
-		box-shadow: 0 -6px 20px rgba(43, 29, 26, .18);
+		position: fixed; left: 12px; right: 12px; bottom: calc(10px + env(safe-area-inset-bottom)); z-index: 50;
+		display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; max-width: 420px; margin: 0 auto; padding: 5px;
+		border-radius: 999px; border: 1px solid rgba(255, 255, 255, .55);
+		background: linear-gradient(180deg, rgba(255, 255, 255, .66), rgba(255, 253, 250, .5));
+		-webkit-backdrop-filter: blur(22px) saturate(180%); backdrop-filter: blur(22px) saturate(180%);
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, .85),       /* light on the top edge */
+			inset 0 -1px 0 rgba(35, 38, 43, .06),         /* and a shade at the bottom */
+			0 10px 30px rgba(35, 38, 43, .20), 0 2px 6px rgba(35, 38, 43, .10);
 	}
 	.mdt-actionbar a {
-		display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0;
-		color: var(--wp--preset--color--cream); font-size: .75rem; font-weight: 700; text-decoration: none;
+		display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 7px 0 6px; border-radius: 999px;
+		color: var(--wp--preset--color--primary); font-size: .75rem; font-weight: 700; line-height: 1.2; text-decoration: none;
+		transition: background-color .2s ease, transform .2s ease;
 	}
 	.mdt-actionbar svg { width: 22px; height: 22px; fill: currentColor; }
-	.mdt-actionbar a:active { opacity: .7; }
+	.mdt-actionbar a.is-current { background: rgba(36, 63, 102, .12); background: color-mix(in srgb, var(--wp--preset--color--primary) 12%, transparent); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6); }
+	.mdt-actionbar a:active { background: rgba(36, 63, 102, .16); background: color-mix(in srgb, var(--wp--preset--color--primary) 16%, transparent); transform: scale(.96); }
+	/* Away while scrolling down (theme script), back on the way up. */
+	.mdt-actionbar { transition: transform .3s ease, opacity .3s ease; }
+	.mdt-actionbar.is-away { transform: translateY(calc(100% + 16px + env(safe-area-inset-bottom))); opacity: 0; pointer-events: none; }
+	.mdt-actionbar a:focus-visible { outline: 2px solid var(--wp--preset--color--primary); outline-offset: -2px; }
+	/* Without the blur (older browsers) the glass would be hard to read: make it solid. */
+	@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+		.mdt-actionbar { background: rgba(255, 253, 250, .97); }
+	}
 	/* Room at the end of the page, so the bar never covers the footer. */
-	body { padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
+	body { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+}
+@media (max-width: 781px) and (prefers-reduced-transparency: reduce) {
+	.mdt-actionbar { background: rgba(255, 253, 250, .97); -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+
+/* ---- MenuDash's sticky bar (diet filters + categories) in the same frosted glass as the
+   phone action bar, but as a full-width block: the menu shows through it, blurred, a little
+   whiter than the page, with a soft shadow under it. */
+.menudash .mdash-bar { background: transparent; border-bottom: 0; box-shadow: none; }
+/* The glass itself, behind the bar's buttons and across the whole window: on a wide screen the
+   bar keeps the menu's width, but its glass doesn't stop there. It shows only while the bar is
+   held at the top over the scrolling menu (MenuDash marks it mdash-stuck); before that the bar
+   sits flat on the page. */
+.menudash .mdash-bar::before {
+	content: ""; position: absolute; z-index: -1; top: 0; bottom: 0; left: calc(50% - 50vw); right: calc(50% - 50vw); pointer-events: none;
+	opacity: 0; transition: opacity .25s ease;
+	background: linear-gradient(180deg, rgba(255, 255, 255, .78), rgba(255, 253, 250, .6));
+	-webkit-backdrop-filter: blur(22px) saturate(180%); backdrop-filter: blur(22px) saturate(180%);
+	border-bottom: 1px solid rgba(35, 38, 43, .08);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9), inset 0 -1px 0 rgba(255, 255, 255, .7), 0 10px 26px -12px rgba(35, 38, 43, .3);
+}
+/* The glass reaches past the menu's sides; clip (not hidden) keeps the page from scrolling
+   sideways without stopping the bar from sticking. */
+.menudash .mdash-bar.mdash-stuck::before { opacity: 1; }
+html, body { overflow-x: clip; }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+	.menudash .mdash-bar::before { background: rgba(253, 251, 248, .98); }
+}
+@media (prefers-reduced-transparency: reduce) {
+	.menudash .mdash-bar::before { background: rgba(253, 251, 248, .98); -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+
+/* ---- MenuDash's + (the guest's list) in the same glass look as the phone action bar: a
+   light, see-through circle with a bright edge and a soft shadow. A dish on the list keeps
+   MenuDash's filled circle with the count. */
+.menudash .mdash-add:not(.mdash-in) {
+	border: 1px solid rgba(255, 255, 255, .6);
+	/* No backdrop blur here: on a menu of 100+ dishes that many blurred layers make scrolling
+	   heavy on older phones, and behind a + this small it hardly shows. */
+	background: linear-gradient(180deg, rgba(255, 255, 255, .82), rgba(255, 253, 250, .66));
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, .85), 0 3px 10px rgba(35, 38, 43, .2);
+}
+.menudash .mdash-add:not(.mdash-in):hover { background: rgba(255, 255, 255, .9); }
+@media (prefers-reduced-transparency: reduce) {
+	.menudash .mdash-add:not(.mdash-in) { background: rgba(255, 253, 250, .97); }
+}
+
+/* ---- MenuDash's back-to-top button in the same frosted glass, its arrow drawn bold in the
+   main colour (the thin text arrow is too faint on glass). */
+.mdash-totop {
+	display: grid; place-items: center;
+	border: 1px solid rgba(255, 255, 255, .6) !important;
+	background: linear-gradient(180deg, rgba(255, 255, 255, .72), rgba(255, 253, 250, .55)) !important; color: var(--wp--preset--color--primary) !important;
+	-webkit-backdrop-filter: blur(18px) saturate(180%); backdrop-filter: blur(18px) saturate(180%);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, .85), 0 6px 18px rgba(35, 38, 43, .22) !important;
+}
+.mdash-totop span { display: block; width: 22px; height: 22px; font-size: 0; background: currentColor;
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20V5M5.5 11.5 12 5l6.5 6.5'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20V5M5.5 11.5 12 5l6.5 6.5'/%3E%3C/svg%3E") center / contain no-repeat; }
+.mdash-totop[hidden] { display: none; }
+@media (prefers-reduced-transparency: reduce) {
+	.mdash-totop { background: rgba(255, 253, 250, .97) !important; -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
 
 /* Keep the page title of long German words from running off a phone. */
@@ -297,6 +378,7 @@ h1, h2 { overflow-wrap: break-word; text-wrap: balance; }
 
 @media (prefers-reduced-motion: reduce) {
 	html { scroll-behavior: auto; }
+	.mdt-actionbar { transition: none; }
 	.menudash-open.is-open::before { animation: none; }
 	.mdt-picks figure { transition: none; }
 }

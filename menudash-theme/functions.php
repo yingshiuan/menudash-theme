@@ -270,8 +270,9 @@ add_filter(
 );
 
 /**
- * On phones, a bar fixed to the bottom of every page: call, directions, menu. Hidden on
- * larger screens (style.css). On the menu page, "Menu" jumps to the menu itself.
+ * On phones, a bar floating at the bottom of every page: call, directions, menu, in frosted
+ * glass like the iPhone's own bars (style.css). Hidden on larger screens. On the menu page,
+ * "Menu" jumps to the menu itself and is marked as the current page.
  */
 add_action(
 	'wp_footer',
@@ -279,6 +280,7 @@ add_action(
 		$maps = function_exists( 'mdash_maps_url' ) ? mdash_maps_url( 'route' ) : '';
 		$tel  = function_exists( 'mdash_tel' ) ? mdash_tel( mdt_d( 'phone' ) ) : '';
 		$menu = mdt_menu_url();
+		$here = untrailingslashit( get_permalink() ) === untrailingslashit( $menu );
 		$icon = array(
 			'call'  => '<path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/>',
 			'route' => '<path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/>',
@@ -288,7 +290,7 @@ add_action(
 			array(
 				'' !== $tel ? array( 'tel:' . $tel, __( 'Call', 'menudash-theme' ), 'call' ) : null,
 				'' !== $maps ? array( $maps, __( 'Directions', 'menudash-theme' ), 'route' ) : null,
-				array( untrailingslashit( get_permalink() ) === untrailingslashit( $menu ) ? '#the-menu' : $menu, __( 'Menu', 'menudash-theme' ), 'menu' ),
+				array( $here ? '#the-menu' : $menu, __( 'Menu', 'menudash-theme' ), 'menu', $here ),
 			)
 		);
 		echo '<nav class="mdt-actionbar" aria-label="' . esc_attr__( 'Quick links', 'menudash-theme' ) . '">';
@@ -297,7 +299,7 @@ add_action(
 			printf(
 				'<a href="%1$s"%2$s><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">%3$s</svg><span>%4$s</span></a>',
 				esc_url( $i[0] ),
-				$ext, // phpcs:ignore -- fixed string
+				$ext . ( ! empty( $i[3] ) ? ' class="is-current" aria-current="page"' : '' ), // phpcs:ignore -- fixed strings
 				$icon[ $i[2] ], // phpcs:ignore -- fixed SVG path
 				esc_html( $i[1] )
 			);
