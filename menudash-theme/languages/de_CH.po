@@ -857,3 +857,42 @@ msgstr "Seite „Besuchen Sie uns“ mit Karte"
 msgctxt "Pattern description"
 msgid "A whole \"Come and see us\" page: \"Open now\", the address (opens Google Maps), getting here, the Directions, Call and E-mail buttons and the opening hours, with the Google map below. Everything comes from MenuDash → Restaurant and Hours & holidays."
 msgstr "Eine ganze Seite „Besuchen Sie uns“: „Jetzt geöffnet“, die Adresse (öffnet Google Maps), Anreise, die Knöpfe Route, Anrufen und E-Mail und die Öffnungszeiten, darunter die Google-Karte. Alles kommt aus MenuDash → Restaurant und Öffnungszeiten & Ferien."
+
+msgid "404 number"
+msgstr "404-Zahl"
+
+msgid "Show only when"
+msgstr "Nur zeigen, wenn"
+
+msgid "Always"
+msgstr "Immer"
+
+msgid "Guests see this block only then. The theme uses it where a part needs MenuDash Restaurant or a logo."
+msgstr "Gäste sehen diesen Block nur dann. Das Theme nutzt das, wo ein Teil MenuDash Restaurant oder ein Logo braucht."
+
+msgid "Shown only when:"
+msgstr "Nur sichtbar, wenn:"
+
+msgid "MenuDash Restaurant is active"
+msgstr "MenuDash Restaurant aktiv ist"
+
+msgid "MenuDash Restaurant is not installed"
+msgstr "MenuDash Restaurant nicht installiert ist"
+
+msgid "A logo is set"
+msgstr "ein Logo gesetzt ist"
+
+msgid "No logo is set"
+msgstr "kein Logo gesetzt ist"
+
+msgid "The 0"
+msgstr "Die 0"
+
+msgid "Site Icon (automatic)"
+msgstr "Website-Icon (automatisch)"
+
+msgid "The icon from MenuDash → Restaurant or Settings → General, drawn round; without one, the smile."
+msgstr "Das Icon aus MenuDash → Restaurant oder Einstellungen → Allgemein, rund; ohne Icon das Lächeln."
+
+msgid "Smile"
+msgstr "Lächeln"

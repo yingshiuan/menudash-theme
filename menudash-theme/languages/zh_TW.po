@@ -857,3 +857,42 @@ msgstr "「歡迎光臨」頁面（附地圖）"
 msgctxt "Pattern description"
 msgid "A whole \"Come and see us\" page: \"Open now\", the address (opens Google Maps), getting here, the Directions, Call and E-mail buttons and the opening hours, with the Google map below. Everything comes from MenuDash → Restaurant and Hours & holidays."
 msgstr "完整的「歡迎光臨」頁面：「營業中」、地址（開啟 Google 地圖）、交通、路線、致電及電郵按鈕和營業時間，下方附 Google 地圖。所有資料來自 MenuDash → 餐廳及營業時間與假期。"
+
+msgid "404 number"
+msgstr "404 數字"
+
+msgid "Show only when"
+msgstr "只在以下情況顯示"
+
+msgid "Always"
+msgstr "總是"
+
+msgid "Guests see this block only then. The theme uses it where a part needs MenuDash Restaurant or a logo."
+msgstr "訪客只在這種情況下看到此區塊。主題在需要 MenuDash Restaurant 或標誌的地方使用它。"
+
+msgid "Shown only when:"
+msgstr "只在以下情況顯示："
+
+msgid "MenuDash Restaurant is active"
+msgstr "MenuDash Restaurant 已啟用"
+
+msgid "MenuDash Restaurant is not installed"
+msgstr "未安裝 MenuDash Restaurant"
+
+msgid "A logo is set"
+msgstr "已設定標誌"
+
+msgid "No logo is set"
+msgstr "未設定標誌"
+
+msgid "The 0"
+msgstr "中間的 0"
+
+msgid "Site Icon (automatic)"
+msgstr "網站圖示（自動）"
+
+msgid "The icon from MenuDash → Restaurant or Settings → General, drawn round; without one, the smile."
+msgstr "MenuDash → Restaurant 或 設定 → 一般 中的圖示，以圓形顯示；沒有圖示時用微笑插圖。"
+
+msgid "Smile"
+msgstr "微笑"

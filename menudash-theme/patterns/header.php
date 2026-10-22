@@ -23,11 +23,8 @@ foreach ( get_posts( array( 'post_type' => 'wp_navigation', 'numberposts' => 20,
 <div class="wp-block-group alignwide">
 <!-- wp:group {"style":{"spacing":{"blockGap":"0.35rem"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group">
-<?php if ( has_custom_logo() ) : ?>
-<!-- wp:site-logo {"width":132} /-->
-<?php else : ?>
-<!-- wp:site-title {"level":0,"style":{"typography":{"fontSize":"2rem","fontWeight":"800","lineHeight":"1"}},"fontFamily":"display"} /-->
-<?php endif; ?>
+<!-- wp:site-logo {"width":132,"mdtShow":"logo"} /-->
+<!-- wp:site-title {"mdtShow":"no-logo","level":0,"style":{"typography":{"fontSize":"2rem","fontWeight":"800","lineHeight":"1"}},"fontFamily":"display"} /-->
 <!-- wp:site-tagline {"className":"mdt-tagline","style":{"typography":{"fontSize":"0.6875rem","fontWeight":"700","textTransform":"uppercase","lineHeight":"1"}}} /-->
 </div>
 <!-- /wp:group -->

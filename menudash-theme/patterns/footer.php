@@ -9,8 +9,8 @@
 ?>
 <!-- wp:group {"align":"full","className":"mdt-band","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|40"}},"elements":{"link":{"color":{"text":"var:preset|color|cream"}},"heading":{"color":{"text":"var:preset|color|cream"}}}},"backgroundColor":"primary","textColor":"cream","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull mdt-band has-cream-color has-primary-background-color has-text-color has-background has-link-color" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--40)">
-<?php if ( mdt_has_restaurant() ) : // Address, getting here and hours: MenuDash Restaurant. ?>
-<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|50"}}}} -->
+<?php // With MenuDash Restaurant: address, getting here and hours. Without it: the name, the tagline and the way to the menu. Each set is marked "Show only when". ?>
+<!-- wp:columns {"mdtShow":"restaurant","align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|50"}}}} -->
 <div class="wp-block-columns alignwide">
 <!-- wp:column -->
 <div class="wp-block-column">
@@ -35,8 +35,7 @@
 <!-- /wp:column -->
 </div>
 <!-- /wp:columns -->
-<?php else : // MenuDash alone: the name, the tagline and the way to the menu. ?>
-<!-- wp:columns {"align":"wide","verticalAlignment":"center","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|50"}}}} -->
+<!-- wp:columns {"mdtShow":"no-restaurant","align":"wide","verticalAlignment":"center","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|50"}}}} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-center">
 <!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center">
@@ -58,7 +57,6 @@
 <!-- /wp:column -->
 </div>
 <!-- /wp:columns -->
-<?php endif; ?>
 <!-- wp:separator {"align":"wide","style":{"color":{"background":"#ffffff40"}},"className":"is-style-wide"} -->
 <hr class="wp-block-separator alignwide has-text-color has-alpha-channel-opacity has-background is-style-wide" style="background-color:#ffffff40;color:#ffffff40"/>
 <!-- /wp:separator -->

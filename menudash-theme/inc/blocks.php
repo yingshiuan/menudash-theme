@@ -20,6 +20,8 @@
  *   menudash-theme/picks        the dishes marked Recommended in the menu, with photos; with
  *                               MenuDash 2.3 its block menudash/picks, which the pattern now uses
  *   menudash-theme/giftcard     the gift card teaser; only while gift cards can be ordered
+ *   menudash-theme/not-found    the big "404" of the 404 page, its 0 the Site Icon (or the smile,
+ *                               or an own picture: picture / pictureId in the block's sidebar)
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -40,6 +42,7 @@ function mdt_blocks() {
 		'picks'      => __( 'Recommended dishes', 'menudash-theme' ),
 		'giftcard'   => __( 'Gift card teaser', 'menudash-theme' ),
 		'addon'      => __( 'Needs MenuDash Restaurant', 'menudash-theme' ),
+		'not-found'  => __( '404 number', 'menudash-theme' ),
 	);
 }
 
@@ -53,6 +56,10 @@ add_action(
 			'directions' => array( 'first' => array( 'type' => 'boolean', 'default' => false ) ),
 			'social'     => array( 'variant' => array( 'type' => 'string', 'default' => 'icons' ) ),
 			'addon'      => array( 'part' => array( 'type' => 'string', 'default' => 'footer' ) ),
+			'not-found'  => array(
+				'picture'   => array( 'type' => 'string', 'default' => '' ),
+				'pictureId' => array( 'type' => 'number', 'default' => 0 ),
+			),
 			// A section of its own: full width in the editor too.
 			'giftcard'   => array( 'align' => array( 'type' => 'string', 'default' => 'full' ) ),
 		);
@@ -66,7 +73,7 @@ add_action(
 					'supports'        => 'giftcard' === $name ? array( 'html' => false, 'align' => array( 'full' ) ) : array( 'html' => false ),
 					'render_callback' => function ( $a ) use ( $name ) {
 						// Recommended dishes, gift cards and © work with MenuDash alone; the rest needs Restaurant.
-						$html = mdt_has_restaurant() || in_array( $name, array( 'picks', 'giftcard', 'legal', 'addon' ), true ) ? call_user_func( "mdt_block_$name", $a ) : '';
+						$html = mdt_has_restaurant() || in_array( $name, array( 'picks', 'giftcard', 'legal', 'addon', 'not-found' ), true ) ? call_user_func( 'mdt_block_' . str_replace( '-', '_', $name ), $a ) : '';
 						// Empty in the editor: say when it shows, instead of WordPress's grey "rendered as empty".
 						return '' === $html ? mdt_empty_note( $name ) : $html;
 					},
@@ -106,6 +113,23 @@ add_action(
 			array(
 				'names' => mdt_blocks(),
 				'hint'  => __( 'From MenuDash; change it there.', 'menudash-theme' ),
+				// "Show only when …" (mdt_show_conditions()) and the 404 number's picture.
+				'show'  => array(
+					'title'  => __( 'Show only when', 'menudash-theme' ),
+					'always' => __( 'Always', 'menudash-theme' ),
+					'help'   => __( 'Guests see this block only then. The theme uses it where a part needs MenuDash Restaurant or a logo.', 'menudash-theme' ),
+					'badge'  => __( 'Shown only when:', 'menudash-theme' ),
+					'when'   => mdt_show_conditions(),
+				),
+				'zero'  => array(
+					'title'  => __( 'The 0', 'menudash-theme' ),
+					'auto'   => __( 'Site Icon (automatic)', 'menudash-theme' ),
+					'autoTip' => __( 'The icon from MenuDash → Restaurant or Settings → General, drawn round; without one, the smile.', 'menudash-theme' ),
+					'smile'  => __( 'Smile', 'menudash-theme' ),
+					'own'    => __( 'Own picture', 'menudash-theme' ),
+					'choose' => __( 'Choose a picture', 'menudash-theme' ),
+					'other'  => __( 'Choose another picture', 'menudash-theme' ),
+				),
 				// The corner picture's panel on the header (mdt_mark()).
 				'mark'  => array(
 					'icon'    => has_site_icon() ? get_site_icon_url( 512 ) : '',
@@ -250,7 +274,8 @@ function mdt_bound_button( $key, $text, $outline = false, $label = '' ) {
 	if ( '' !== $label ) {
 		$map['text'] = array( 'source' => 'menudash/detail', 'args' => array( 'key' => $key, 'label' => $label ) );
 	}
-	$attrs = array( 'metadata' => array( 'name' => $text . ' (MenuDash)', 'bindings' => $map ) );
+	// Without MenuDash Restaurant the link has nothing to fill it: the button is left out.
+	$attrs = array( 'metadata' => array( 'name' => $text . ' (MenuDash)', 'bindings' => $map ), 'mdtShow' => 'restaurant' );
 	if ( $outline ) {
 		$attrs = array( 'className' => 'is-style-outline', 'style' => array( 'border' => array( 'width' => '2px' ) ), 'borderColor' => 'primary', 'textColor' => 'primary' ) + $attrs;
 		$a     = '<a class="wp-block-button__link has-primary-color has-text-color has-border-color has-primary-border-color wp-element-button" href="#" style="border-width:2px">';
@@ -278,6 +303,28 @@ function mdt_block_addon( $a ) {
 	);
 	$part = isset( $texts[ $a['part'] ] ) ? $a['part'] : 'footer';
 	return '<p class="mdt-addon-note">' . esc_html( $texts[ $part ] ) . ' <span>' . esc_html__( 'Only you see this note, in the editor.', 'menudash-theme' ) . '</span></p>';
+}
+
+/**
+ * The big "404": its 0 is the Site Icon drawn round (picture ''), the theme's smile (picture
+ * "smile", also without an icon) or an own picture (picture "image", pictureId).
+ */
+function mdt_block_not_found( $a ) {
+	$picture = isset( $a['picture'] ) ? (string) $a['picture'] : '';
+	$url     = '';
+	if ( 'image' === $picture && ! empty( $a['pictureId'] ) ) {
+		$url = (string) wp_get_attachment_image_url( (int) $a['pictureId'], 'medium' );
+	} elseif ( '' === $picture && has_site_icon() ) {
+		$url = get_site_icon_url( 512 );
+	}
+	$zero = new WP_HTML_Tag_Processor( '<span class="mdt-404-zero"></span>' );
+	if ( '' !== $url && $zero->next_tag() ) {
+		// Quoted, and the whole attribute escaped by the tag processor: a ")" in the address
+		// can't end the url() and add CSS of its own.
+		$zero->add_class( 'is-icon' );
+		$zero->set_attribute( 'style', '--mdt-404-icon:url("' . esc_url_raw( $url ) . '")' );
+	}
+	return '<p class="mdt-404-num" aria-hidden="true">4' . $zero->get_updated_html() . '4</p>';
 }
 
 /** "Come by" and "Visit us", the start of the home page's visit section. */
@@ -621,3 +668,69 @@ function mdt_block_giftcard() {
 		'<!-- wp:group {"align":"full","className":"mdt-gc-home","backgroundColor":"paper","layout":{"type":"constrained"}} --><div class="wp-block-group alignfull mdt-gc-home has-paper-background-color has-background"><!-- wp:columns {"verticalAlignment":"center","align":"wide"} --><div class="wp-block-columns alignwide are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","width":"55%"} --><div class="wp-block-column is-vertically-aligned-center" style="flex-basis:55%">' . $col1 . '</div><!-- /wp:column --><!-- wp:column {"verticalAlignment":"center","width":"45%"} --><div class="wp-block-column is-vertically-aligned-center" style="flex-basis:45%">' . $pic . '</div><!-- /wp:column --></div><!-- /wp:columns --></div><!-- /wp:group -->'
 	);
 }
+
+/*
+ * "Show only when …" on any block (Advanced, in the block's sidebar). Where a part depends on
+ * MenuDash Restaurant or on a logo, the theme's patterns hold both versions, each marked, and
+ * every page view shows the one that fits. The mark is stored in the block, so it survives
+ * saving a page or template in the editor; a PHP "if" in a pattern would be decided only once,
+ * when the editor first opened it. Several, separated by commas, must all be true.
+ */
+function mdt_show_conditions() {
+	return array(
+		'restaurant'    => __( 'MenuDash Restaurant is active', 'menudash-theme' ),
+		'no-restaurant' => __( 'MenuDash Restaurant is not installed', 'menudash-theme' ),
+		'logo'          => __( 'A logo is set', 'menudash-theme' ),
+		'no-logo'       => __( 'No logo is set', 'menudash-theme' ),
+	);
+}
+
+/** Whether a block marked "Show only when $show" shows now. */
+function mdt_show_ok( $show ) {
+	foreach ( array_filter( array_map( 'trim', explode( ',', (string) $show ) ) ) as $when ) {
+		$ok = array(
+			'restaurant'    => mdt_has_restaurant(),
+			'no-restaurant' => ! mdt_has_restaurant(),
+			'logo'          => has_custom_logo(),
+			'no-logo'       => ! has_custom_logo(),
+		);
+		if ( isset( $ok[ $when ] ) && ! $ok[ $when ] ) {
+			return false;
+		}
+	}
+	return true;
+}
+
+/**
+ * Whether this request is the editor's live preview of a block (the block-renderer REST
+ * route, only for people who can edit). Other REST requests, such as a page's rendered
+ * content, get what guests see.
+ */
+function mdt_is_block_preview() {
+	return defined( 'REST_REQUEST' ) && REST_REQUEST && ! empty( $GLOBALS['wp']->query_vars['rest_route'] )
+		&& 0 === strpos( (string) $GLOBALS['wp']->query_vars['rest_route'], '/wp/v2/block-renderer/' )
+		&& current_user_can( 'edit_posts' );
+}
+
+// Known to every block, so the editor keeps it and live previews accept it.
+add_filter(
+	'register_block_type_args',
+	function ( $args ) {
+		$args['attributes'] = ( isset( $args['attributes'] ) && is_array( $args['attributes'] ) ? $args['attributes'] : array() ) + array( 'mdtShow' => array( 'type' => 'string', 'default' => '' ) );
+		return $args;
+	}
+);
+
+add_filter(
+	'render_block',
+	function ( $content, $block ) {
+		$show = isset( $block['attrs']['mdtShow'] ) && is_string( $block['attrs']['mdtShow'] ) ? $block['attrs']['mdtShow'] : '';
+		// The editor's live previews show both versions; the editor marks which is which.
+		if ( '' === $show || mdt_is_block_preview() ) {
+			return $content;
+		}
+		return mdt_show_ok( $show ) ? $content : '';
+	},
+	5,
+	2
+);

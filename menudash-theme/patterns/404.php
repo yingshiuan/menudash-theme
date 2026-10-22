@@ -5,15 +5,12 @@
  * Inserter: no
  * Description: The 404 page: a big "404" with the restaurant's icon as the zero (Settings → General → Site Icon, drawn round; the smiling drawing without one), a short note and buttons to the menu and the home page.
  */
-$mdt_icon = has_site_icon() ? get_site_icon_url( 512 ) : '';
 ?>
 <!-- wp:columns {"verticalAlignment":"center","align":"wide","className":"mdt-404","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|50"}}}} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-center mdt-404">
 <!-- wp:column {"verticalAlignment":"center","width":"40%"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:40%">
-<!-- wp:html -->
-<p class="mdt-404-num" aria-hidden="true">4<?php if ( $mdt_icon ) : ?><span class="mdt-404-zero is-icon" style="--mdt-404-icon:url(<?php echo esc_url( $mdt_icon ); ?>)"></span><?php else : ?><span class="mdt-404-zero"></span><?php endif; ?>4</p>
-<!-- /wp:html -->
+<!-- wp:menudash-theme/not-found /-->
 </div>
 <!-- /wp:column -->
 <!-- wp:column {"verticalAlignment":"center","width":"60%"} -->

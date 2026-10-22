@@ -885,3 +885,42 @@ msgstr ""
 msgctxt "Pattern description"
 msgid "A whole \"Come and see us\" page: \"Open now\", the address (opens Google Maps), getting here, the Directions, Call and E-mail buttons and the opening hours, with the Google map below. Everything comes from MenuDash → Restaurant and Hours & holidays."
 msgstr ""
+
+msgid "404 number"
+msgstr ""
+
+msgid "Show only when"
+msgstr ""
+
+msgid "Always"
+msgstr ""
+
+msgid "Guests see this block only then. The theme uses it where a part needs MenuDash Restaurant or a logo."
+msgstr ""
+
+msgid "Shown only when:"
+msgstr ""
+
+msgid "MenuDash Restaurant is active"
+msgstr ""
+
+msgid "MenuDash Restaurant is not installed"
+msgstr ""
+
+msgid "A logo is set"
+msgstr ""
+
+msgid "No logo is set"
+msgstr ""
+
+msgid "The 0"
+msgstr ""
+
+msgid "Site Icon (automatic)"
+msgstr ""
+
+msgid "The icon from MenuDash → Restaurant or Settings → General, drawn round; without one, the smile."
+msgstr ""
+
+msgid "Smile"
+msgstr ""

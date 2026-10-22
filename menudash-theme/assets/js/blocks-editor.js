@@ -1,3 +1,45 @@
+/* "Show only when …" (inc/blocks.php, mdt_show_conditions()): a setting under Advanced for
+   every block. A marked block gets a dashed outline and a label in the editor, so it is
+   clear why guests may not see it; the editor itself always shows it. First in this file:
+   the attribute must be added before the blocks below are registered. */
+(function (hooks, compose, element, blockEditor, components, data) {
+  "use strict";
+  if (!data || !data.show) return;
+  var el = element.createElement, t = data.show;
+  var options = [{ label: t.always, value: "" }].concat(Object.keys(t.when).map(function (k) { return { label: t.when[k], value: k }; }));
+  function label(show) {
+    return show.split(",").map(function (k) { k = k.trim(); return t.when[k] || k; }).join(" + ");
+  }
+  hooks.addFilter("blocks.registerBlockType", "menudash-theme/show-attribute", function (settings) {
+    settings.attributes = Object.assign({}, settings.attributes, { mdtShow: { type: "string", default: "" } });
+    return settings;
+  });
+  hooks.addFilter("editor.BlockEdit", "menudash-theme/show-setting", compose.createHigherOrderComponent(function (BlockEdit) {
+    return function (props) {
+      var value = props.attributes.mdtShow || "";
+      // A combination the list doesn't have (from a pattern) stays selectable as it is.
+      var opts = value && !t.when[value] ? options.concat([{ label: label(value), value: value }]) : options;
+      return el(element.Fragment, null,
+        el(BlockEdit, props),
+        props.isSelected && el(blockEditor.InspectorAdvancedControls, null,
+          el(components.SelectControl, {
+            label: t.title, help: t.help, value: value, options: opts,
+            onChange: function (v) { props.setAttributes({ mdtShow: v }); }
+          })));
+    };
+  }, "withMdtShow"));
+  hooks.addFilter("editor.BlockListBlock", "menudash-theme/show-label", compose.createHigherOrderComponent(function (BlockListBlock) {
+    return function (props) {
+      var show = props.attributes && props.attributes.mdtShow;
+      if (!show) return el(BlockListBlock, props);
+      return el(BlockListBlock, Object.assign({}, props, {
+        className: [props.className, "mdt-show-when"].filter(Boolean).join(" "),
+        wrapperProps: Object.assign({}, props.wrapperProps, { "data-mdt-show": t.badge + " " + label(show) })
+      }));
+    };
+  }, "withMdtShowLabel"));
+})(window.wp.hooks, window.wp.compose, window.wp.element, window.wp.blockEditor, window.wp.components, window.mdtBlocks);
+
 /* The theme's MenuDash blocks in the editor (inc/blocks.php): each shows a live preview
    drawn by the server from what is entered in MenuDash, and saves nothing but its name, so
    the page never keeps an old phone number or address. Names and the hint come translated
@@ -23,6 +65,30 @@
     // The gift card teaser is a section of its own, full width. (Only this block gets an
     // attributes list here; the others keep theirs from PHP.)
     if (short === "giftcard") settings.attributes = { align: { type: "string", default: "full" } };
+    // The 404 number: what its 0 is, in the sidebar.
+    if (short === "not-found") {
+      settings.icon = "warning";
+      settings.attributes = { picture: { type: "string", default: "" }, pictureId: { type: "number", default: 0 } };
+      settings.edit = function (props) {
+        var a = props.attributes, t = data.zero, c = window.wp.components;
+        return el(element.Fragment, null,
+          el(blockEditor.InspectorControls, null,
+            el(c.PanelBody, { title: t.title },
+              el(c.SelectControl, {
+                label: t.title, value: a.picture || "", help: !a.picture ? t.autoTip : undefined,
+                options: [{ label: t.auto, value: "" }, { label: t.smile, value: "smile" }, { label: t.own, value: "image" }],
+                onChange: function (v) { props.setAttributes({ picture: v }); }
+              }),
+              a.picture === "image" && el(blockEditor.MediaUploadCheck, null,
+                el(blockEditor.MediaUpload, {
+                  allowedTypes: ["image"], value: a.pictureId,
+                  onSelect: function (m) { props.setAttributes({ pictureId: m.id }); },
+                  render: function (o) { return el(c.Button, { variant: "secondary", onClick: o.open }, a.pictureId ? t.other : t.choose); }
+                })))),
+          el("div", blockEditor.useBlockProps({ className: "mdt-live-block" }),
+            el(ServerSideRender, { block: name, attributes: { picture: a.picture, pictureId: a.pictureId } })));
+      };
+    }
     blocks.registerBlockType(name, settings);
   });
 })(window.wp.blocks, window.wp.element, window.wp.blockEditor, window.wp.serverSideRender, window.mdtBlocks);

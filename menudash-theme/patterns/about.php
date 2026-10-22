@@ -20,10 +20,8 @@
 <!-- wp:paragraph -->
 <p><?php echo esc_html__( 'Replace this text in the editor. Photos of your kitchen or your team fit well next to it.', 'menudash-theme' ); ?></p>
 <!-- /wp:paragraph -->
-<?php if ( mdt_has_restaurant() ) : // The Instagram link is entered under MenuDash → Restaurant. ?>
+<?php // The Instagram button (link from MenuDash → Restaurant), and without Restaurant a note only the editor shows. ?>
 <!-- wp:menudash-theme/social {"variant":"follow"} /-->
-<?php else : ?>
 <!-- wp:menudash-theme/addon {"part":"follow"} /-->
-<?php endif; ?>
 </div>
 <!-- /wp:group -->

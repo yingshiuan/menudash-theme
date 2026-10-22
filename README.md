@@ -28,7 +28,7 @@ Pages with another MenuDash part (gift card form, shop, opening hours, contact, 
 
 <img src="docs/screenshot-visit.png" alt="The visit us page: open now, address, getting here, the three buttons in one row, opening hours with lines, the map" width="720">
 
-**Not found (404):** a page that doesn't exist shows a big "404" with the restaurant's Site Icon as the 0 (drawn round; the theme's smile when there is no icon), "This page is not on the menu" and buttons to the menu and the home page.
+**Not found (404):** a page that doesn't exist shows a big "404" with the restaurant's Site Icon as the 0 (drawn round; the theme's smile when there is no icon; in the editor it's the block *404 number*, where *The 0* can also be the smile or an own picture), "This page is not on the menu" and buttons to the menu and the home page.
 
 ## Install
 
@@ -49,6 +49,10 @@ It's a block theme: *Appearance → Editor* for the header, footer and templates
 Parts with a thin dashed outline in the editor come from MenuDash (address, phone, delivery, map, the footer's contact lines). They are drawn fresh on every page view, so saving a page never freezes old details into it: change them in MenuDash, not in the editor. The theme's own blocks are in the inserter under *MenuDash Theme*; *Open now*, *Opening hours* and *Contact* (address, phone, e-mail, getting here — choose the parts in its sidebar) are MenuDash's blocks, under *MenuDash*. The home page is made of sections: to change the badge, an address line or the buttons inside one, click **Edit pattern** first.
 
 **Corner picture:** the faint drawing in the header's right corner. Select the header's coloured band in *Appearance → Editor* and choose under *Corner picture*: *Automatic* (your icon from MenuDash → Restaurant, otherwise a ring), *Ring*, *Own picture* or *No picture*, and how strong it shows.
+
+**Show only when:** some parts depend on MenuDash Restaurant or a logo: the footer's address and hours, the *Reserve* and *Order online* buttons, the legal notice's placeholder, the logo or the site's name in the header. The theme keeps both versions and shows the one that fits on every page view, also after you save the page or template in the editor. Those blocks have a thin dashed outline and a label in the editor (*Shown only when: MenuDash Restaurant is active*). Any block can get this: select it and choose under *Advanced → Show only when*.
+
+<img src="docs/screenshot-show-only-when.png" alt="The editor: a paragraph labelled 'Shown only when: MenuDash Restaurant is not installed', and the Show only when setting in the block's sidebar" width="720">
 
 The buttons are WordPress's own: delete, reorder or add one with any link (your booking or order system). *Reserve*, *Order online* and *Get directions* take their links from **MenuDash → Restaurant** and hide when that detail is empty; *Reserve* opens the **Reservation link** if you entered one, otherwise it calls. More such buttons: inside a Buttons block, *Reserve / Order online / Call / Directions (MenuDash)*.
 
@@ -91,7 +95,7 @@ dev/build-zip.sh          # dist/menudash-theme.zip
 
 `serve.sh` downloads MenuDash into `dev/.cache` the first time (or uses `MENUDASH_DIR`). It needs Node.js; WordPress runs in [WordPress Playground](https://wordpress.org/playground/). Wait until it prints "Ready!", then open the address. You're logged in automatically; otherwise log in at `/wp-admin/` with `admin` / `password`. Stop it with Ctrl+C. The site is fresh at every start: changes made in the dashboard are gone after a restart.
 
-The theme's MenuDash blocks are in `menudash-theme/inc/blocks.php` (`menudash-theme/delivery`, `map`, `social`, `picks`, `giftcard` …; `open`, `buttons`, `place`, `contact` and `directions` are only kept for pages saved with earlier versions). They read MenuDash with `mdash_detail()`, `mdash_hours()` and the menu data, and print nothing without MenuDash.
+The theme's MenuDash blocks are in `menudash-theme/inc/blocks.php` (`menudash-theme/delivery`, `map`, `social`, `picks`, `giftcard` …; `open`, `buttons`, `place`, `contact` and `directions` are only kept for pages saved with earlier versions). They read MenuDash with `mdash_detail()`, `mdash_hours()` and the menu data, and print nothing without MenuDash. `menudash-theme/not-found` is the 404 page's number. Every block can carry the attribute `mdtShow` (`restaurant`, `no-restaurant`, `logo`, `no-logo`; several separated by commas must all be true): the block is left out of the page when it doesn't hold. The editor's live previews show both versions; everything else, the REST API included, gets what guests see.
 
 The theme puts the page's stylesheets (its own, MenuDash's and the core blocks') into the page instead of loading them as separate files, so phones draw the page sooner. If a caching or optimising plugin already combines them, keep separate files with `add_filter( 'menudash_theme_inline_styles', '__return_false' );`.
 
