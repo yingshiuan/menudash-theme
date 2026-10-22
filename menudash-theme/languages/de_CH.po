@@ -834,8 +834,8 @@ msgid "Maybe the link is old, or the page has moved. Carry on here:"
 msgstr "Vielleicht ist der Link alt, oder die Seite ist umgezogen. Hier geht es weiter:"
 
 msgctxt "Pattern description"
-msgid "The 404 page: a big \"404\" with the smiling drawing as the zero, a short note and buttons to the menu and the home page."
-msgstr "Die 404-Seite: eine grosse „404“ mit der lächelnden Zeichnung als Null, ein kurzer Hinweis und Knöpfe zur Speisekarte und zur Startseite."
+msgid "The 404 page: a big \"404\" with the restaurant's icon as the zero (Settings → General → Site Icon, drawn round; the smiling drawing without one), a short note and buttons to the menu and the home page."
+msgstr "Die 404-Seite: eine grosse „404“ mit dem Website-Icon des Restaurants als Null (Einstellungen → Allgemein → Website-Icon, rund; ohne Icon die lächelnde Zeichnung), ein kurzer Hinweis und Knöpfe zur Speisekarte und zur Startseite."
 
 msgctxt "Custom template name"
 msgid "Wide page (gift card, shop, visit us)"

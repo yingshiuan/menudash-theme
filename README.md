@@ -28,7 +28,7 @@ Pages with another MenuDash part (gift card form, shop, opening hours, contact, 
 
 <img src="docs/screenshot-visit.png" alt="The visit us page: open now, address, getting here, the three buttons in one row, opening hours with lines, the map" width="720">
 
-**Not found (404):** a page that doesn't exist shows a big "404" with the theme's smile as the 0, "This page is not on the menu" and buttons to the menu and the home page.
+**Not found (404):** a page that doesn't exist shows a big "404" with the restaurant's Site Icon as the 0 (drawn round; the theme's smile when there is no icon), "This page is not on the menu" and buttons to the menu and the home page.
 
 ## Install
 

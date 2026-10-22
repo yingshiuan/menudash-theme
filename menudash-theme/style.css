@@ -2,7 +2,7 @@
 Theme Name: MenuDash Theme
 Theme URI: https://github.com/yingshiuan/menudash-theme
 Description: A restaurant website theme made for the MenuDash plugin: the menu, today's specials, opening hours, holidays, gift cards and your restaurant's details come from MenuDash, and the theme shows them in a warm, simple design. Home page sections, header and footer are edited in Appearance → Editor; colours and fonts under Styles. English and German included.
-Version: 1.11.0
+Version: 1.12.0
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
@@ -313,6 +313,8 @@ h1, h2 { overflow-wrap: break-word; text-wrap: balance; }
 	font-size: clamp(6rem, 16vw, 11rem); color: var(--wp--preset--color--primary);
 }
 .mdt-404-zero { display: block; width: .82em; height: .82em; background: currentColor; -webkit-mask: url(assets/img/smile.svg) center / contain no-repeat; mask: url(assets/img/smile.svg) center / contain no-repeat; }
+/* With a Site Icon: the restaurant's own icon as the zero, drawn round like the header's corner picture. */
+.mdt-404-zero.is-icon { background: var(--mdt-404-icon) center / cover no-repeat; -webkit-mask: none; mask: none; border-radius: 50%; }
 @media (max-width: 781px) { .mdt-404 { text-align: center; } .mdt-404 .wp-block-buttons { justify-content: center; } .mdt-404-num { font-size: 6rem; } }
 /* The small smile above "Visit us". */
 .mdt-visit-bowl { width: 96px; aspect-ratio: 1; background: var(--wp--preset--color--primary); -webkit-mask: url(assets/img/smile.svg) center / contain no-repeat; mask: url(assets/img/smile.svg) center / contain no-repeat; }
