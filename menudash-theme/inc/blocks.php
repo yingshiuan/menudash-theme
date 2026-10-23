@@ -15,7 +15,7 @@
  *   menudash-theme/social       variant="icons": icons for the social links from MenuDash → Restaurant; variant="follow": the Instagram button
  *   menudash-theme/delivery     the whole delivery column; nothing without an order link
  *   menudash-theme/map          the Google Maps map, loaded on request
- *   menudash-theme/legal        "© Company · Legal notice · Privacy" (each link when its page exists)
+ *   menudash-theme/legal        "© Company · Legal notice · Privacy · meat origin" (each link when its page exists)
  *   menudash-theme/provider     who runs the website: company, address, phone, e-mail (legal notice)
  *   menudash-theme/picks        the dishes marked Recommended in the menu, with photos; with
  *                               MenuDash 2.3 its block menudash/picks, which the pattern now uses
@@ -557,14 +557,48 @@ function mdt_legal_page() {
 	return null;
 }
 
+/**
+ * The published page that shows the meat and fish origin (MenuDash's [menudash_origin], e.g. a
+ * "Fleisch-Deklaration" page), or null: linked in the footer's small print. Looked up once a
+ * day, and again when a page is saved, published, unpublished or put in the bin.
+ */
+function mdt_origin_page() {
+	$id = get_transient( 'mdt_origin_page' );
+	if ( false === $id ) {
+		$id = 0;
+		foreach ( get_posts( array( 'post_type' => 'page', 'post_status' => 'publish', 'numberposts' => 10, 's' => 'menudash_origin' ) ) as $p ) {
+			if ( has_shortcode( $p->post_content, 'menudash_origin' ) ) {
+				$id = $p->ID;
+				break;
+			}
+		}
+		set_transient( 'mdt_origin_page', $id, DAY_IN_SECONDS );
+	}
+	$page = $id ? get_post( (int) $id ) : null;
+	return $page && 'publish' === $page->post_status ? $page : null;
+}
+
+add_action(
+	'transition_post_status', // every save, and a page published, unpublished or put in the bin
+	function ( $new_status, $old_status, $post ) {
+		if ( 'page' === $post->post_type ) {
+			delete_transient( 'mdt_origin_page' );
+		}
+	},
+	10,
+	3
+);
+
 function mdt_block_legal() {
 	$id    = (int) get_option( 'wp_page_for_privacy_policy' );
 	$page  = $id ? get_post( $id ) : null; // get_post( 0 ) would be the current page.
 	$link  = $page && 'publish' === $page->post_status ? '<a href="' . esc_url( get_permalink( $page ) ) . '">' . esc_html__( 'Privacy', 'menudash-theme' ) . '</a>' : '';
 	$legal = mdt_legal_page();
 	$legal = $legal ? '<a href="' . esc_url( get_permalink( $legal ) ) . '">' . esc_html__( 'Legal notice', 'menudash-theme' ) . '</a>' : '';
-	$owner = '' !== mdt_d( 'company' ) ? mdt_d( 'company' ) : ( '' !== mdt_d( 'name' ) ? mdt_d( 'name' ) : get_bloginfo( 'name' ) );
-	$parts = array_filter( array( '' !== $owner ? '© ' . esc_html( $owner ) : '', $legal, $link ) );
+	$origin = mdt_origin_page();
+	$origin = $origin ? '<a href="' . esc_url( get_permalink( $origin ) ) . '">' . esc_html( get_the_title( $origin ) ) . '</a>' : '';
+	$owner  = '' !== mdt_d( 'company' ) ? mdt_d( 'company' ) : ( '' !== mdt_d( 'name' ) ? mdt_d( 'name' ) : get_bloginfo( 'name' ) );
+	$parts  = array_filter( array( '' !== $owner ? '© ' . esc_html( $owner ) : '', $legal, $link, $origin ) );
 	return $parts ? '<p class="alignwide" style="font-size:0.8125rem">' . implode( ' · ', $parts ) . '</p>' : '';
 }
 

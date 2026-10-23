@@ -126,6 +126,7 @@
       busy = false;
       var y = scrollY, moved = y - last;
       if (Math.abs(moved) < 8) return; // Small jitters (a finger resting) change nothing.
+      if (document.documentElement.classList.contains("has-modal-open")) return; // the phone menu is open
       var end = innerHeight + y >= document.documentElement.scrollHeight - 60;
       var hide = moved > 0 && y > 120 && !end;
       if (hide !== bar.classList.contains("is-away")) bar.classList.toggle("is-away", hide);
@@ -136,8 +137,25 @@
     bar.addEventListener("focusin", function () { bar.classList.remove("is-away"); }); // Keyboard users always reach it.
   }
 
+  /* ---------- Header: slim glass once the page scrolls (style.css) ---------- */
+  function slimHeader() {
+    var head = document.querySelector("header.wp-block-template-part");
+    if (!head || !head.querySelector(":scope > .mdt-band")) return;
+    var busy = false;
+    function update() {
+      busy = false;
+      var slim = scrollY > 24;
+      if (slim !== head.classList.contains("mdt-scrolled")) {
+        head.classList.toggle("mdt-scrolled", slim);
+        dispatchEvent(new Event("resize")); // MenuDash's bar and the phone menu follow its new height
+      }
+    }
+    addEventListener("scroll", function () { if (!busy) { busy = true; requestAnimationFrame(update); } }, { passive: true });
+    update();
+  }
+
   function start() {
-    makeTabs(); placeMenu(); mapsOnClick(); hideOnScroll(".mdt-actionbar");
+    makeTabs(); placeMenu(); mapsOnClick(); hideOnScroll(".mdt-actionbar"); slimHeader(); hideOnScroll("header.wp-block-template-part");
     // Measured again right before opening: the page may have scrolled.
     document.addEventListener("click", function (e) {
       if (e.target.closest && e.target.closest(".wp-block-navigation__responsive-container-open")) placeMenu();

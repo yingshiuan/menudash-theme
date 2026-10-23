@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Header (coloured band)
+ * Title: Header (coloured band; slim glass bar while scrolling)
  * Slug: menudash-theme/header
  * Categories: header, menudash-theme
  * Block Types: core/template-part/header
@@ -28,7 +28,18 @@ foreach ( get_posts( array( 'post_type' => 'wp_navigation', 'numberposts' => 20,
 <!-- wp:site-tagline {"className":"mdt-tagline","style":{"typography":{"fontSize":"0.6875rem","fontWeight":"700","textTransform":"uppercase","lineHeight":"1"}}} /-->
 </div>
 <!-- /wp:group -->
+<!-- wp:group {"className":"mdt-head-end","style":{"spacing":{"blockGap":"1.4rem"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right"}} -->
+<div class="wp-block-group mdt-head-end">
 <!-- wp:navigation {<?php echo $ref; ?>"overlayBackgroundColor":"primary","overlayTextColor":"cream","layout":{"type":"flex","justifyContent":"right"},"style":{"spacing":{"blockGap":"1.6rem"}}} /-->
+<?php // With MenuDash Restaurant: open now, and one button to book (wide screens; phones have the action bar). ?>
+<!-- wp:menudash/open {"className":"mdt-head-open"} /-->
+<!-- wp:buttons {"className":"mdt-head-cta"} -->
+<div class="wp-block-buttons mdt-head-cta">
+<?php echo mdt_bound_button( 'reserve', trim( str_replace( '· %s', '', __( 'Reserve · %s', 'menudash-theme' ) ) ) ); // phpcs:ignore -- block markup, escaped there ?>
+</div>
+<!-- /wp:buttons -->
+</div>
+<!-- /wp:group -->
 </div>
 <!-- /wp:group -->
 </div>

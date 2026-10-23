@@ -2,7 +2,7 @@
 Theme Name: MenuDash Theme
 Theme URI: https://github.com/yingshiuan/menudash-theme
 Description: A restaurant website theme made for the MenuDash plugin: the menu, today's specials, opening hours, holidays, gift cards and your restaurant's details come from MenuDash, and the theme shows them in a warm, simple design. Home page sections, header and footer are edited in Appearance → Editor; colours and fonts under Styles. English and German included.
-Version: 1.14.0
+Version: 1.15.0
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
@@ -437,3 +437,44 @@ h1, h2 { overflow-wrap: break-word; text-wrap: balance; }
 .wp-block-navigation .mdt-lang.is-current a { opacity: 1; font-weight: 800; text-decoration: none; }
 .wp-block-navigation__responsive-container:not(.is-menu-open) .mdt-lang + .mdt-lang { margin-left: -1rem; }
 .wp-block-navigation__responsive-container:not(.is-menu-open) .mdt-lang + .mdt-lang::before { content: "|"; opacity: .45; margin-right: .6rem; }
+
+/* ---- Header: stays at the top; once the page scrolls, a slim bar in frosted glass of the
+   main colour (smaller logo, no tagline or holiday notice). Scrolling down slides it away,
+   scrolling up brings it back (theme.js), like the phone action bar. MenuDash measures it, so
+   its own sticky bar sits right under it. ---- */
+header.wp-block-template-part:has(> .mdt-band) {
+	position: sticky; top: var(--wp-admin--admin-bar--height, 0px); z-index: 45;
+	transition: transform .3s ease;
+}
+@media (max-width: 600px) { header.wp-block-template-part:has(> .mdt-band) { top: 0; } } /* the admin bar scrolls away there */
+header.wp-block-template-part.is-away { transform: translateY(calc(-100% - 60px)); }
+header.wp-block-template-part > .mdt-band { transition: padding .25s ease, background-color .25s ease, box-shadow .25s ease; }
+header.mdt-scrolled > .mdt-band {
+	padding-top: .55rem !important; padding-bottom: .55rem !important;
+	background-color: color-mix(in srgb, var(--wp--preset--color--primary) 84%, transparent) !important;
+	-webkit-backdrop-filter: blur(14px) saturate(1.4); backdrop-filter: blur(14px) saturate(1.4);
+	box-shadow: 0 6px 24px rgba(0, 0, 0, .18);
+}
+header.mdt-scrolled > :not(.mdt-band) { display: none; } /* the holiday notice: at the top of the page only */
+header.mdt-scrolled .mdt-tagline { display: none; }
+header.mdt-scrolled .mdt-seal::before, header.mdt-scrolled.mdt-seal::before, header.mdt-scrolled > .mdt-seal::before { opacity: 0; }
+header .mdt-band .wp-block-site-logo img { transition: width .25s ease; }
+header.mdt-scrolled .mdt-band .wp-block-site-logo img { width: 96px !important; }
+header.mdt-scrolled .mdt-band .wp-block-site-title { font-size: 1.5rem !important; }
+/* One button to book, as a cream pill; the "open now" badge beside it on wide screens. */
+.mdt-head-end { align-items: center; }
+.mdt-head-cta { margin: 0; }
+.mdt-head-cta .wp-block-button__link {
+	padding: .55em 1.25em; border: 0; border-radius: 999px; background: var(--wp--preset--color--cream); color: var(--wp--preset--color--primary);
+	font-size: .95rem; font-weight: 700; line-height: 1.2; white-space: nowrap; text-decoration: none;
+}
+.mdt-head-cta .wp-block-button__link:hover { background: #fff; text-decoration: none; }
+.mdt-band .mdt-head-open { margin: 0; font-size: .85rem; white-space: nowrap; }
+@media (max-width: 1279px) { .mdt-band .mdt-head-open, .mdt-band .wp-block-buttons.mdt-head-cta { display: none; } } /* room for the menu first */
+body.home header:not(.mdt-scrolled) .mdt-band .mdt-head-open { display: none; } /* the hero shows it there */
+
+@media (prefers-reduced-motion: reduce) { header.wp-block-template-part, header.wp-block-template-part > .mdt-band, header .mdt-band .wp-block-site-logo img { transition: none; } }
+/* With the phone menu open: no glass and no movement on the header, or the open menu would be
+   held inside the header bar (a backdrop filter or transform contains fixed children). */
+.has-modal-open header.wp-block-template-part { transform: none; }
+.has-modal-open header.mdt-scrolled > .mdt-band { -webkit-backdrop-filter: none; backdrop-filter: none; background-color: var(--wp--preset--color--primary) !important; }
