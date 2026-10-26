@@ -2,7 +2,7 @@
 /**
  * Demo for dev/serve.sh, after MenuDash's own demo (sample menu, photos, specials, hours,
  * details, gift cards and their pages): the theme's home page and a top menu: Home · Menu ·
- * Gift card. The site language comes from the blueprint (dev/serve.sh … de: German).
+ * Gift card · Shop. The site language comes from the blueprint (dev/serve.sh … de: German).
  */
 
 require_once '/wordpress/wp-load.php';
@@ -27,7 +27,21 @@ if ( ! mdt_legal_page() ) {
 	);
 }
 
-// The top menu as a block navigation: Home · Menu · Gift card.
+// With MenuDash Shop: its page, published (the add-on itself only makes a draft, and not when
+// a page with the list is there already).
+if ( function_exists( 'mdash_shop_page' ) && ! mdash_shop_page( true ) ) {
+	wp_insert_post(
+		array(
+			'post_type'    => 'page',
+			'post_status'  => 'publish',
+			'post_title'   => __( 'Shop', 'menudash-shop' ),
+			'post_name'    => function_exists( 'mdash_shop_base' ) ? mdash_shop_base() : 'shop',
+			'post_content' => "<!-- wp:paragraph {\"fontSize\":\"large\"} -->\n<p class=\"has-large-font-size\">" . esc_html__( 'Things to take home: from our kitchen, and now and then something we no longer need. Interested? Call us or ask at the restaurant.', 'menudash-shop' ) . "</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:menudash/shop {\"align\":\"wide\"} /-->",
+		)
+	);
+}
+
+// The top menu as a block navigation: Home · Menu · Gift card · Shop.
 // (WordPress may already have made an automatic one that only lists the pages.)
 if ( ! get_posts( array( 'post_type' => 'wp_navigation', 'title' => 'Main menu', 'numberposts' => 1 ) ) ) {
 	$links = '<!-- wp:navigation-link {"label":"' . esc_attr__( 'Home', 'menudash-theme' ) . '","url":"' . home_url( '/' ) . '","kind":"custom"} /-->';
@@ -35,6 +49,7 @@ if ( ! get_posts( array( 'post_type' => 'wp_navigation', 'title' => 'Main menu',
 	// /speisekarte/ and /gutschein/).
 	$menu_page = null;
 	$gift_page = null;
+	$shop_page = null;
 	foreach ( get_posts( array( 'post_type' => 'page', 'post_status' => 'publish', 'numberposts' => -1, 'orderby' => 'ID', 'order' => 'ASC' ) ) as $p ) {
 		if ( ! $menu_page && has_shortcode( $p->post_content, 'menudash' ) ) {
 			$menu_page = $p;
@@ -42,8 +57,11 @@ if ( ! get_posts( array( 'post_type' => 'wp_navigation', 'title' => 'Main menu',
 		if ( ! $gift_page && has_shortcode( $p->post_content, 'menudash_giftcard' ) ) {
 			$gift_page = $p;
 		}
+		if ( ! $shop_page && false !== strpos( $p->post_content, '<!-- wp:menudash/shop ' ) ) {
+			$shop_page = $p;
+		}
 	}
-	foreach ( array( $menu_page, $gift_page ) as $page ) {
+	foreach ( array( $menu_page, $gift_page, $shop_page ) as $page ) {
 		if ( $page ) {
 			$links .= sprintf( '<!-- wp:navigation-link {"label":"%s","type":"page","id":%d,"url":"%s","kind":"post-type"} /-->', esc_attr( get_the_title( $page ) ), $page->ID, get_permalink( $page ) );
 		}

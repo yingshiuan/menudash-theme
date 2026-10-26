@@ -32,7 +32,7 @@ foreach ( get_posts( array( 'post_type' => 'wp_navigation', 'numberposts' => 20,
 <div class="wp-block-group mdt-head-end">
 <!-- wp:navigation {<?php echo $ref; ?>"overlayBackgroundColor":"primary","overlayTextColor":"cream","layout":{"type":"flex","justifyContent":"right"},"style":{"spacing":{"blockGap":"1.6rem"}}} /-->
 <?php // With MenuDash Restaurant: open now, and one button to book (wide screens; phones have the action bar). ?>
-<!-- wp:menudash/open {"className":"mdt-head-open"} /-->
+<!-- wp:menudash/open {"short":true,"className":"mdt-head-open"} /-->
 <!-- wp:buttons {"className":"mdt-head-cta"} -->
 <div class="wp-block-buttons mdt-head-cta">
 <?php echo mdt_bound_button( 'reserve', trim( str_replace( '· %s', '', __( 'Reserve · %s', 'menudash-theme' ) ) ) ); // phpcs:ignore -- block markup, escaped there ?>

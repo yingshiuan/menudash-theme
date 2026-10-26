@@ -2,7 +2,7 @@
 Theme Name: MenuDash Theme
 Theme URI: https://github.com/yingshiuan/menudash-theme
 Description: A restaurant website theme made for the MenuDash plugin: the menu, today's specials, opening hours, holidays, gift cards and your restaurant's details come from MenuDash, and the theme shows them in a warm, simple design. Home page sections, header and footer are edited in Appearance → Editor; colours and fonts under Styles. English and German included.
-Version: 1.15.0
+Version: 1.16.0
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
@@ -469,7 +469,9 @@ header.mdt-scrolled .mdt-band .wp-block-site-title { font-size: 1.5rem !importan
 	font-size: .95rem; font-weight: 700; line-height: 1.2; white-space: nowrap; text-decoration: none;
 }
 .mdt-head-cta .wp-block-button__link:hover { background: #fff; text-decoration: none; }
-.mdt-band .mdt-head-open { margin: 0; font-size: .85rem; white-space: nowrap; }
+.mdt-band .mdt-head-open { margin: 0; font-size: .85rem; white-space: nowrap; } /* the short words ("Opens tomorrow 17:00", MenuDash Restaurant 1.7) */
+.mdt-band .wp-block-navigation__container { flex-wrap: nowrap; } /* the links stay in one line */
+.mdt-band .wp-block-navigation-item__label { white-space: nowrap; }
 @media (max-width: 1279px) { .mdt-band .mdt-head-open, .mdt-band .wp-block-buttons.mdt-head-cta { display: none; } } /* room for the menu first */
 body.home header:not(.mdt-scrolled) .mdt-band .mdt-head-open { display: none; } /* the hero shows it there */
 
