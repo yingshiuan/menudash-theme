@@ -2,7 +2,7 @@
 Theme Name: MenuDash Theme
 Theme URI: https://github.com/yingshiuan/menudash-theme
 Description: A restaurant website theme made for the MenuDash plugin: the menu, today's specials, opening hours, holidays, gift cards and your restaurant's details come from MenuDash, and the theme shows them in a warm, simple design. Home page sections, header and footer are edited in Appearance → Editor; colours and fonts under Styles. English and German included.
-Version: 1.16.0
+Version: 1.17.0
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
@@ -154,6 +154,11 @@ header + .mdt-specials { margin-block-start: 0; }
 	.mdt-two-ways .menudash-open { align-self: flex-start; }
 	.mdt-two-ways .mdt-delivery { display: flex; flex-direction: column; flex: 1; }
 	.mdt-two-ways .mdt-delivery > .wp-block-buttons { margin-top: auto; padding-top: var(--wp--preset--spacing--30); }
+}
+/* On phones the two columns stack: a thin line and some room between "Visit us" and
+   delivery, so they read as two parts. */
+@media (max-width: 781px) {
+	.mdt-two-ways > .wp-block-column + .wp-block-column:has(*) { border-top: 1px solid color-mix(in srgb, var(--wp--preset--color--ink) 15%, transparent); margin-top: var(--wp--preset--spacing--50); padding-top: var(--wp--preset--spacing--50); }
 }
 /* No order link (MenuDash → Restaurant): the delivery column is empty and goes. */
 .mdt-two-ways > .wp-block-column:not(:has(*)) { display: none; }

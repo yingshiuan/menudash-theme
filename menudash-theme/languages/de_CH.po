@@ -287,14 +287,14 @@ msgstr "Fusszeile (Adresse, Anreise, Öffnungszeiten)"
 msgid "Home: gift cards"
 msgstr "Startseite: Gutschein"
 
-msgid "A short teaser with the picture of the card and a button to the gift card page. Shows only while MenuDash takes gift card orders and a page has the gift card form."
-msgstr "Ein kurzer Hinweis mit dem Bild des Gutscheins und einem Knopf zur Gutschein-Seite. Erscheint nur, solange MenuDash Gutschein-Bestellungen annimmt und eine Seite das Formular enthält."
+msgid "A short teaser with the picture of the card and a button to the gift card page. Shows while MenuDash takes gift card orders and a page has the gift card form; without the Gift Cards add-on, while a gift card page is published (then: available at the restaurant, More about the gift card)."
+msgstr "Ein kurzer Hinweis mit dem Bild des Gutscheins und einem Knopf zur Gutschein-Seite. Erscheint, solange MenuDash Gutschein-Bestellungen annimmt und eine Seite das Formular enthält; ohne das Add-on Gift Cards, solange eine Gutschein-Seite veröffentlicht ist (dann: im Restaurant erhältlich, «Mehr zum Gutschein»)."
 
 msgid "Gift card page"
 msgstr "Gutschein-Seite"
 
-msgid "An introduction and MenuDash's gift card order form ([menudash_giftcard]). Amounts, e-mail address, picture and terms are set under MenuDash → Gift cards."
-msgstr "Eine Einleitung und das Gutschein-Formular von MenuDash ([menudash_giftcard]). Beträge, E-Mail-Adresse, Bild und Bedingungen stellt man unter MenuDash → Gift cards ein."
+msgid "An introduction and MenuDash's gift card order form ([menudash_giftcard]). Amounts, e-mail address, picture and terms are set under MenuDash → Gift cards. Without the MenuDash Gift Cards add-on: sold at the restaurant only, with buttons for directions and the menu."
+msgstr "Eine Einleitung und das Gutschein-Formular von MenuDash ([menudash_giftcard]). Beträge, E-Mail-Adresse, Bild und Bedingungen stellt man unter MenuDash → Gift cards ein. Ohne das Add-on MenuDash Gift Cards: nur im Restaurant erhältlich, mit Knöpfen für die Route und die Speisekarte."
 
 msgid "Header (coloured band)"
 msgstr "Kopfzeile (farbiges Band)"
@@ -359,8 +359,8 @@ msgstr "PLZ und Ort"
 msgid "How to get here by tram, bus or car, and when you are open. Replace this text in the editor."
 msgstr "Wie man mit Tram, Bus oder Auto zu Ihnen kommt, und wann Sie geöffnet haben. Ersetzen Sie diesen Text im Editor."
 
-msgid "Gift card teaser: shows here while the MenuDash Gift Cards add-on takes orders and a page has the gift card form."
-msgstr "Gutschein-Hinweis: erscheint hier, solange das Add-on MenuDash Gift Cards Bestellungen annimmt und eine Seite das Gutschein-Formular hat."
+msgid "Gift card teaser: shows here while the MenuDash Gift Cards add-on takes orders and a page has the gift card form, or without the add-on while a gift card page is published."
+msgstr "Gutschein-Hinweis: erscheint hier, solange das Add-on MenuDash Gift Cards Bestellungen annimmt und eine Seite das Gutschein-Formular hat, oder ohne das Add-on, solange eine Gutschein-Seite veröffentlicht ist."
 
 msgid "Delivery: shows here once an order link is entered under MenuDash → Restaurant (MenuDash Restaurant add-on)."
 msgstr "Lieferung: erscheint hier, sobald unter MenuDash → Restaurant ein Bestell-Link eingetragen ist (Add-on MenuDash Restaurant)."
@@ -753,16 +753,16 @@ msgid "Home: gift cards"
 msgstr "Startseite: Gutschein"
 
 msgctxt "Pattern description"
-msgid "A short teaser with the picture of the card and a button to the gift card page. Shows only while MenuDash takes gift card orders and a page has the gift card form."
-msgstr "Ein kurzer Hinweis mit dem Bild des Gutscheins und einem Knopf zur Gutschein-Seite. Erscheint nur, solange MenuDash Gutschein-Bestellungen annimmt und eine Seite das Formular enthält."
+msgid "A short teaser with the picture of the card and a button to the gift card page. Shows while MenuDash takes gift card orders and a page has the gift card form; without the Gift Cards add-on, while a gift card page is published (then: available at the restaurant, More about the gift card)."
+msgstr "Ein kurzer Hinweis mit dem Bild des Gutscheins und einem Knopf zur Gutschein-Seite. Erscheint, solange MenuDash Gutschein-Bestellungen annimmt und eine Seite das Formular enthält; ohne das Add-on Gift Cards, solange eine Gutschein-Seite veröffentlicht ist (dann: im Restaurant erhältlich, «Mehr zum Gutschein»)."
 
 msgctxt "Pattern title"
 msgid "Gift card page"
 msgstr "Gutschein-Seite"
 
 msgctxt "Pattern description"
-msgid "An introduction and MenuDash's gift card order form ([menudash_giftcard]). Amounts, e-mail address, picture and terms are set under MenuDash → Gift cards."
-msgstr "Eine Einleitung und das Gutschein-Formular von MenuDash ([menudash_giftcard]). Beträge, E-Mail-Adresse, Bild und Bedingungen stellt man unter MenuDash → Gift cards ein."
+msgid "An introduction and MenuDash's gift card order form ([menudash_giftcard]). Amounts, e-mail address, picture and terms are set under MenuDash → Gift cards. Without the MenuDash Gift Cards add-on: sold at the restaurant only, with buttons for directions and the menu."
+msgstr "Eine Einleitung und das Gutschein-Formular von MenuDash ([menudash_giftcard]). Beträge, E-Mail-Adresse, Bild und Bedingungen stellt man unter MenuDash → Gift cards ein. Ohne das Add-on MenuDash Gift Cards: nur im Restaurant erhältlich, mit Knöpfen für die Route und die Speisekarte."
 
 msgctxt "Pattern title"
 msgid "Header (coloured band)"
@@ -896,3 +896,42 @@ msgstr "Das Icon aus MenuDash → Restaurant oder Einstellungen → Allgemein, r
 
 msgid "Smile"
 msgstr "Lächeln"
+
+msgid "Gift card: at the restaurant"
+msgstr "Gutschein: im Restaurant"
+
+msgid "A gift card for a meal with us: available at the restaurant. Come by and ask us."
+msgstr "Ein Gutschein für ein Essen bei uns: erhältlich direkt im Restaurant. Kommen Sie vorbei und fragen Sie uns."
+
+msgid "More about the gift card"
+msgstr "Mehr zum Gutschein"
+
+msgid "Our gift cards are available only at the restaurant. Come by and ask us; we are happy to help."
+msgstr "Unsere Gutscheine erhalten Sie nur direkt bei uns im Restaurant. Kommen Sie vorbei und fragen Sie uns, wir beraten Sie gern."
+
+msgid "View the menu"
+msgstr "Speisekarte ansehen"
+
+msgid "MenuDash Gift Cards is active"
+msgstr "MenuDash Gift Cards ist aktiv"
+
+msgid "MenuDash Gift Cards is not installed"
+msgstr "MenuDash Gift Cards ist nicht installiert"
+
+msgid "Gift cards are sold at the restaurant only. How often the gift card page was opened (and how often from the button on the home page), and how often guests then tapped Get directions or View the menu there. A tap shows interest; it is not yet a sale."
+msgstr "Gutscheine gibt es nur im Restaurant. Wie oft die Gutschein-Seite geöffnet wurde (und wie oft über die Schaltfläche auf der Startseite) und wie oft Gäste dort danach auf «Route planen» oder «Speisekarte ansehen» getippt haben. Ein Tipp zeigt Interesse, er ist noch kein Verkauf."
+
+msgid "Gift card page opened"
+msgstr "Gutschein-Seite geöffnet"
+
+msgid "From the home page button"
+msgstr "Über die Schaltfläche auf der Startseite"
+
+msgid "Then directions"
+msgstr "Danach Route"
+
+msgid "Then the menu"
+msgstr "Danach Speisekarte"
+
+msgid "%s of page visits"
+msgstr "%s der Seitenaufrufe"

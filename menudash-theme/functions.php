@@ -9,6 +9,7 @@
 defined( 'ABSPATH' ) || exit;
 
 require get_theme_file_path( 'inc/blocks.php' ); // The blocks that show what is entered in MenuDash.
+require get_theme_file_path( 'inc/giftcard-stats.php' ); // Gift card page and its buttons in MenuDash Statistics (without Gift Cards).
 if ( is_admin() ) {
 	require get_theme_file_path( 'inc/setup.php' ); // "Install and activate MenuDash".
 }

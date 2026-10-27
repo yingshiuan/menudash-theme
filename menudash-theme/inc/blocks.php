@@ -41,6 +41,7 @@ function mdt_blocks() {
 		'provider'   => __( 'Provider (legal notice)', 'menudash-theme' ),
 		'picks'      => __( 'Recommended dishes', 'menudash-theme' ),
 		'giftcard'   => __( 'Gift card teaser', 'menudash-theme' ),
+		'giftcard-visit' => __( 'Gift card: at the restaurant', 'menudash-theme' ),
 		'addon'      => __( 'Needs MenuDash Restaurant', 'menudash-theme' ),
 		'not-found'  => __( '404 number', 'menudash-theme' ),
 	);
@@ -73,7 +74,7 @@ add_action(
 					'supports'        => 'giftcard' === $name ? array( 'html' => false, 'align' => array( 'full' ) ) : array( 'html' => false ),
 					'render_callback' => function ( $a ) use ( $name ) {
 						// Recommended dishes, gift cards and © work with MenuDash alone; the rest needs Restaurant.
-						$html = mdt_has_restaurant() || in_array( $name, array( 'picks', 'giftcard', 'legal', 'addon', 'not-found' ), true ) ? call_user_func( 'mdt_block_' . str_replace( '-', '_', $name ), $a ) : '';
+						$html = mdt_has_restaurant() || in_array( $name, array( 'picks', 'giftcard', 'giftcard-visit', 'legal', 'addon', 'not-found' ), true ) ? call_user_func( 'mdt_block_' . str_replace( '-', '_', $name ), $a ) : '';
 						// Empty in the editor: say when it shows, instead of WordPress's grey "rendered as empty".
 						return '' === $html ? mdt_empty_note( $name ) : $html;
 					},
@@ -255,8 +256,9 @@ function mdt_block_place() {
 }
 
 /** One button's block markup; $outline for the bordered style. */
-function mdt_button( $url, $text, $outline = false, $external = false ) {
-	$ext = $external ? ' target="_blank" rel="noopener"' : '';
+function mdt_button( $url, $text, $outline = false, $external = false, $stat = '' ) {
+	// $stat: a MenuDash Statistics key counted when the button is tapped (inc/giftcard-stats.php).
+	$ext = ( $external ? ' target="_blank" rel="noopener"' : '' ) . ( '' !== $stat ? ' data-mdash-stat-tap="' . esc_attr( $stat ) . '"' : '' );
 	if ( $outline ) {
 		return '<!-- wp:button {"className":"is-style-outline","style":{"border":{"width":"2px"}},"borderColor":"primary","textColor":"primary"} --><div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-primary-color has-text-color has-border-color has-primary-border-color wp-element-button" href="' . esc_url( $url ) . '" style="border-width:2px"' . $ext . '>' . esc_html( $text ) . '</a></div><!-- /wp:button -->';
 	}
@@ -385,7 +387,7 @@ function mdt_empty_note( $name ) {
 		return '';
 	}
 	$texts = array(
-		'giftcard' => __( 'Gift card teaser: shows here while the MenuDash Gift Cards add-on takes orders and a page has the gift card form.', 'menudash-theme' ),
+		'giftcard' => __( 'Gift card teaser: shows here while the MenuDash Gift Cards add-on takes orders and a page has the gift card form, or without the add-on while a gift card page is published.', 'menudash-theme' ),
 		'delivery' => __( 'Delivery: shows here once an order link is entered under MenuDash → Restaurant (MenuDash Restaurant add-on).', 'menudash-theme' ),
 		'map'      => __( 'Map: shows here once the address is entered under MenuDash → Restaurant (MenuDash Restaurant add-on).', 'menudash-theme' ),
 		'social'   => __( 'Instagram / Facebook: show here once their links are entered under MenuDash → Restaurant (MenuDash Restaurant add-on).', 'menudash-theme' ),
@@ -437,6 +439,25 @@ function mdt_block_buttons( $atts ) {
 	$gap = 'route' === $atts['which'] ? '' : ' {"style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}}';
 	$sty = 'route' === $atts['which'] ? '' : ' style="margin-top:var(--wp--preset--spacing--40)"';
 	return mdt_render( '<!-- wp:buttons' . $gap . ' --><div class="wp-block-buttons"' . $sty . '>' . $b . '</div><!-- /wp:buttons -->' );
+}
+
+/**
+ * The gift card page without the MenuDash Gift Cards add-on: sold at the restaurant only, so
+ * the way there and the menu. With MenuDash Statistics the page counts as opened (gc:page) and
+ * each button when tapped (gc:route, gc:menu). Empty while the add-on is installed: then the
+ * page shows its order form.
+ */
+function mdt_block_giftcard_visit() {
+	if ( function_exists( 'mdash_gc_open' ) ) {
+		return '';
+	}
+	$route = function_exists( 'mdash_maps_url' ) ? mdash_maps_url( 'route' ) : '';
+	$b     = ( '' !== $route ? mdt_button( $route, __( 'Get directions', 'menudash-theme' ), false, true, 'gc:route' ) : '' )
+		. mdt_button( mdt_menu_url(), __( 'View the menu', 'menudash-theme' ), '' !== $route, false, 'gc:menu' );
+	return mdt_render(
+		'<!-- wp:paragraph --><p>' . esc_html__( 'Our gift cards are available only at the restaurant. Come by and ask us; we are happy to help.', 'menudash-theme' ) . '</p><!-- /wp:paragraph -->'
+		. '<!-- wp:buttons --><div class="wp-block-buttons">' . $b . '</div><!-- /wp:buttons -->'
+	) . '<span data-mdash-stat="gc:page" hidden></span>';
 }
 
 function mdt_block_contact( $atts ) {
@@ -676,9 +697,40 @@ function mdt_block_picks() {
 	return $html . '</div>';
 }
 
-/** The gift card teaser: only while MenuDash takes gift card orders and a page has the form. */
+/**
+ * The published page about gift cards when they are sold at the restaurant only (no MenuDash
+ * Gift Cards add-on): the one holding the gift card pattern, its "at the restaurant" block or
+ * the form's shortcode. 0 when there is none.
+ */
+function mdt_giftcard_page() {
+	foreach ( get_posts( array( 'post_type' => 'page', 'post_status' => 'publish', 'numberposts' => 50, 'orderby' => 'ID', 'order' => 'ASC' ) ) as $p ) {
+		foreach ( array( '[menudash_giftcard', 'wp:menudash-theme/giftcard-visit', '"slug":"menudash-theme/giftcard"' ) as $mark ) {
+			if ( false !== strpos( $p->post_content, $mark ) ) {
+				return $p->ID;
+			}
+		}
+	}
+	return 0;
+}
+
+/**
+ * The gift card teaser: while MenuDash takes gift card orders and a page has the form. Without
+ * the Gift Cards add-on, when a gift card page is published: sold at the restaurant, with a
+ * button to that page (counted by MenuDash Statistics as gc:home).
+ */
 function mdt_block_giftcard() {
-	if ( ! function_exists( 'mdash_gc_open' ) || ! mdash_gc_open() ) {
+	if ( ! function_exists( 'mdash_gc_open' ) ) {
+		$id = mdt_giftcard_page();
+		if ( ! $id ) {
+			return '';
+		}
+		$col1 = mdt_eyebrow( __( 'Gift card', 'menudash-theme' ) )
+			. '<!-- wp:heading --><h2 class="wp-block-heading">' . esc_html__( 'Give a meal', 'menudash-theme' ) . '</h2><!-- /wp:heading -->'
+			. '<!-- wp:paragraph {"fontSize":"large"} --><p class="has-large-font-size">' . esc_html__( 'A gift card for a meal with us: available at the restaurant. Come by and ask us.', 'menudash-theme' ) . '</p><!-- /wp:paragraph -->'
+			. '<!-- wp:buttons --><div class="wp-block-buttons">' . mdt_button( get_permalink( $id ), __( 'More about the gift card', 'menudash-theme' ), false, false, 'gc:home' ) . '</div><!-- /wp:buttons -->';
+		return mdt_render( '<!-- wp:group {"align":"full","className":"mdt-gc-home","backgroundColor":"paper","layout":{"type":"constrained"}} --><div class="wp-block-group alignfull mdt-gc-home has-paper-background-color has-background"><!-- wp:group {"align":"wide","layout":{"type":"default"}} --><div class="wp-block-group alignwide">' . $col1 . '</div><!-- /wp:group --></div><!-- /wp:group -->' );
+	}
+	if ( ! mdash_gc_open() ) {
 		return '';
 	}
 	// The page that really has the form (a page that only mentions the word doesn't count).
@@ -716,6 +768,8 @@ function mdt_show_conditions() {
 		'no-restaurant' => __( 'MenuDash Restaurant is not installed', 'menudash-theme' ),
 		'logo'          => __( 'A logo is set', 'menudash-theme' ),
 		'no-logo'       => __( 'No logo is set', 'menudash-theme' ),
+		'giftcards'     => __( 'MenuDash Gift Cards is active', 'menudash-theme' ),
+		'no-giftcards'  => __( 'MenuDash Gift Cards is not installed', 'menudash-theme' ),
 	);
 }
 
@@ -727,6 +781,8 @@ function mdt_show_ok( $show ) {
 			'no-restaurant' => ! mdt_has_restaurant(),
 			'logo'          => has_custom_logo(),
 			'no-logo'       => ! has_custom_logo(),
+			'giftcards'     => function_exists( 'mdash_gc_open' ),
+			'no-giftcards'  => ! function_exists( 'mdash_gc_open' ),
 		);
 		if ( isset( $ok[ $when ] ) && ! $ok[ $when ] ) {
 			return false;

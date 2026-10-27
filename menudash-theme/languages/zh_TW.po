@@ -287,14 +287,14 @@ msgstr "頁尾（地址、交通、營業時間）"
 msgid "Home: gift cards"
 msgstr "首頁：禮券"
 
-msgid "A short teaser with the picture of the card and a button to the gift card page. Shows only while MenuDash takes gift card orders and a page has the gift card form."
-msgstr "簡短介紹，附禮券圖片及前往禮券頁面的按鈕。只在 MenuDash 接受禮券訂購且有頁面放了禮券表格時顯示。"
+msgid "A short teaser with the picture of the card and a button to the gift card page. Shows while MenuDash takes gift card orders and a page has the gift card form; without the Gift Cards add-on, while a gift card page is published (then: available at the restaurant, More about the gift card)."
+msgstr "簡短的禮券預告，附禮券圖片和前往禮券頁面的按鈕。當 MenuDash 接受禮券訂購且有頁面含表單時顯示；未安裝 Gift Cards 外掛時，只要已發佈禮券頁面就會顯示（此時為：在餐廳購買、「了解禮券」）。"
 
 msgid "Gift card page"
 msgstr "禮券頁面"
 
-msgid "An introduction and MenuDash's gift card order form ([menudash_giftcard]). Amounts, e-mail address, picture and terms are set under MenuDash → Gift cards."
-msgstr "一段介紹及 MenuDash 的禮券訂購表格（[menudash_giftcard]）。金額、電郵地址、圖片及條款在 MenuDash → Gift cards 設定。"
+msgid "An introduction and MenuDash's gift card order form ([menudash_giftcard]). Amounts, e-mail address, picture and terms are set under MenuDash → Gift cards. Without the MenuDash Gift Cards add-on: sold at the restaurant only, with buttons for directions and the menu."
+msgstr "介紹以及 MenuDash 的禮券訂購表單（[menudash_giftcard]）。金額、電子郵件、圖片和條款在 MenuDash → Gift cards 中設定。未安裝 MenuDash Gift Cards 外掛時：只在餐廳出售，附路線和菜單按鈕。"
 
 msgid "Header (coloured band)"
 msgstr "頁首（彩色橫條）"
@@ -359,8 +359,8 @@ msgstr "郵遞區號及城市"
 msgid "How to get here by tram, bus or car, and when you are open. Replace this text in the editor."
 msgstr "如何搭電車、巴士或開車前來，以及營業時間。請在編輯器中替換這段文字。"
 
-msgid "Gift card teaser: shows here while the MenuDash Gift Cards add-on takes orders and a page has the gift card form."
-msgstr "禮券介紹：當 MenuDash Gift Cards 附加元件接受訂購且有頁面放了禮券表格時，會顯示在這裡。"
+msgid "Gift card teaser: shows here while the MenuDash Gift Cards add-on takes orders and a page has the gift card form, or without the add-on while a gift card page is published."
+msgstr "禮券預告：當 MenuDash Gift Cards 外掛接受訂購且有頁面含禮券表單時，或未安裝該外掛但已發佈禮券頁面時，會顯示在這裡。"
 
 msgid "Delivery: shows here once an order link is entered under MenuDash → Restaurant (MenuDash Restaurant add-on)."
 msgstr "外送：在 MenuDash → Restaurant 填入訂餐連結後會顯示在這裡（MenuDash Restaurant 附加元件）。"
@@ -753,16 +753,16 @@ msgid "Home: gift cards"
 msgstr "首頁：禮券"
 
 msgctxt "Pattern description"
-msgid "A short teaser with the picture of the card and a button to the gift card page. Shows only while MenuDash takes gift card orders and a page has the gift card form."
-msgstr "簡短介紹，附禮券圖片及前往禮券頁面的按鈕。只在 MenuDash 接受禮券訂購且有頁面放了禮券表格時顯示。"
+msgid "A short teaser with the picture of the card and a button to the gift card page. Shows while MenuDash takes gift card orders and a page has the gift card form; without the Gift Cards add-on, while a gift card page is published (then: available at the restaurant, More about the gift card)."
+msgstr "簡短的禮券預告，附禮券圖片和前往禮券頁面的按鈕。當 MenuDash 接受禮券訂購且有頁面含表單時顯示；未安裝 Gift Cards 外掛時，只要已發佈禮券頁面就會顯示（此時為：在餐廳購買、「了解禮券」）。"
 
 msgctxt "Pattern title"
 msgid "Gift card page"
 msgstr "禮券頁面"
 
 msgctxt "Pattern description"
-msgid "An introduction and MenuDash's gift card order form ([menudash_giftcard]). Amounts, e-mail address, picture and terms are set under MenuDash → Gift cards."
-msgstr "一段介紹及 MenuDash 的禮券訂購表格（[menudash_giftcard]）。金額、電郵地址、圖片及條款在 MenuDash → Gift cards 設定。"
+msgid "An introduction and MenuDash's gift card order form ([menudash_giftcard]). Amounts, e-mail address, picture and terms are set under MenuDash → Gift cards. Without the MenuDash Gift Cards add-on: sold at the restaurant only, with buttons for directions and the menu."
+msgstr "介紹以及 MenuDash 的禮券訂購表單（[menudash_giftcard]）。金額、電子郵件、圖片和條款在 MenuDash → Gift cards 中設定。未安裝 MenuDash Gift Cards 外掛時：只在餐廳出售，附路線和菜單按鈕。"
 
 msgctxt "Pattern title"
 msgid "Header (coloured band)"
@@ -896,3 +896,42 @@ msgstr "MenuDash → Restaurant 或 設定 → 一般 中的圖示，以圓形�
 
 msgid "Smile"
 msgstr "微笑"
+
+msgid "Gift card: at the restaurant"
+msgstr "禮券：在餐廳購買"
+
+msgid "A gift card for a meal with us: available at the restaurant. Come by and ask us."
+msgstr "送一份在我們這裡享用的餐點禮券：在餐廳即可購買，歡迎來店詢問。"
+
+msgid "More about the gift card"
+msgstr "了解禮券"
+
+msgid "Our gift cards are available only at the restaurant. Come by and ask us; we are happy to help."
+msgstr "我們的禮券只在餐廳內出售。歡迎來店詢問，我們樂意為您服務。"
+
+msgid "View the menu"
+msgstr "查看菜單"
+
+msgid "MenuDash Gift Cards is active"
+msgstr "MenuDash Gift Cards 已啟用"
+
+msgid "MenuDash Gift Cards is not installed"
+msgstr "未安裝 MenuDash Gift Cards"
+
+msgid "Gift cards are sold at the restaurant only. How often the gift card page was opened (and how often from the button on the home page), and how often guests then tapped Get directions or View the menu there. A tap shows interest; it is not yet a sale."
+msgstr "禮券只在餐廳內出售。禮券頁面被打開的次數（以及其中從首頁按鈕進入的次數），以及客人之後在該頁點「規劃路線」或「查看菜單」的次數。點擊代表有興趣，還不是銷售。"
+
+msgid "Gift card page opened"
+msgstr "禮券頁面打開次數"
+
+msgid "From the home page button"
+msgstr "從首頁按鈕進入"
+
+msgid "Then directions"
+msgstr "之後點路線"
+
+msgid "Then the menu"
+msgstr "之後點菜單"
+
+msgid "%s of page visits"
+msgstr "佔頁面造訪的 %s"
