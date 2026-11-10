@@ -1,0 +1,23 @@
+# Runs dev/lint.php in WordPress Playground's PHP on every push and pull request: every PHP
+# file must parse on PHP 7.4, the oldest supported, and on 8.3. Needs only Node.
+name: lint
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  php:
+    name: PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['7.4', '8.3']
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Check that every PHP file parses
+        run: npx -y @wp-playground/cli@latest php --php=${{ matrix.php }} --verbosity=quiet --mount="$PWD:/repo" -- /repo/dev/lint.php
